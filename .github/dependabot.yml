@@ -1,0 +1,36 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "12:37"
+    timezone: Etc/GMT+7
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: importlib-metadata
+    versions:
+    - 3.10.0
+    - 3.10.1
+    - 3.4.0
+    - 3.5.0
+    - 3.7.0
+    - 3.7.2
+    - 3.7.3
+    - 3.9.1
+    - 4.0.0
+  - dependency-name: urllib3
+    versions:
+    - 1.26.3
+  - dependency-name: pytest
+    versions:
+    - 6.2.2
+  - dependency-name: isort
+    versions:
+    - 5.7.0
+  - dependency-name: more-itertools
+    versions:
+    - 8.6.0
+  - dependency-name: zipp
+    versions:
+    - 3.4.0

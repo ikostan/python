@@ -38,7 +38,7 @@ def list_contains_round(rounds: list[int], number: int) -> bool:
     return number in rounds
 
 
-def card_average(hand: list) -> float:
+def card_average(hand: list[list]) -> float:
     """
     Calculate and returns the average card value from the list.
 

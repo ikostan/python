@@ -11,7 +11,7 @@ def add_prefix_un(word: str) -> str:
     return f'un{word}'
 
 
-def make_word_groups(vocab_words: list) -> str:
+def make_word_groups(vocab_words: list[str]) -> str:
     """
     Transform a list containing a prefix and words into a string with the prefix
     followed by the words with prefix prepended.
@@ -42,7 +42,7 @@ def remove_suffix_ness(word: str) -> str:
     return f'{word[:-5]}y' if word[-5] == 'i' else word[:-4]
 
 
-def adjective_to_verb(sentence: str, index: int):
+def adjective_to_verb(sentence: str, index: int) -> str:
     """
     Change the adjective within the sentence to a verb.
 
@@ -53,5 +53,5 @@ def adjective_to_verb(sentence: str, index: int):
     For example, ("It got dark as the sun set.", 2) becomes "darken".
     """
     words: list[str] = sentence.split()
-    word: str = words[index].strip('.,!?')
+    word: str = words[index].strip('.,!?;:')
     return f'{word}en'

@@ -66,15 +66,8 @@ def average_even_is_average_odd(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?
     """
-    even: list = []
-    odd: list = []
-
-    for i, n in enumerate(hand):
-        if i % 2 == 0:
-            even.append(n)
-        else:
-            odd.append(n)
-
+    even = hand[::2]
+    odd = hand[1::2]
     return sum(even) / len(even) == sum(odd) / len(odd)
 
 

@@ -14,7 +14,7 @@ def square(number) -> int:
     :rtype: int
     """
     if number <= 0 or number > 64:
-        raise ValueError(f"square must be between 1 and 64")
+        raise ValueError("square must be between 1 and 64")
 
     if number == 1:
         return 1

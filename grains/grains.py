@@ -1,7 +1,7 @@
 """Grains."""
 
 
-def square(number) -> int:
+def square(number) -> int | ValueError:
     """
     Calculate the number of grains on a given square.
 

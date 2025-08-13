@@ -1,3 +1,14 @@
+# pylint: disable=C0301
+"""
+Unit tests for the card game utility functions in the lists module.
+
+Tests cover core behaviors such as generating rounds, concatenating rounds,
+verifying round presence, calculating averages, comparing approximate and
+actual averages, comparing even/odd index averages, and conditionally
+doubling the last card value.
+
+Uses unittest framework with pytest marking for grading tasks.
+"""
 import unittest
 import pytest
 
@@ -13,17 +24,26 @@ from lists import (
 
 
 class CardGamesTest(unittest.TestCase):
+    """Unit tests for card games utility functions."""
 
     @pytest.mark.task(taskno=1)
     def test_get_rounds(self):
+        """
+        Test the get_rounds function with various inputs to ensure it returns
+        the current round and the next two rounds.
 
+        :param self: The test case instance.
+        """
         input_data = [0, 1, 10, 27, 99, 666]
         result_data = [[0, 1, 2], [1, 2, 3],
                        [10, 11, 12], [27, 28, 29],
                        [99, 100, 101], [666, 667, 668]]
 
-        for variant, (number, expected) in enumerate(zip(input_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', number=number, expected=expected):
+        for variant, (number, expected) in enumerate(
+                zip(input_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              number=number,
+                              expected=expected):
                 actual_result = get_rounds(number)
                 error_message = (f'Called get_rounds({number}). '
                                  f'The function returned {actual_result}, '
@@ -34,7 +54,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=2)
     def test_concatenate_rounds(self):
+        """
+        Test the concatenate_rounds function to ensure it correctly combines
+        two lists of rounds.
 
+        :param self: The test case instance.
+        """
         input_data = [([], []), ([0, 1], []), ([], [1, 2]),
                       ([1], [2]), ([27, 28, 29], [35, 36]),
                       ([1, 2, 3], [4, 5, 6])]
@@ -60,7 +85,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=3)
     def test_list_contains_round(self):
+        """
+        Test the list_contains_round function to check if a specific round
+        is present in the list of played rounds.
 
+        :param self: The test case instance.
+        """
         input_data = [([], 1), ([1, 2, 3], 0),
                       ([27, 28, 29, 35, 36], 30),
                       ([1], 1), ([1, 2, 3], 1),
@@ -83,7 +113,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=4)
     def test_card_average(self):
+        """
+        Test the card_average function to ensure it calculates the correct
+        average of card values in a hand.
 
+        :param self: The test case instance.
+        """
         input_data = [[1], [5, 6, 7], [1, 2, 3, 4], [1, 10, 100]]
         result_data = [1.0, 6.0, 2.5, 37.0]
 
@@ -98,7 +133,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=5)
     def test_approx_average_is_average(self):
+        """
+        Test the approx_average_is_average function to check if approximate
+        averages match the actual average.
 
+        :param self: The test case instance.
+        """
         input_data = [[0, 1, 5], [3, 6, 9, 12, 150], [1, 2, 3, 5, 9],
                       [2, 3, 4, 7, 8], [1, 2, 3], [2, 3, 4],
                       [2, 3, 4, 8, 8], [1, 2, 4, 5, 8]]
@@ -117,7 +157,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=6)
     def test_average_even_is_average_odd(self):
+        """
+        Test the average_even_is_average_odd function to verify if averages
+        of even and odd indexed cards are equal.
 
+        :param self: The test case instance.
+        """
         input_data = [[5, 6, 8], [1, 2, 3, 4], [1, 2, 3], [5, 6, 7], [1, 3, 5, 7, 9]]
         result_data = [False, False, True, True, True]
 
@@ -133,7 +178,12 @@ class CardGamesTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=7)
     def test_maybe_double_last(self):
+        """
+        Test the maybe_double_last function to ensure it doubles the last card
+        if it is a Jack (11).
 
+        :param self: The test case instance.
+        """
         input_data = [(1, 2, 11), (5, 9, 11), (5, 9, 10), (1, 2, 3), (1, 11, 8)]
         result_data = [[1, 2, 22], [5, 9, 22], [5, 9, 10], [1, 2, 3], [1, 11, 8]]
 

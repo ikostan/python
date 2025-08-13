@@ -1,3 +1,20 @@
+# pylint: disable=C0301
+"""
+Unit tests for queue management functions at Chaitana's roller coaster.
+
+This test suite,
+- Validates correct functional behavior for basic queue operations (add, remove, insert, search, and sort) for both express and normal queues.
+- Ensures that each function both returns the correct result and properly mutates or does not mutate the input lists as expected.
+- Employs parameterized testing patterns, subTest blocks, and deep copies to safeguard against unintended mutation of shared state, ensuring accurate and isolated assertions.
+- Uses unittest and pytest frameworks for flexible test discovery and marking (with @pytest.mark.task to delineate test responsibilities).
+
+Each function imported from `list_methods` is tested with a range of scenarios, including:
+- Standard and edge inputs,
+- In-place versus return-value mutation expectations,
+- Validation that the queue's structure and contents match anticipated post-conditions.
+
+Users can run this file as a standard unittest/pytest module. Extend or edit test cases as new queue behaviors are implemented.
+"""
 import unittest
 from copy import deepcopy
 import pytest
@@ -14,9 +31,22 @@ from list_methods import (
 )
 
 
+# pylint: disable=C0301
 class ListMethodsTest(unittest.TestCase):
+    """
+    Unit test suite for list manipulation functions.
+
+    Tests various utility methods defined in the list_methods module.
+    """
+
     @pytest.mark.task(taskno=1)
     def test_add_me_to_the_queue(self):
+        """
+        Test the add_me_to_the_queue function to ensure it adds a person
+        to the correct queue based on ticket type and returns the updated queue.
+
+        :param self: The test case instance.
+        """
         test_data = [
         ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'),
          ['RobotGuy', 'WW', 'HawkEye']),
@@ -48,6 +78,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=1)
     def test_add_me_to_the_queue_validate_queue(self):
+        """
+        Test the add_me_to_the_queue function to validate that it mutates
+        and returns the correct queue based on ticket type.
+
+        :param self: The test case instance.
+        """
         test_data = [
         ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'),
          ['RobotGuy', 'WW', 'HawkEye']),
@@ -95,6 +131,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=2)
     def test_find_my_friend(self):
+        """
+        Test the find_my_friend function to ensure it returns the correct
+        index of the friend in the queue.
+
+        :param self: The test case instance.
+        """
         test_data = [
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 'Natasha'),
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 'Steve'),
@@ -117,6 +159,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=3)
     def test_add_me_with_my_friends(self):
+        """
+        Test the add_me_with_my_friends function to ensure it inserts the person
+        at the specified index and returns the updated queue.
+
+        :param self: The test case instance.
+        """
         test_data = [
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 0, 'Bucky'),
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 1, 'Bucky'),
@@ -148,6 +196,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=3)
     def test_add_me_with_my_friends_validate_queue(self):
+        """
+        Test the add_me_with_my_friends function to validate that it mutates
+        the original queue and returns it.
+
+        :param self: The test case instance.
+        """
         test_data = [
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 0, 'Bucky'),
                 (['Natasha', 'Steve', 'Tchalla', 'Wanda', 'Rocket'], 1, 'Bucky'),
@@ -179,6 +233,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=4)
     def test_remove_the_mean_person(self):
+        """
+        Test the remove_the_mean_person function to ensure it removes the specified
+        person and returns the updated queue.
+
+        :param self: The test case instance.
+        """
         test_data = [
                 (['Natasha', 'Steve', 'Ultron', 'Wanda', 'Rocket'], 'Ultron'),
                 (['Natasha', 'Steve', 'Wanda', 'Rocket', 'Ultron'], 'Rocket'),
@@ -210,6 +270,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=4)
     def test_remove_the_mean_person_validate_queue(self):
+        """
+        Test the remove_the_mean_person function to validate that it mutates
+        the original queue and returns it.
+
+        :param self: The test case instance.
+        """
         test_data = [
                 (['Natasha', 'Steve', 'Ultron', 'Wanda', 'Rocket'], 'Ultron'),
                 (['Natasha', 'Steve', 'Wanda', 'Rocket', 'Ultron'], 'Rocket'),
@@ -244,6 +310,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=5)
     def test_how_many_namefellows(self):
+        """
+        Test the how_many_namefellows function to ensure it correctly counts
+        occurrences of a name in the queue.
+
+        :param self: The test case instance.
+        """
         test_data = [(['Natasha', 'Steve', 'Ultron', 'Natasha', 'Rocket'], 'Bucky'),
                      (['Natasha', 'Steve', 'Ultron', 'Rocket'], 'Natasha'),
                      (['Natasha', 'Steve', 'Ultron', 'Natasha', 'Rocket'], 'Natasha')]
@@ -263,6 +335,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=6)
     def test_remove_the_last_person(self):
+        """
+        Test the remove_the_last_person function to ensure it removes and returns
+        the last person from the queue, mutating the queue.
+
+        :param self: The test case instance.
+        """
         test_data = [
             (['Natasha', 'Steve', 'Ultron', 'Natasha', 'Rocket'],
              ['Natasha', 'Steve', 'Ultron', 'Natasha'], 'Rocket'),
@@ -293,6 +371,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=7)
     def test_sorted_names(self):
+        """
+        Test the sorted_names function to ensure it returns a sorted copy
+        of the queue without mutating the original.
+
+        :param self: The test case instance.
+        """
         test_data =(
         (['Steve', 'Ultron', 'Natasha', 'Rocket'], ['Natasha', 'Rocket', 'Steve', 'Ultron']),
         (['Agatha', 'Pepper', 'Valkyrie', 'Drax', 'Nebula'], ['Agatha', 'Drax', 'Nebula', 'Pepper', 'Valkyrie']),
@@ -312,6 +396,12 @@ class ListMethodsTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=7)
     def test_sorted_names_validate_queue(self):
+        """
+        Test the sorted_names function to validate that it does not mutate
+        the original queue.
+
+        :param self: The test case instance.
+        """
         test_data = (
         (['Steve', 'Ultron', 'Natasha', 'Rocket'], ['Natasha', 'Rocket', 'Steve', 'Ultron']),
         (['Agatha', 'Pepper', 'Valkyrie', 'Drax', 'Nebula'], ['Agatha', 'Drax', 'Nebula', 'Pepper', 'Valkyrie']),

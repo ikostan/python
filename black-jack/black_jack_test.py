@@ -1,3 +1,4 @@
+# pylint: disable=C0301
 """
 Unit tests suite for blackjack game logic functions.
 
@@ -13,8 +14,8 @@ This test case class covers the following functionalities:
 Tests use parameterized cases with informative error messages for each assertion.
 """
 
-from parameterized import parameterized
 import unittest
+from parameterized import parameterized
 import pytest
 
 from black_jack import (
@@ -27,6 +28,7 @@ from black_jack import (
 )
 
 
+# pylint: disable=C0301
 class BlackJackTest(unittest.TestCase):
     """
     Unit test suite for blackjack game logic functions.

@@ -1,6 +1,7 @@
 """Functions to prevent a nuclear meltdown."""
 
 
+# pylint: disable=C0301
 def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
     """Verify criticality is balanced.
 

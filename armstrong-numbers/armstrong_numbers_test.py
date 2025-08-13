@@ -1,3 +1,4 @@
+# pylint: disable=C0301
 """
 Armstrong Numbers Test Suite Documentation
 

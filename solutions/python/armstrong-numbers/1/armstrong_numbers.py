@@ -12,16 +12,7 @@ def is_armstrong_number(number: int) -> bool:
     :type number: int
     :return: if "Armstrong Number"
     :rtype: bool
-
-    Examples:
-    >>> is_armstrong_number(153)
-    True
-    >>> is_armstrong_number(10)
-    False
     """
-    if number < 0:
-        raise ValueError("Only non-negative integers are allowed")
-
     str_num: str = str(number)
     n: int = len(str_num)
     return number == sum(int(char) ** n for char in str_num)

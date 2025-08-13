@@ -13,7 +13,7 @@ Curious, you picked number 12 to test and began the journey:
 """
 
 
-def steps(number: int) -> int | ValueError:
+def steps(number: int) -> int:
     """
     Return the number of steps it takes to reach 1 according to
     the rules of the Collatz Conjecture.
@@ -30,7 +30,9 @@ def steps(number: int) -> int | ValueError:
     while number > 1:
         # If it's even, divide it by 2
         if number % 2 == 0:
-            number = number / 2
+            # Switch to integer division
+            # keeps everything as int and avoids precision issues
+            number = number // 2
         # If it's odd, multiply it by 3 and add 1
         else:
             number = (number * 3) + 1

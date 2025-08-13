@@ -1,3 +1,12 @@
+# pylint: disable=C0301
+"""
+Unit tests for the 'hello' function in hello_world.py.
+
+Ensures the function returns 'Hello, World!' as expected.
+Provides informative error messages if the function is
+missing or incorrectly implemented.
+"""
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/hello-world/canonical-data.json
 # File last updated on 2023-07-19
@@ -25,6 +34,10 @@ except ImportError as import_fail:
 
 
 class HelloWorldTest(unittest.TestCase):
+    """
+    Test case class for verifying HelloWorld functionality using unittest.
+    """
+
     def test_say_hi(self):
         msg = ("\n\nThis test expects a return of the string "
                "'Hello, World!' \nDid you use print('Hello, World!') "

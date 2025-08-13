@@ -1,3 +1,14 @@
+# pylint: disable=C0301
+"""
+Unit tests for Guido's gorgeous lasagna module functions and constants.
+
+Covers presence and values of EXPECTED_BAKE_TIME, and correctness of
+bake_time_remaining, preparation_time_in_minutes, and elapsed_time_in_minutes.
+Also checks that all required docstrings are present.
+
+Raises informative import errors to help identify naming issues during testing.
+"""
+
 import unittest
 import pytest
 
@@ -35,6 +46,7 @@ except ImportError as import_fail:
 # pylint: disable=C0301
 # Here begins the formal test cases for the exercise.
 class LasagnaTest(unittest.TestCase):
+    """Unit tests for lasagna-related functionality."""
 
     @pytest.mark.task(taskno=1)
     def test_EXPECTED_BAKE_TIME(self):

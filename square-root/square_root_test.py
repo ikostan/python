@@ -1,3 +1,10 @@
+# pylint: disable=C0301
+"""
+Unit tests for the square_root function, verifying
+correct calculation of integer square roots for various
+inputs using test data from Exercism.
+"""
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/square-root/canonical-data.json
 # File last updated on 2023-07-19
@@ -10,6 +17,10 @@ from square_root import (
 
 
 class SquareRootTest(unittest.TestCase):
+    """
+    Test suite for verifying the functionality of the square_root function.
+    """
+
     def test_root_of_1(self):
         self.assertEqual(square_root(1), 1)
 

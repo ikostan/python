@@ -1,3 +1,12 @@
+# pylint: disable=C0301
+"""
+Unit tests for currency exchange functions.
+
+Tests cover calculations for currency exchange, change, bill values, bill counts, leftovers, and determining maximum currency exchangeable after applying spread and denomination constraints.
+
+Uses pytest and unittest for parametrized and task-specific testing.
+"""
+
 import unittest
 import pytest
 
@@ -11,6 +20,8 @@ from exchange import (
 
 
 class CurrencyExchangeTest(unittest.TestCase):
+    """Unit tests for currency exchange utility functions."""
+
     @pytest.mark.task(taskno=1)
     def test_exchange_money(self):
         test_data = [(100000, 0.8), (700000, 10.0)]

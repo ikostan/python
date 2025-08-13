@@ -1,3 +1,11 @@
+# pylint: disable=C0301
+"""
+Unit tests for the meltdown mitigation functions, verifying
+correct behavior for criticality balance, reactor efficiency,
+and fail safe status using a variety of boundary and
+representative input values.
+"""
+
 import unittest
 import pytest
 from conditionals import (is_criticality_balanced,
@@ -6,15 +14,14 @@ from conditionals import (is_criticality_balanced,
 
 
 class MeltdownMitigationTest(unittest.TestCase):
-    """Test cases for Meltdown mitigation exercise.
-    """
+    """Test cases for Meltdown mitigation exercise."""
 
     @pytest.mark.task(taskno=1)
     def test_is_criticality_balanced(self):
-        """Testing border cases around typical points.
+        """
+        Testing border cases around typical points.
 
         T, n == (800, 500), (625, 800), (500, 1000), etc.
-
         """
 
         test_data = ((750, 650, True), (799, 501, True), (500, 600, True),

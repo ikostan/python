@@ -14,7 +14,10 @@ def square(number) -> int:
     :rtype: int
     """
     if number <= 0 or number > 64:
-        raise ValueError("square must be between 1 and 64")
+        raise ValueError(f"square must be between 1 and 64")
+
+    if number == 1:
+        return 1
 
     return 2 ** (number - 1)
 
@@ -30,5 +33,4 @@ def total() -> int:
     :return: the total number of grains on the chessboard.
     :rtype: int
     """
-    # return sum(square(sqr) for sqr in range(1, 65))
-    return 2 ** 64 - 1
+    return sum(square(sqr) for sqr in range(1, 65))

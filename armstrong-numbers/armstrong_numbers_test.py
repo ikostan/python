@@ -1,4 +1,44 @@
-"""Armstrong Numbers Test Suite."""
+"""
+Armstrong Numbers Test Suite Documentation
+
+## Overview
+
+This test suite validates the `is_armstrong_number` function,
+ensuring its correct behavior for various types of numbers:
+
+- Single-digit and multi-digit numbers
+- Known Armstrong numbers and non-Armstrong numbers
+
+Tests are auto-generated based on canonical data from
+[Exercism problem specifications](https://github.com/exercism/problem-specifications/tree/main/exercises/armstrong-numbers/canonical-data.json).
+
+## Structure
+
+- **Framework:** Uses Python's built-in `unittest`.
+- **Target Function:** `is_armstrong_number` (imported from `armstrong_numbers` module).
+
+## Test Cases
+
+| Test Description                                        | Input    | Expected Output |
+|---------------------------------------------------------|----------|-----------------|
+| Zero is an Armstrong number                             | 0        | `True`          |
+| Single-digit numbers are Armstrong numbers              | 5        | `True`          |
+| No two-digit numbers (e.g. 10) are Armstrong numbers    | 10       | `False`         |
+| 153 is an Armstrong number                              | 153      | `True`          |
+| 100 is not an Armstrong number                          | 100      | `False`         |
+| 9474 is an Armstrong number                             | 9474     | `True`          |
+| 9475 is not an Armstrong number                         | 9475     | `False`         |
+| 9926315 is an Armstrong number                          | 9926315  | `True`          |
+| 9926314 is not an Armstrong number                      | 9926314  | `False`         |
+
+## Usage
+
+To run the tests, ensure `is_armstrong_number` is implemented and run:
+
+```bash
+python -m unittest armstrong_numbers_test.py
+
+"""
 
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/armstrong-numbers/canonical-data.json

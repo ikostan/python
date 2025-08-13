@@ -49,7 +49,7 @@ class LasagnaTest(unittest.TestCase):
     """Unit tests for lasagna-related functionality."""
 
     @pytest.mark.task(taskno=1)
-    def test_EXPECTED_BAKE_TIME(self):
+    def test_expected_bake_time(self):
         failure_msg = 'Expected a constant of EXPECTED_BAKE_TIME with a value of 40.'
         self.assertEqual(EXPECTED_BAKE_TIME, 40, msg=failure_msg)
 

@@ -133,7 +133,8 @@ class CurrencyExchangeTest(unittest.TestCase):
                               expected=expected):
 
                 actual_result = exchangeable_value(budget, exchange_rate, spread, denomination)
-                error_message = (f'Called exchangeable_value{budget, exchange_rate, spread, denomination}. '
+                error_message = (f'Called exchangeable_value'
+                                 f'{budget, exchange_rate, spread, denomination}. '
                                  f'The function returned {actual_result}, but '
                                  f'The tests expected {expected} as the maximum '
                                  f'value of the new currency .')

@@ -65,7 +65,8 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold) -> str:
 
     if thr_percent - 10 <= current_state <= thr_percent + 10:
         return 'NORMAL'
-    elif current_state < thr_percent - 10:
+
+    if current_state < thr_percent - 10:
         return 'LOW'
 
     return 'DANGER'

@@ -15,19 +15,21 @@ class LittleSistersVocabTest(unittest.TestCase):
 
         for variant, (word, expected) in enumerate(zip(input_data, result_data), start=1):
             with self.subTest(f'variation #{variant}', word=word, expected=expected):
-
                 actual_result = add_prefix_un(word)
                 error_message = (f'Called add_prefix_un("{word}"). '
-                                f'The function returned "{actual_result}", but the '
-                                f'tests expected "{expected}" after adding "un" as a prefix.')
+                                 f'The function returned "{actual_result}", but the '
+                                 f'tests expected "{expected}" after adding "un" as a prefix.')
 
                 self.assertEqual(actual_result, expected, msg=error_message)
 
     @pytest.mark.task(taskno=2)
     def test_make_word_groups_en(self):
-        input_data = ['en', 'circle', 'fold', 'close', 'joy', 'lighten', 'tangle', 'able', 'code', 'culture']
-        expected = ('en :: encircle :: enfold :: enclose :: enjoy :: enlighten ::'
-                       ' entangle :: enable :: encode :: enculture')
+        input_data = ['en', 'circle', 'fold', 'close',
+                      'joy', 'lighten', 'tangle', 'able',
+                      'code', 'culture']
+        expected = ('en :: encircle :: enfold :: enclose :: '
+                    'enjoy :: enlighten ::'
+                    ' entangle :: enable :: encode :: enculture')
 
         actual_result = make_word_groups(input_data)
         error_message = (f'Called make_word_groups({input_data}). '
@@ -87,11 +89,17 @@ class LittleSistersVocabTest(unittest.TestCase):
 
     @pytest.mark.task(taskno=3)
     def test_remove_suffix_ness(self):
-        input_data = ['heaviness', 'sadness', 'softness', 'crabbiness', 'lightness', 'artiness', 'edginess']
-        result_data = ['heavy', 'sad', 'soft', 'crabby', 'light', 'arty', 'edgy']
+        input_data = ['heaviness', 'sadness', 'softness',
+                      'crabbiness', 'lightness', 'artiness',
+                      'edginess']
+        result_data = ['heavy', 'sad', 'soft', 'crabby',
+                       'light', 'arty', 'edgy']
 
-        for variant, (word, expected) in enumerate(zip(input_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', word=word, expected=expected):
+        for variant, (word, expected) in enumerate(
+                zip(input_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              word=word,
+                              expected=expected):
                 actual_result = remove_suffix_ness(word)
                 error_message = (f'Called remove_suffix_ness("{word}"). '
                                  f'The function returned "{actual_result}", '
@@ -115,11 +123,16 @@ class LittleSistersVocabTest(unittest.TestCase):
         result_data = ['brighten', 'darken', 'harden', 'soften',
                        'lighten', 'dampen', 'shorten', 'weaken', 'blacken']
 
-        for variant, (sentence, index, expected) in enumerate(zip(input_data, index_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', sentence=sentence, index=index, expected=expected):
+        for variant, (sentence, index, expected) in enumerate(
+                zip(input_data, index_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              sentence=sentence,
+                              index=index,
+                              expected=expected):
                 actual_result = adjective_to_verb(sentence, index)
                 error_message = (f'Called adjective_to_verb("{sentence}", {index}). '
-                                 f'The function returned "{actual_result}", but the tests '
+                                 f'The function returned "{actual_result}", '
+                                 f'but the tests '
                                  f'expected "{expected}" as the verb for '
                                  f'the word at index {index}.')
 

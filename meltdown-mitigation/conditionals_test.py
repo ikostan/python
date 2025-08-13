@@ -26,13 +26,18 @@ class MeltdownMitigationTest(unittest.TestCase):
 
         for variant, data in enumerate(test_data, start=1):
             temp, neutrons_emitted, expected = data
-            with self.subTest(f'variation #{variant}', temp=temp, neutrons_emitted=neutrons_emitted, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              temp=temp,
+                              neutrons_emitted=neutrons_emitted,
+                              expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = is_criticality_balanced(temp, neutrons_emitted)
-                failure_message = (f'Called is_criticality_balanced({temp}, {neutrons_emitted}). '
+                failure_message = (f'Called is_criticality_balanced('
+                                   f'{temp}, {neutrons_emitted}). '
                                    f' The function returned {actual_result}, '
-                                   f'but the test expected {expected} as the return value.')
+                                   f'but the test expected {expected} as the '
+                                   f'return value.')
 
                 self.assertEqual(actual_result, expected, failure_message)
 
@@ -49,12 +54,16 @@ class MeltdownMitigationTest(unittest.TestCase):
 
         for variant, data in enumerate(test_data, start=1):
             current, expected = data
-            with self.subTest(f'variation #{variant}', voltage=voltage, current=current,
-                              theoretical_max_power=theoretical_max_power, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              voltage=voltage,
+                              current=current,
+                              theoretical_max_power=theoretical_max_power,
+                              expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = reactor_efficiency(voltage, current, theoretical_max_power)
-                failure_message =(f'Called reactor_efficiency({voltage}, {current}, {theoretical_max_power}). '
+                failure_message =(f'Called reactor_efficiency('
+                                  f'{voltage}, {current}, {theoretical_max_power}). '
                                   f'The function returned {actual_result}, '
                                   f'but the test expected {expected} as the return value.')
 
@@ -70,12 +79,15 @@ class MeltdownMitigationTest(unittest.TestCase):
                      (400, 'LOW'), (1101, 'DANGER'), (1200, 'DANGER'))
 
         for variant, (neutrons_per_second, expected) in enumerate(test_data, start=1):
-            with self.subTest(f'variation #{variant}', temp=temp, neutrons_per_second=neutrons_per_second,
+            with self.subTest(f'variation #{variant}',
+                              temp=temp,
+                              neutrons_per_second=neutrons_per_second,
                               threshold=threshold, expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = fail_safe(temp, neutrons_per_second, threshold)
-                failure_message = (f'Called fail_safe({temp}, {neutrons_per_second}, {threshold}). '
+                failure_message = (f'Called fail_safe('
+                                   f'{temp}, {neutrons_per_second}, {threshold}). '
                                    f'The function returned {actual_result}, '
                                    f'but the test expected {expected} as the return value.')
 

@@ -18,10 +18,14 @@ class ListMethodsTest(unittest.TestCase):
     @pytest.mark.task(taskno=1)
     def test_add_me_to_the_queue(self):
         test_data = [
-        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'), ['RobotGuy', 'WW', 'HawkEye']),
-        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 1, 'RichieRich'), ['Tony', 'Bruce', 'RichieRich']),
-        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 1, 'Okoye'), ['Agatha', 'Pepper', 'Valkyrie', 'Okoye']),
-        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 0, 'Gamora'), ['Drax', 'Nebula', 'Gamora']),
+        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'),
+         ['RobotGuy', 'WW', 'HawkEye']),
+        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 1, 'RichieRich'),
+         ['Tony', 'Bruce', 'RichieRich']),
+        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 1, 'Okoye'),
+         ['Agatha', 'Pepper', 'Valkyrie', 'Okoye']),
+        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 0, 'Gamora'),
+         ['Drax', 'Nebula', 'Gamora']),
         ]
 
         for variant, (params, expected) in enumerate(test_data, start=1):
@@ -29,11 +33,14 @@ class ListMethodsTest(unittest.TestCase):
             # That mutation wrecks havoc with the verification and error messaging.
             express_queue, normal_queue, ticket_type, person_name = deepcopy(params)
 
-            with self.subTest(f'variation #{variant}', params=params, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              params=params,
+                              expected=expected):
                 actual_result = add_me_to_the_queue(*params)
 
                 error_message = (
-                    f'\nCalled add_me_to_the_queue{express_queue, normal_queue, ticket_type, person_name}.\n'
+                    f'\nCalled add_me_to_the_queue'
+                    f'{express_queue, normal_queue, ticket_type, person_name}.\n'
                     f'The function returned {actual_result},\n'
                     f' but the tests expected {expected} after {person_name} was added.')
 
@@ -42,10 +49,14 @@ class ListMethodsTest(unittest.TestCase):
     @pytest.mark.task(taskno=1)
     def test_add_me_to_the_queue_validate_queue(self):
         test_data = [
-        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'), ['RobotGuy', 'WW', 'HawkEye']),
-        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 1, 'RichieRich'), ['Tony', 'Bruce', 'RichieRich']),
-        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 1, 'Okoye'), ['Agatha', 'Pepper', 'Valkyrie', 'Okoye']),
-        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 0, 'Gamora'), ['Drax', 'Nebula', 'Gamora']),
+        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 0, 'HawkEye'),
+         ['RobotGuy', 'WW', 'HawkEye']),
+        ((['Tony', 'Bruce'], ['RobotGuy', 'WW'], 1, 'RichieRich'),
+         ['Tony', 'Bruce', 'RichieRich']),
+        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 1, 'Okoye'),
+         ['Agatha', 'Pepper', 'Valkyrie', 'Okoye']),
+        ((['Agatha', 'Pepper', 'Valkyrie'], ['Drax', 'Nebula'], 0, 'Gamora'),
+         ['Drax', 'Nebula', 'Gamora']),
         ]
 
         for variant, (params, expected) in enumerate(test_data, start=1):
@@ -55,14 +66,18 @@ class ListMethodsTest(unittest.TestCase):
             express, normal, ticket, name = params
 
             with self.subTest(f'variation #{variant}',
-                              express=express, normal=normal,
-                              ticket=ticket, name=name, expected=expected):
+                              express=express,
+                              normal=normal,
+                              ticket=ticket,
+                              name=name,
+                              expected=expected):
 
                 actual_result = add_me_to_the_queue(express, normal, ticket, name)
 
                 if type == 1:
                     error_message = (
-                            f'\nCalled add_me_to_the_queue{express_queue, normal_queue, ticket_type, person_name}.\n'
+                            f'\nCalled add_me_to_the_queue'
+                            f'{express_queue, normal_queue, ticket_type, person_name}.\n'
                             f'The queue == {express}, but the tests expected\n'
                             f'queue == {expected} after {person_name} was added.'
                     )
@@ -249,9 +264,12 @@ class ListMethodsTest(unittest.TestCase):
     @pytest.mark.task(taskno=6)
     def test_remove_the_last_person(self):
         test_data = [
-            (['Natasha', 'Steve', 'Ultron', 'Natasha', 'Rocket'], ['Natasha', 'Steve', 'Ultron', 'Natasha'], 'Rocket'),
-            (['Wanda', 'Natasha', 'Steve', 'Rocket', 'Ultron'], ['Wanda', 'Natasha', 'Steve', 'Rocket'], 'Ultron'),
-            (['Steve', 'Wanda', 'Rocket', 'Ultron', 'Natasha'], ['Steve', 'Wanda', 'Rocket', 'Ultron'], 'Natasha')
+            (['Natasha', 'Steve', 'Ultron', 'Natasha', 'Rocket'],
+             ['Natasha', 'Steve', 'Ultron', 'Natasha'], 'Rocket'),
+            (['Wanda', 'Natasha', 'Steve', 'Rocket', 'Ultron'],
+             ['Wanda', 'Natasha', 'Steve', 'Rocket'], 'Ultron'),
+            (['Steve', 'Wanda', 'Rocket', 'Ultron', 'Natasha'],
+             ['Steve', 'Wanda', 'Rocket', 'Ultron'], 'Natasha')
         ]
         for variant, (queue, modified, expected) in enumerate(test_data, start=1):
             with self.subTest(f'variation #{variant}', queue=queue, modified=modified, expected=expected):
@@ -264,9 +282,11 @@ class ListMethodsTest(unittest.TestCase):
                 expected_queue = modified
 
                 error_message = (f'\nCalled remove_the_last_person({unmodified_queue}).\n'
-                                 f'The function was expected to remove and return the name "{expected_result}" '
+                                 f'The function was expected to remove and return the name '
+                                 f'"{expected_result}" '
                                  f'and change the queue to {expected_queue},\n'
-                                 f'but the name "{actual_result}" was returned and the queue == {queue}.')
+                                 f'but the name "{actual_result}" was returned and the queue == '
+                                 f'{queue}.')
 
                 self.assertEqual((actual_result, queue), (expected_result, expected_queue), msg=error_message)
 

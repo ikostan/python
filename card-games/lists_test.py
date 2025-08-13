@@ -43,8 +43,13 @@ class CardGamesTest(unittest.TestCase):
                        [27, 28, 29, 35, 36],
                        [1, 2, 3, 4, 5, 6]]
 
-        for variant, ((rounds_1, rounds_2), expected) in enumerate(zip(input_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', rounds_1=rounds_1, rounds_2=rounds_2, expected=expected):
+        for variant, ((rounds_1, rounds_2), expected) in enumerate(
+                zip(input_data, result_data),
+                start=1):
+            with self.subTest(f'variation #{variant}',
+                              rounds_1=rounds_1,
+                              rounds_2=rounds_2,
+                              expected=expected):
                 actual_result = concatenate_rounds(rounds_1, rounds_2)
                 error_message = (f'Called concatenate_rounds({rounds_1}, {rounds_2}). '
                                  f'The function returned {actual_result}, but the tests '
@@ -62,8 +67,13 @@ class CardGamesTest(unittest.TestCase):
                       ([27, 28, 29, 35, 36], 29)]
         result_data = [False, False, False, True, True, True]
 
-        for variant, ((rounds, round_number), expected) in enumerate(zip(input_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', rounds=rounds, round_number=round_number, expected=expected):
+        for variant, ((rounds, round_number), expected) in enumerate(
+                zip(input_data, result_data),
+                start=1):
+            with self.subTest(f'variation #{variant}',
+                              rounds=rounds,
+                              round_number=round_number,
+                              expected=expected):
                 actual_result = list_contains_round(rounds, round_number)
                 error_message = (f'Called list_contains_round({rounds}, {round_number}). '
                                  f'The function returned {actual_result}, but round {round_number} '
@@ -127,11 +137,15 @@ class CardGamesTest(unittest.TestCase):
         input_data = [(1, 2, 11), (5, 9, 11), (5, 9, 10), (1, 2, 3), (1, 11, 8)]
         result_data = [[1, 2, 22], [5, 9, 22], [5, 9, 10], [1, 2, 3], [1, 11, 8]]
 
-        for variant, (hand, expected) in enumerate(zip(input_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', hand=list(hand), expected=expected):
+        for variant, (hand, expected) in enumerate(
+                zip(input_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              hand=list(hand),
+                              expected=expected):
                 actual_result = maybe_double_last(list(hand))
                 error_message = (f'Called maybe_double_last({list(hand)}). '
                                  f'The function returned {actual_result}, but '
-                                 f'the tests expected {expected} as the maybe-doubled version of {list(hand)}.')
+                                 f'the tests expected {expected} as the '
+                                 f'maybe-doubled version of {list(hand)}.')
 
                 self.assertEqual(actual_result, expected, msg=error_message)

@@ -21,4 +21,4 @@ jobs:
         pip install -r requirements.txt
     - name: Analysing the code with pylint
       run: |
-        python -m pylint --verbose $(Get-ChildItem -Recurse -Filter *.py | Where-Object { $_.FullName -notmatch '\\\.venv\\' -and $_.FullName -notmatch '\\venv\\' } | ForEach-Object { $_.FullName }) --rcfile=.pylintrc
+        python -m pylint --verbose $(find . -name "*.py" ! -path "*/.venv/*" ! -path "*/venv/*") --rcfile=.pylintrc

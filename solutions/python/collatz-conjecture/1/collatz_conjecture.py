@@ -13,8 +13,7 @@ Curious, you picked number 12 to test and began the journey:
 """
 
 
-# pylint: disable=R0801
-def steps(number: int) -> int:
+def steps(number: int) -> int | ValueError:
     """
     Return the number of steps it takes to reach 1 according to
     the rules of the Collatz Conjecture.
@@ -31,9 +30,7 @@ def steps(number: int) -> int:
     while number > 1:
         # If it's even, divide it by 2
         if number % 2 == 0:
-            # Switch to integer division
-            # keeps everything as int and avoids precision issues
-            number = number // 2
+            number = number / 2
         # If it's odd, multiply it by 3 and add 1
         else:
             number = (number * 3) + 1

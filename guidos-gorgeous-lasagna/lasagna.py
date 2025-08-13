@@ -13,6 +13,7 @@ EXPECTED_BAKE_TIME: int = 40
 PREPARATION_TIME: int = 2
 
 
+# pylint: disable=R0801
 def bake_time_remaining(elapsed_bake_time: int) -> int:
     """
     Calculate the bake time remaining.
@@ -54,7 +55,8 @@ def elapsed_time_in_minutes(number_of_layers: int,
 
     :param number_of_layers: The number of layers added to the lasagna.
     :type number_of_layers: int
-    :param elapsed_bake_time: The number of minutes the lasagna has spent baking in the oven already.
+    :param elapsed_bake_time: The number of minutes the lasagna has
+                              spent baking in the oven already.
     :type elapsed_bake_time: int
     :return: Elapsed time in minutes.
     :rtype: int

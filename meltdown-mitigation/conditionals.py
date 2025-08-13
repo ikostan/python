@@ -1,6 +1,7 @@
 """Functions to prevent a nuclear meltdown."""
 
 
+# pylint: disable=C0301
 def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
     """Verify criticality is balanced.
 
@@ -65,7 +66,8 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold) -> str:
 
     if thr_percent - 10 <= current_state <= thr_percent + 10:
         return 'NORMAL'
-    elif current_state < thr_percent - 10:
+
+    if current_state < thr_percent - 10:
         return 'LOW'
 
     return 'DANGER'

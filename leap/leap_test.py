@@ -1,3 +1,10 @@
+# pylint: disable=C0301
+"""
+Unit tests for the leap_year function, verifying correct leap
+year logic for various cases based on canonical Exercism
+problem specifications.
+"""
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/leap/canonical-data.json
 # File last updated on 2023-07-19
@@ -10,6 +17,10 @@ from leap import (
 
 
 class LeapTest(unittest.TestCase):
+    """
+    Unit tests for verifying leap year calculation functionality.
+    """
+
     def test_year_not_divisible_by_4_in_common_year(self):
         self.assertIs(leap_year(2015), False)
 

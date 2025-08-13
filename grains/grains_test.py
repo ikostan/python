@@ -1,3 +1,12 @@
+# pylint: disable=C0301
+"""
+Unit tests for the grains module.
+
+Tests the square and total functions to ensure correct calculations
+of grains on each square, total grains, and proper error handling for
+invalid input.
+"""
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/grains/canonical-data.json
 # File last updated on 2023-09-27
@@ -11,6 +20,15 @@ from grains import (
 
 
 class GrainsTest(unittest.TestCase):
+    """
+    Unit tests for the GrainsTest class, covering the square and
+    total functions from the grains module.
+
+    Verifies correct grain counts for specific chessboard squares,
+    total grain calculation, and proper exception handling for
+    invalid input values.
+    """
+
     def test_grains_on_square_1(self):
         self.assertEqual(square(1), 1)
 
@@ -48,19 +66,22 @@ class GrainsTest(unittest.TestCase):
         with self.assertRaises(ValueError) as err:
             square(0)
         self.assertEqual(type(err.exception), ValueError)
-        self.assertEqual(err.exception.args[0], "square must be between 1 and 64")
+        self.assertEqual(err.exception.args[0],
+                         "square must be between 1 and 64")
 
     def test_negative_square_is_invalid(self):
         with self.assertRaises(ValueError) as err:
             square(-1)
         self.assertEqual(type(err.exception), ValueError)
-        self.assertEqual(err.exception.args[0], "square must be between 1 and 64")
+        self.assertEqual(err.exception.args[0],
+                         "square must be between 1 and 64")
 
     def test_square_greater_than_64_is_invalid(self):
         with self.assertRaises(ValueError) as err:
             square(65)
         self.assertEqual(type(err.exception), ValueError)
-        self.assertEqual(err.exception.args[0], "square must be between 1 and 64")
+        self.assertEqual(err.exception.args[0],
+                         "square must be between 1 and 64")
 
     def test_returns_the_total_number_of_grains_on_the_board(self):
         self.assertEqual(total(), 18446744073709551615)

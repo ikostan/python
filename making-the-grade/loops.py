@@ -18,7 +18,7 @@ def count_failed_students(student_scores: list) -> int:
     :param student_scores: list - containing int student scores.
     :return: int - count of student scores at or below 40.
     """
-    return len([score for score in student_scores if score <= 40.0])
+    return len([score for score in student_scores if score <= 40.0])  # pylint: disable=R0801
 
 
 def above_threshold(student_scores: list,
@@ -33,7 +33,7 @@ def above_threshold(student_scores: list,
     :param threshold: int - threshold to cross to be the "best" score.
     :return: list - of integer scores that are at or above the "best" threshold.
     """
-    return [score for score in student_scores if score >= threshold]
+    return [score for score in student_scores if score >= threshold]  # pylint: disable=R0801
 
 
 def letter_grades(highest: int) -> list:
@@ -54,6 +54,7 @@ def letter_grades(highest: int) -> list:
     return [41 + i * interval for i in range(4)]
 
 
+# pylint: disable=R0801
 def student_ranking(student_scores: list,
                     student_names: list) -> list[str]:
     """
@@ -67,6 +68,7 @@ def student_ranking(student_scores: list,
         range(1, len(student_scores) + 1), student_scores, student_names)]
 
 
+# pylint: disable=R0801
 def perfect_score(student_info: list) -> list:
     """
     Create a list that contains the name and grade of the first

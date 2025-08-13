@@ -1,3 +1,12 @@
+# pylint: disable=C0301
+"""
+Unit tests for currency exchange functions.
+
+Tests cover calculations for currency exchange, change, bill values, bill counts, leftovers, and determining maximum currency exchangeable after applying spread and denomination constraints.
+
+Uses pytest and unittest for parametrized and task-specific testing.
+"""
+
 import unittest
 import pytest
 
@@ -11,6 +20,8 @@ from exchange import (
 
 
 class CurrencyExchangeTest(unittest.TestCase):
+    """Unit tests for currency exchange utility functions."""
+
     @pytest.mark.task(taskno=1)
     def test_exchange_money(self):
         test_data = [(100000, 0.8), (700000, 10.0)]
@@ -133,7 +144,8 @@ class CurrencyExchangeTest(unittest.TestCase):
                               expected=expected):
 
                 actual_result = exchangeable_value(budget, exchange_rate, spread, denomination)
-                error_message = (f'Called exchangeable_value{budget, exchange_rate, spread, denomination}. '
+                error_message = (f'Called exchangeable_value'
+                                 f'{budget, exchange_rate, spread, denomination}. '
                                  f'The function returned {actual_result}, but '
                                  f'The tests expected {expected} as the maximum '
                                  f'value of the new currency .')

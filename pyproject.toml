@@ -27,6 +27,9 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
+    "tests/",
+    "*_test.py",
+    "test_*.py"
 ]
 
 # Line length and indentation settings, same as Black

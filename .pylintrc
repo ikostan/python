@@ -1,3 +1,3 @@
 [MASTER]
 ignore=.venv
-ignore-paths=*/solutions/*
+ignore-paths=.*/solutions/.*

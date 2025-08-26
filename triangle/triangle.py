@@ -39,7 +39,9 @@ def no_inequality_violation(sides: list) -> bool:
     b + c ≥ a
     a + c ≥ b
     """
-    return sides[0] + sides[1] >= sides[2] and sides[0] + sides[2] >= sides[1] and sides[2] + sides[1] >= sides[0]
+    return (sides[0] + sides[1] >= sides[2] and
+            sides[0] + sides[2] >= sides[1] and
+            sides[2] + sides[1] >= sides[0])
 
 
 def all_sides_positive(sides: list) -> bool:

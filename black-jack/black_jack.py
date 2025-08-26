@@ -17,10 +17,10 @@ def value_of_card(card) -> int:
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
-    if card in 'JKQ':
+    if card in "JKQ":
         return 10
 
-    if card == 'A':
+    if card == "A":
         return 1
 
     return int(card)
@@ -62,7 +62,7 @@ def value_of_ace(card_one, card_two) -> int:
     total: int = value_of_card(card_one) + value_of_card(card_two)
     # Hint: if we already have an ace in hand, then the value for
     # the upcoming ace would be 1.
-    if card_one == 'A' or card_two == 'A':
+    if card_one == "A" or card_two == "A":
         return 1
     # The value of the hand with the ace needs to be as high as
     # possible without going over 21.
@@ -89,10 +89,10 @@ def is_blackjack(card_one, card_two) -> bool:
     """
     # If a player is dealt an ace (A) and a ten-card (10, K, Q, or J)
     # as their first two cards, then the player has a score of 21.
-    if card_one == 'A' and card_two in ('J', 'Q', 'K', '10'):
+    if card_one == "A" and card_two in ("J", "Q", "K", "10"):
         return True
 
-    if card_two == 'A' and card_one in ('J', 'Q', 'K', '10'):
+    if card_two == "A" and card_one in ("J", "Q", "K", "10"):
         return True
 
     return False

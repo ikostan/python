@@ -8,7 +8,6 @@ This is a module docstring, used to describe the functionality
 of a module and its functions and/or classes.
 """
 
-
 EXPECTED_BAKE_TIME: int = 40
 PREPARATION_TIME: int = 2
 
@@ -45,8 +44,7 @@ def preparation_time_in_minutes(number_of_layers: int) -> int:
     return int(PREPARATION_TIME * number_of_layers)
 
 
-def elapsed_time_in_minutes(number_of_layers: int,
-                            elapsed_bake_time: int) -> int:
+def elapsed_time_in_minutes(number_of_layers: int, elapsed_bake_time: int) -> int:
     """
     Calculate elapsed time in minutes.
 
@@ -62,4 +60,5 @@ def elapsed_time_in_minutes(number_of_layers: int,
     :rtype: int
     """
     return preparation_time_in_minutes(number_of_layers=number_of_layers) + (
-            EXPECTED_BAKE_TIME - bake_time_remaining(elapsed_bake_time))
+        EXPECTED_BAKE_TIME - bake_time_remaining(elapsed_bake_time)
+    )

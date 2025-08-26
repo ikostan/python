@@ -15,8 +15,7 @@ def get_rounds(number: int) -> list[int]:
     return [number, number + 1, number + 2]
 
 
-def concatenate_rounds(rounds_1: list[int],
-                       rounds_2: list[int]) -> list[int]:
+def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
     """
     Concatenate two lists of round numbers.
 

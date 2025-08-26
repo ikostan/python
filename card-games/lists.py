@@ -15,8 +15,7 @@ def get_rounds(number: int) -> list[int]:
     return [number, number + 1, number + 2]
 
 
-def concatenate_rounds(rounds_1: list[int],
-                       rounds_2: list[int]) -> list[int]:
+def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
     """
     Concatenate two lists of round numbers.
 
@@ -56,7 +55,7 @@ def approx_average_is_average(hand: list[int]) -> bool:
     :return: bool - does one of the approximate averages equal the `true average`?
     """
     avg: float = card_average(hand)
-    return (hand[0] + hand[-1]) / 2 == avg or hand[len(hand) // 2] == avg
+    return avg in ((hand[0] + hand[-1]) / 2, hand[len(hand) // 2])
 
 
 def average_even_is_average_odd(hand: list[int]) -> bool:

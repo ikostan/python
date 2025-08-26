@@ -1,9 +1,11 @@
 """
 Functions for calculating steps in exchanging currency.
 
-Python numbers documentation: https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex
+Python numbers documentation:
+https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex
 
-Overview of exchanging currency when travelling: https://www.compareremit.com/money-transfer-tips/guide-to-exchanging-currency-for-overseas-travel/
+Overview of exchanging currency when travelling:
+https://www.compareremit.com/money-transfer-tips/guide-to-exchanging-currency-for-overseas-travel/
 """
 
 
@@ -31,7 +33,7 @@ def get_change(budget: float,
     :param exchanging_value: float - amount of your money you want to exchange now.
     :return: float - amount left of your starting currency after exchanging.
     """
-    return budget - exchanging_value
+    return budget - exchanging_value  # pylint: disable=R0801
 
 
 def get_value_of_bills(denomination: float,
@@ -75,6 +77,7 @@ def get_leftover_of_bills(amount: float,
     return amount % denomination
 
 
+# pylint: disable=R0801
 def exchangeable_value(budget: float,
                        exchange_rate: float,
                        spread: int,

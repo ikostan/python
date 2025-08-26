@@ -9,8 +9,7 @@ https://www.compareremit.com/money-transfer-tips/guide-to-exchanging-currency-fo
 """
 
 
-def exchange_money(budget: float,
-                   exchange_rate: float) -> float:
+def exchange_money(budget: float, exchange_rate: float) -> float:
     """
     Return the value of the exchanged currency.
 
@@ -24,8 +23,7 @@ def exchange_money(budget: float,
     return budget / exchange_rate
 
 
-def get_change(budget: float,
-               exchanging_value: float) -> float:
+def get_change(budget: float, exchanging_value: float) -> float:
     """
     Return the amount of money that "is left" from the budget.
 
@@ -36,8 +34,7 @@ def get_change(budget: float,
     return budget - exchanging_value  # pylint: disable=R0801
 
 
-def get_value_of_bills(denomination: float,
-                       number_of_bills: float) -> float:
+def get_value_of_bills(denomination: float, number_of_bills: float) -> float:
     """
     Return only the total value of the bills (excluding fractional amounts)
     the booth would give back.
@@ -52,8 +49,7 @@ def get_value_of_bills(denomination: float,
     return denomination * number_of_bills
 
 
-def get_number_of_bills(amount: float,
-                        denomination: int) -> int:
+def get_number_of_bills(amount: float, denomination: int) -> int:
     """
     Return the _number of currency bills_ that you can receive within the given _amount_.
 
@@ -64,8 +60,7 @@ def get_number_of_bills(amount: float,
     return int(amount // denomination)
 
 
-def get_leftover_of_bills(amount: float,
-                          denomination: int) -> float:
+def get_leftover_of_bills(amount: float, denomination: int) -> float:
     """
     Return the _leftover amount_ that cannot be returned from your starting _amount_
     given the denomination of bills.
@@ -78,10 +73,9 @@ def get_leftover_of_bills(amount: float,
 
 
 # pylint: disable=R0801
-def exchangeable_value(budget: float,
-                       exchange_rate: float,
-                       spread: int,
-                       denomination: int) -> int:
+def exchangeable_value(
+    budget: float, exchange_rate: float, spread: int, denomination: int
+) -> int:
     """
     Return the maximum value of the new currency after calculating
     the *exchange rate* plus the *spread*.

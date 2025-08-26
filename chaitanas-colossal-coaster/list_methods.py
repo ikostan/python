@@ -1,10 +1,12 @@
 """Functions to manage and organize queues at Chaitana's roller coaster."""
 
 
-def add_me_to_the_queue(express_queue: list[str],
-                        normal_queue: list[str],
-                        ticket_type: int,
-                        person_name: str) -> list[str]:
+def add_me_to_the_queue(
+    express_queue: list[str],
+    normal_queue: list[str],
+    ticket_type: int,
+    person_name: str,
+) -> list[str]:
     """
     Add a person to the 'express' or 'normal' queue depending on the ticket number.
 
@@ -22,8 +24,7 @@ def add_me_to_the_queue(express_queue: list[str],
     return normal_queue
 
 
-def find_my_friend(queue: list[str],
-                   friend_name: str) -> int:
+def find_my_friend(queue: list[str], friend_name: str) -> int:
     """
     Search the queue for a name and return their queue position (index).
 
@@ -34,9 +35,7 @@ def find_my_friend(queue: list[str],
     return queue.index(friend_name)
 
 
-def add_me_with_my_friends(queue: list[str],
-                           index: int,
-                           person_name: str) -> list[str]:
+def add_me_with_my_friends(queue: list[str], index: int, person_name: str) -> list[str]:
     """
     Insert the late arrival's name at a specific index of the queue.
 
@@ -49,8 +48,7 @@ def add_me_with_my_friends(queue: list[str],
     return queue
 
 
-def remove_the_mean_person(queue: list[str],
-                           person_name: str) -> list[str]:
+def remove_the_mean_person(queue: list[str], person_name: str) -> list[str]:
     """
     Remove the mean person from the queue by the provided name.
 
@@ -62,8 +60,7 @@ def remove_the_mean_person(queue: list[str],
     return queue
 
 
-def how_many_namefellows(queue: list[str],
-                         person_name: str) -> int:
+def how_many_namefellows(queue: list[str], person_name: str) -> int:
     """
     Count how many times the provided name appears in the queue.
 

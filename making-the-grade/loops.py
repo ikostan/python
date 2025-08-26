@@ -21,8 +21,7 @@ def count_failed_students(student_scores: list) -> int:
     return len([score for score in student_scores if score <= 40.0])  # pylint: disable=R0801
 
 
-def above_threshold(student_scores: list,
-                    threshold: int) -> list:
+def above_threshold(student_scores: list, threshold: int) -> list:
     """
     Filter out above threshold scores.
 
@@ -55,8 +54,7 @@ def letter_grades(highest: int) -> list:
 
 
 # pylint: disable=R0801
-def student_ranking(student_scores: list,
-                    student_names: list) -> list[str]:
+def student_ranking(student_scores: list, student_names: list) -> list[str]:
     """
     Organize the student's rank, name, and grade information in descending order.
 
@@ -64,8 +62,12 @@ def student_ranking(student_scores: list,
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
-    return [f"{i}. {name}: {score}" for i, score, name in zip(
-        range(1, len(student_scores) + 1), student_scores, student_names)]
+    return [
+        f"{i}. {name}: {score}"
+        for i, score, name in zip(
+            range(1, len(student_scores) + 1), student_scores, student_names
+        )
+    ]
 
 
 # pylint: disable=R0801

@@ -11,6 +11,7 @@ from triangle import (
 )
 
 
+# pylint: disable=C0116
 class EquilateralTriangleTest(unittest.TestCase):
     def test_all_sides_are_equal(self):
         self.assertIs(equilateral([2, 2, 2]), True)
@@ -28,6 +29,7 @@ class EquilateralTriangleTest(unittest.TestCase):
         self.assertIs(equilateral([0.5, 0.5, 0.5]), True)
 
 
+# pylint: disable=C0116
 class IsoscelesTriangleTest(unittest.TestCase):
     def test_last_two_sides_are_equal(self):
         self.assertIs(isosceles([3, 4, 4]), True)
@@ -57,6 +59,7 @@ class IsoscelesTriangleTest(unittest.TestCase):
         self.assertIs(isosceles([0.5, 0.4, 0.5]), True)
 
 
+# pylint: disable=C0116
 class ScaleneTriangleTest(unittest.TestCase):
     def test_no_sides_are_equal(self):
         self.assertIs(scalene([5, 4, 6]), True)

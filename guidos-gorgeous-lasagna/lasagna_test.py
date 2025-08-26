@@ -43,7 +43,7 @@ except ImportError as import_fail:
                       f'or forget to define it?') from None
 
 
-# pylint: disable=C0301
+# pylint: disable=C0301, C0116
 # Here begins the formal test cases for the exercise.
 class LasagnaTest(unittest.TestCase):
     """Unit tests for lasagna-related functionality."""

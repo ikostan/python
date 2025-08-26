@@ -33,6 +33,7 @@ except ImportError as import_fail:
     ) from None
 
 
+# pylint: disable=C0116
 class HelloWorldTest(unittest.TestCase):
     """
     Test case class for verifying HelloWorld functionality using unittest.

@@ -16,10 +16,9 @@ from leap import (
 )
 
 
+# pylint: disable=C0116
 class LeapTest(unittest.TestCase):
-    """
-    Unit tests for verifying leap year calculation functionality.
-    """
+    """Unit tests for verifying leap year calculation functionality."""
 
     def test_year_not_divisible_by_4_in_common_year(self):
         self.assertIs(leap_year(2015), False)

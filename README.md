@@ -1,7 +1,9 @@
 # [Exercism Python Track](https://exercism.io/my/tracks/python)
 
+[![Pytest Workflow](https://github.com/ikostan/python/actions/workflows/pytest.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/pytest.yml)
+[![Pylint](https://github.com/ikostan/python/actions/workflows/pylint.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/pylint.yml)
+
 <div align="center"> 
-<img width="10%" height="10%" src="https://github.com/ikostan/Exercism_Python_Track/blob/master/img/exercism-logo.png" hspace="20">
 <img width="9%" height="9%" src="https://github.com/ikostan/Exercism_Python_Track/blob/master/img/python-track.png" hspace="20">
 </div>
 

@@ -29,7 +29,8 @@ exclude = [
     "venv",
     "tests/",
     "*_test.py",
-    "test_*.py"
+    "test_*.py",
+    "solutions/"
 ]
 
 # Line length and indentation settings, same as Black

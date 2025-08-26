@@ -1,8 +1,10 @@
 """Functions to prevent a nuclear meltdown."""
 
 
+# pylint: disable=C0301
 def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
-    """Verify criticality is balanced.
+    """
+    Verify criticality is balanced.
 
     :param temperature: int or float - temperature value in kelvin.
     :param neutrons_emitted: int or float - number of neutrons emitted per second.
@@ -17,7 +19,8 @@ def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
 
 
 def reactor_efficiency(voltage, current, theoretical_max_power) -> str:
-    """Assess reactor efficiency zone.
+    """
+    Assess reactor efficiency zone.
 
     :param voltage: int or float - voltage value.
     :param current: int or float - current value.
@@ -40,16 +43,19 @@ def reactor_efficiency(voltage, current, theoretical_max_power) -> str:
 
     if efficiency < 30:
         return 'black'
-    elif 30 <= efficiency < 60:
+
+    if 30 <= efficiency < 60:
         return 'red'
-    elif 60 <= efficiency < 80:
+
+    if 60 <= efficiency < 80:
         return 'orange'
 
     return 'green'
 
 
 def fail_safe(temperature, neutrons_produced_per_second, threshold) -> str:
-    """Assess and return status code for the reactor.
+    """
+    Assess and return status code for the reactor.
 
     :param temperature: int or float - value of the temperature in kelvin.
     :param neutrons_produced_per_second: int or float - neutron flux.
@@ -65,7 +71,8 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold) -> str:
 
     if thr_percent - 10 <= current_state <= thr_percent + 10:
         return 'NORMAL'
-    elif current_state < thr_percent - 10:
+
+    if current_state < thr_percent - 10:
         return 'LOW'
 
     return 'DANGER'

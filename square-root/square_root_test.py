@@ -16,6 +16,7 @@ from square_root import (
 )
 
 
+# pylint: disable=C0116
 class SquareRootTest(unittest.TestCase):
     """
     Test suite for verifying the functionality of the square_root function.

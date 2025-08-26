@@ -19,6 +19,7 @@ from grains import (
 )
 
 
+# pylint: disable=C0116
 class GrainsTest(unittest.TestCase):
     """
     Unit tests for the GrainsTest class, covering the square and

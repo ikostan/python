@@ -17,6 +17,7 @@ from collatz_conjecture import (
 )
 
 
+# pylint: disable=C0116
 class CollatzConjectureTest(unittest.TestCase):
     """Unit tests for the functions related to the Collatz conjecture."""
 

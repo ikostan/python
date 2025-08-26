@@ -19,6 +19,7 @@ from exchange import (
     exchangeable_value)
 
 
+# pylint: disable=C0116
 class CurrencyExchangeTest(unittest.TestCase):
     """Unit tests for currency exchange utility functions."""
 

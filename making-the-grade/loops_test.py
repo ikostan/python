@@ -19,6 +19,7 @@ from loops import (
     perfect_score)
 
 
+# pylint: disable=C0116
 class MakingTheGradeTest(unittest.TestCase):
     """
     Test case class for verifying functions in the making-the-grade module.

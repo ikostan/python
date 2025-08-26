@@ -13,6 +13,7 @@ from conditionals import (is_criticality_balanced,
                           fail_safe)
 
 
+# pylint: disable=C0116
 class MeltdownMitigationTest(unittest.TestCase):
     """Test cases for Meltdown mitigation exercise."""
 

@@ -15,6 +15,7 @@ from strings import (add_prefix_un,
                      adjective_to_verb)
 
 
+# pylint: disable=C0116
 class LittleSistersVocabTest(unittest.TestCase):
     """
     Unit tests for vocabulary string manipulation functions in

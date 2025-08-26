@@ -18,7 +18,8 @@ def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
 
 
 def reactor_efficiency(voltage, current, theoretical_max_power) -> str:
-    """Assess reactor efficiency zone.
+    """
+    Assess reactor efficiency zone.
 
     :param voltage: int or float - voltage value.
     :param current: int or float - current value.
@@ -41,9 +42,11 @@ def reactor_efficiency(voltage, current, theoretical_max_power) -> str:
 
     if efficiency < 30:
         return 'black'
-    elif 30 <= efficiency < 60:
+
+    if 30 <= efficiency < 60:
         return 'red'
-    elif 60 <= efficiency < 80:
+
+    if 60 <= efficiency < 80:
         return 'orange'
 
     return 'green'

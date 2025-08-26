@@ -3,7 +3,8 @@
 
 # pylint: disable=C0301
 def is_criticality_balanced(temperature, neutrons_emitted) -> bool:
-    """Verify criticality is balanced.
+    """
+    Verify criticality is balanced.
 
     :param temperature: int or float - temperature value in kelvin.
     :param neutrons_emitted: int or float - number of neutrons emitted per second.
@@ -53,7 +54,8 @@ def reactor_efficiency(voltage, current, theoretical_max_power) -> str:
 
 
 def fail_safe(temperature, neutrons_produced_per_second, threshold) -> str:
-    """Assess and return status code for the reactor.
+    """
+    Assess and return status code for the reactor.
 
     :param temperature: int or float - value of the temperature in kelvin.
     :param neutrons_produced_per_second: int or float - neutron flux.

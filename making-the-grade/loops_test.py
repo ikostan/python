@@ -1,3 +1,12 @@
+# pylint: disable=C0301
+"""
+Test suite for validating functions from the 'loops' module related
+to student exam score calculations, including rounding scores,
+counting failed students, filtering scores above a threshold,
+generating letter grade cutoffs, ranking students, and identifying
+perfect scores.
+"""
+
 import unittest
 import pytest
 
@@ -10,37 +19,52 @@ from loops import (
     perfect_score)
 
 
+# pylint: disable=C0116
 class MakingTheGradeTest(unittest.TestCase):
+    """
+    Test case class for verifying functions in the making-the-grade module.
+    """
 
     @pytest.mark.task(taskno=1)
     def test_round_scores(self):
 
-        # Because we the input list can be mutated, the test data has been created
-        # as tuples, which we then convert to a list when the test runs.
-        # this makes accurate error messages easier to create.
+        # Because we the input list can be mutated, the test data has
+        # been created as tuples, which we then convert to a list when
+        # the test runs. This makes accurate error messages easier to create.
         test_data = [tuple(),
                      (.5,),
                      (1.5,),
-                     (90.33, 40.5, 55.44, 70.05, 30.55, 25.45, 80.45, 95.3, 38.7, 40.3),
-                     (50, 36.03, 76.92, 40.7, 43, 78.29, 63.58, 91, 28.6, 88.0)]
+                     (90.33, 40.5, 55.44, 70.05, 30.55, 25.45,
+                      80.45, 95.3, 38.7, 40.3),
+                     (50, 36.03, 76.92, 40.7, 43, 78.29, 63.58,
+                      91, 28.6, 88.0)]
         result_data = [[],
                        [0],
                        [2],
                        [90, 40, 55, 70, 31, 25, 80, 95, 39, 40],
                        [50, 36, 77, 41, 43, 78, 64, 91, 29, 88]]
 
-        for variant, (student_scores, expected) in enumerate(zip(test_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', student_scores=student_scores, expected=expected):
+        for variant, (student_scores, expected) in enumerate(
+                zip(test_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              student_scores=student_scores,
+                              expected=expected):
 
-                # Because the test_input is a tuple, it has to be converted to a list for the function call.
+                # Because the test_input is a tuple, it has to be converted
+                # to a list for the function call.
                 actual_result = round_scores(list(student_scores))
                 error_message = (f'Called round_scores({list(student_scores)}). '
-                                 f'The function returned {sorted(actual_result)} after sorting, but '
-                                 f'the tests expected {sorted(expected)} after sorting. '
+                                 f'The function returned {sorted(actual_result)} '
+                                 f'after sorting, but '
+                                 f'the tests expected {sorted(expected)} after '
+                                 f'sorting. '
                                  f'One or more scores were rounded incorrectly.')
 
                 # everything is sorted for easier comparison.
-                self.assertEqual(sorted(actual_result), sorted(expected), msg=error_message)
+                self.assertEqual(
+                    sorted(actual_result),
+                    sorted(expected),
+                    msg=error_message)
 
     @pytest.mark.task(taskno=2)
     def test_count_failed_students(self):
@@ -48,7 +72,8 @@ class MakingTheGradeTest(unittest.TestCase):
                      [40, 40, 35, 70, 30, 41, 90]]
         result_data = [0,4]
 
-        for variant, (student_scores, expected) in enumerate(zip(test_data, result_data), start=1):
+        for variant, (student_scores, expected) in enumerate(
+                zip(test_data, result_data), start=1):
             with self.subTest(f'variation #{variant}',
                               student_scores=student_scores,
                               expected=expected):
@@ -95,8 +120,11 @@ class MakingTheGradeTest(unittest.TestCase):
                        [41, 54, 67, 80],
                        [41, 51, 61, 71]]
 
-        for variant, (highest, expected) in enumerate(zip(test_data, result_data), start=1):
-            with self.subTest(f'variation #{variant}', highest=highest, expected=expected):
+        for variant, (highest, expected) in enumerate(
+                zip(test_data, result_data), start=1):
+            with self.subTest(f'variation #{variant}',
+                              highest=highest,
+                              expected=expected):
                 actual_result = letter_grades(highest)
                 error_message = (f'Called letter_grades({highest}). '
                                  f'The function returned {actual_result}, but '
@@ -130,11 +158,14 @@ class MakingTheGradeTest(unittest.TestCase):
     @pytest.mark.task(taskno=6)
     def test_perfect_score(self):
         test_data = [
-                     [['Joci', 100], ['Vlad', 100], ['Raiana', 100], ['Alessandro', 100]],
+                     [['Joci', 100], ['Vlad', 100], ['Raiana', 100],
+                      ['Alessandro', 100]],
                      [['Jill', 30], ['Paul', 73]],
                      [],
-                     [['Rui', 60], ['Joci', 58], ['Sara', 91], ['Kora', 93], ['Alex', 42],
-                      ['Jan', 81], ['Lilliana', 40], ['John', 60], ['Bern', 28], ['Vlad', 55]],
+                     [['Rui', 60], ['Joci', 58], ['Sara', 91], ['Kora', 93],
+                      ['Alex', 42],
+                      ['Jan', 81], ['Lilliana', 40], ['John', 60], ['Bern', 28],
+                      ['Vlad', 55]],
 
                      [['Yoshi', 52], ['Jan', 86], ['Raiana', 100], ['Betty', 60],
                       ['Joci', 100], ['Kora', 81], ['Bern', 41], ['Rose', 94]]
@@ -143,9 +174,12 @@ class MakingTheGradeTest(unittest.TestCase):
 
         result_data = [['Joci', 100],[], [], [], ['Raiana', 100]]
 
-        for variant, (student_info, expected) in enumerate(zip(test_data, result_data), start=1):
+        for variant, (student_info, expected) in enumerate(
+                zip(test_data, result_data), start=1):
 
-            with self.subTest(f'variation #{variant}', student_info=student_info, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              student_info=student_info,
+                              expected=expected):
                 actual_result = perfect_score(student_info)
                 error_message = (f'Called perfect_score({student_info}). '
                                  f'The function returned {actual_result}, but '

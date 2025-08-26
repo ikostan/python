@@ -56,7 +56,7 @@ def approx_average_is_average(hand: list[int]) -> bool:
     :return: bool - does one of the approximate averages equal the `true average`?
     """
     avg: float = card_average(hand)
-    return (hand[0] + hand[-1]) / 2 == avg or hand[len(hand) // 2] == avg
+    return avg in ((hand[0] + hand[-1]) / 2, hand[len(hand) // 2])
 
 
 def average_even_is_average_odd(hand: list[int]) -> bool:

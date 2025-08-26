@@ -1,3 +1,5 @@
+# pylint: disable=C0116, C0114, C0115
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/triangle/canonical-data.json
 # File last updated on 2023-07-19
@@ -11,7 +13,7 @@ from triangle import (
 )
 
 
-# pylint: disable=C0116
+# pylint: disable=C0116, C0114, C0115
 class EquilateralTriangleTest(unittest.TestCase):
     def test_all_sides_are_equal(self):
         self.assertIs(equilateral([2, 2, 2]), True)

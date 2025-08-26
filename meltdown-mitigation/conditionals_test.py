@@ -1,3 +1,11 @@
+# pylint: disable=C0301
+"""
+Unit tests for the meltdown mitigation functions, verifying
+correct behavior for criticality balance, reactor efficiency,
+and fail safe status using a variety of boundary and
+representative input values.
+"""
+
 import unittest
 import pytest
 from conditionals import (is_criticality_balanced,
@@ -5,16 +13,16 @@ from conditionals import (is_criticality_balanced,
                           fail_safe)
 
 
+# pylint: disable=C0116
 class MeltdownMitigationTest(unittest.TestCase):
-    """Test cases for Meltdown mitigation exercise.
-    """
+    """Test cases for Meltdown mitigation exercise."""
 
     @pytest.mark.task(taskno=1)
     def test_is_criticality_balanced(self):
-        """Testing border cases around typical points.
+        """
+        Testing border cases around typical points.
 
         T, n == (800, 500), (625, 800), (500, 1000), etc.
-
         """
 
         test_data = ((750, 650, True), (799, 501, True), (500, 600, True),
@@ -26,13 +34,18 @@ class MeltdownMitigationTest(unittest.TestCase):
 
         for variant, data in enumerate(test_data, start=1):
             temp, neutrons_emitted, expected = data
-            with self.subTest(f'variation #{variant}', temp=temp, neutrons_emitted=neutrons_emitted, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              temp=temp,
+                              neutrons_emitted=neutrons_emitted,
+                              expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = is_criticality_balanced(temp, neutrons_emitted)
-                failure_message = (f'Called is_criticality_balanced({temp}, {neutrons_emitted}). '
+                failure_message = (f'Called is_criticality_balanced('
+                                   f'{temp}, {neutrons_emitted}). '
                                    f' The function returned {actual_result}, '
-                                   f'but the test expected {expected} as the return value.')
+                                   f'but the test expected {expected} as the '
+                                   f'return value.')
 
                 self.assertEqual(actual_result, expected, failure_message)
 
@@ -49,12 +62,16 @@ class MeltdownMitigationTest(unittest.TestCase):
 
         for variant, data in enumerate(test_data, start=1):
             current, expected = data
-            with self.subTest(f'variation #{variant}', voltage=voltage, current=current,
-                              theoretical_max_power=theoretical_max_power, expected=expected):
+            with self.subTest(f'variation #{variant}',
+                              voltage=voltage,
+                              current=current,
+                              theoretical_max_power=theoretical_max_power,
+                              expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = reactor_efficiency(voltage, current, theoretical_max_power)
-                failure_message =(f'Called reactor_efficiency({voltage}, {current}, {theoretical_max_power}). '
+                failure_message =(f'Called reactor_efficiency('
+                                  f'{voltage}, {current}, {theoretical_max_power}). '
                                   f'The function returned {actual_result}, '
                                   f'but the test expected {expected} as the return value.')
 
@@ -70,12 +87,15 @@ class MeltdownMitigationTest(unittest.TestCase):
                      (400, 'LOW'), (1101, 'DANGER'), (1200, 'DANGER'))
 
         for variant, (neutrons_per_second, expected) in enumerate(test_data, start=1):
-            with self.subTest(f'variation #{variant}', temp=temp, neutrons_per_second=neutrons_per_second,
+            with self.subTest(f'variation #{variant}',
+                              temp=temp,
+                              neutrons_per_second=neutrons_per_second,
                               threshold=threshold, expected=expected):
 
                 # pylint: disable=assignment-from-no-return
                 actual_result = fail_safe(temp, neutrons_per_second, threshold)
-                failure_message = (f'Called fail_safe({temp}, {neutrons_per_second}, {threshold}). '
+                failure_message = (f'Called fail_safe('
+                                   f'{temp}, {neutrons_per_second}, {threshold}). '
                                    f'The function returned {actual_result}, '
                                    f'but the test expected {expected} as the return value.')
 

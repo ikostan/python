@@ -1,9 +1,11 @@
 """
 Functions for calculating steps in exchanging currency.
 
-Python numbers documentation: https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex
+Python numbers documentation:
+https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex
 
-Overview of exchanging currency when travelling: https://www.compareremit.com/money-transfer-tips/guide-to-exchanging-currency-for-overseas-travel/
+Overview of exchanging currency when travelling:
+https://www.compareremit.com/money-transfer-tips/guide-to-exchanging-currency-for-overseas-travel/
 """
 
 
@@ -37,7 +39,8 @@ def get_change(budget: float,
 def get_value_of_bills(denomination: float,
                        number_of_bills: float) -> float:
     """
-    Return only the total value of the bills (excluding fractional amounts) the booth would give back.
+    Return only the total value of the bills (excluding fractional amounts)
+    the booth would give back.
 
     The total you receive must be divisible by the value of one "bill" or unit,
     which can leave behind a fraction or remainder.
@@ -79,7 +82,8 @@ def exchangeable_value(budget: float,
                        spread: int,
                        denomination: int) -> int:
     """
-    Return the maximum value of the new currency after calculating the *exchange rate* plus the *spread*.
+    Return the maximum value of the new currency after calculating
+    the *exchange rate* plus the *spread*.
 
     :param budget: float - the amount of your money you are planning to exchange.
     :param exchange_rate: float - the unit value of the foreign currency.

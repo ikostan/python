@@ -1,4 +1,4 @@
-# pylint: disable=C0301
+# pylint: disable=C0301, C0116
 """
 
 This `arcade_game_test.py` file is a comprehensive set of unit tests

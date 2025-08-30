@@ -18,11 +18,10 @@ def count_failed_students(student_scores: list) -> int:
     :param student_scores: list - containing int student scores.
     :return: int - count of student scores at or below 40.
     """
-    return len([score for score in student_scores if score <= 40.0])
+    return len([score for score in student_scores if score <= 40.0])  # pylint: disable=R0801
 
 
-def above_threshold(student_scores: list,
-                    threshold: int) -> list:
+def above_threshold(student_scores: list, threshold: int) -> list:
     """
     Filter out above threshold scores.
 
@@ -33,7 +32,7 @@ def above_threshold(student_scores: list,
     :param threshold: int - threshold to cross to be the "best" score.
     :return: list - of integer scores that are at or above the "best" threshold.
     """
-    return [score for score in student_scores if score >= threshold]
+    return [score for score in student_scores if score >= threshold]  # pylint: disable=R0801
 
 
 def letter_grades(highest: int) -> list:
@@ -54,8 +53,8 @@ def letter_grades(highest: int) -> list:
     return [41 + i * interval for i in range(4)]
 
 
-def student_ranking(student_scores: list,
-                    student_names: list) -> list[str]:
+# pylint: disable=R0801
+def student_ranking(student_scores: list, student_names: list) -> list[str]:
     """
     Organize the student's rank, name, and grade information in descending order.
 
@@ -63,10 +62,15 @@ def student_ranking(student_scores: list,
     :param student_names: list - of string names by exam score in descending order.
     :return: list - of strings in format ["<rank>. <student name>: <score>"].
     """
-    return [f"{i}. {name}: {score}" for i, score, name in zip(
-        range(1, len(student_scores) + 1), student_scores, student_names)]
+    return [
+        f"{i}. {name}: {score}"
+        for i, score, name in zip(
+            range(1, len(student_scores) + 1), student_scores, student_names
+        )
+    ]
 
 
+# pylint: disable=R0801
 def perfect_score(student_info: list) -> list:
     """
     Create a list that contains the name and grade of the first

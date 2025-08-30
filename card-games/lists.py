@@ -15,8 +15,7 @@ def get_rounds(number: int) -> list[int]:
     return [number, number + 1, number + 2]
 
 
-def concatenate_rounds(rounds_1: list[int],
-                       rounds_2: list[int]) -> list[int]:
+def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
     """
     Concatenate two lists of round numbers.
 
@@ -38,7 +37,7 @@ def list_contains_round(rounds: list[int], number: int) -> bool:
     return number in rounds
 
 
-def card_average(hand: list) -> float:
+def card_average(hand: list[list]) -> float:
     """
     Calculate and returns the average card value from the list.
 
@@ -56,7 +55,7 @@ def approx_average_is_average(hand: list[int]) -> bool:
     :return: bool - does one of the approximate averages equal the `true average`?
     """
     avg: float = card_average(hand)
-    return (hand[0] + hand[-1]) / 2 == avg or hand[len(hand) // 2] == avg
+    return avg in ((hand[0] + hand[-1]) / 2, hand[len(hand) // 2])
 
 
 def average_even_is_average_odd(hand: list[int]) -> bool:
@@ -66,15 +65,8 @@ def average_even_is_average_odd(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?
     """
-    even: list = []
-    odd: list = []
-
-    for i, n in enumerate(hand):
-        if i % 2 == 0:
-            even.append(n)
-        else:
-            odd.append(n)
-
+    even = hand[::2]
+    odd = hand[1::2]
     return sum(even) / len(even) == sum(odd) / len(odd)
 
 

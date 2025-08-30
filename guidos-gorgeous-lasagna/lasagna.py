@@ -8,11 +8,11 @@ This is a module docstring, used to describe the functionality
 of a module and its functions and/or classes.
 """
 
-
 EXPECTED_BAKE_TIME: int = 40
 PREPARATION_TIME: int = 2
 
 
+# pylint: disable=R0801
 def bake_time_remaining(elapsed_bake_time: int) -> int:
     """
     Calculate the bake time remaining.
@@ -44,8 +44,7 @@ def preparation_time_in_minutes(number_of_layers: int) -> int:
     return int(PREPARATION_TIME * number_of_layers)
 
 
-def elapsed_time_in_minutes(number_of_layers: int,
-                            elapsed_bake_time: int) -> int:
+def elapsed_time_in_minutes(number_of_layers: int, elapsed_bake_time: int) -> int:
     """
     Calculate elapsed time in minutes.
 
@@ -54,10 +53,12 @@ def elapsed_time_in_minutes(number_of_layers: int,
 
     :param number_of_layers: The number of layers added to the lasagna.
     :type number_of_layers: int
-    :param elapsed_bake_time: The number of minutes the lasagna has spent baking in the oven already.
+    :param elapsed_bake_time: The number of minutes the lasagna has
+                              spent baking in the oven already.
     :type elapsed_bake_time: int
     :return: Elapsed time in minutes.
     :rtype: int
     """
     return preparation_time_in_minutes(number_of_layers=number_of_layers) + (
-            EXPECTED_BAKE_TIME - bake_time_remaining(elapsed_bake_time))
+        EXPECTED_BAKE_TIME - bake_time_remaining(elapsed_bake_time)
+    )

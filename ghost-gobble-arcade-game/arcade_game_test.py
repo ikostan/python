@@ -1,10 +1,66 @@
+# pylint: disable=C0301, C0116
+"""
+
+This `arcade_game_test.py` file is a comprehensive set of unit tests
+for the Pac-Man-style "ghost gobble arcade game" logic found in
+`arcade_game.py`. The test class uses Python's `unittest` framework
+(with `pytest` markers for task organization) and checks the
+correctness of each function (`eat_ghost`, `score`, `lose`, `win`)
+provided by the game logic module.
+
+Structure & Coverage
+
+1. **eat_ghost**
+- Tests if Pac-Man can eat a ghost only when:
+  - A power pellet is active **and**
+  - He's touching a ghost.
+- Includes positive (should eat) and negative (should not eat) scenarios.
+
+2. **score**
+- Tests Pac-Man scores when:
+  - Touching a dot.
+  - Touching a power pellet.
+  - Not scoring when touching neither.
+
+3. **lose**
+- Tests losing logic:
+  - Should lose if touching a ghost without a power pellet.
+  - Should *not* lose if touching a ghost *with* a power pellet active.
+  - Should *not* lose if not touching a ghost.
+
+4. **win**
+- Tests winning the game:
+  - Wins if *all dots eaten* and hasn't lost (touching ghost *without* pellet).
+  - Doesn't win if all dots eaten *but* touching a ghost without a pellet.
+  - Wins if all dots eaten *and* touching a ghost *with* a pellet (i.e., didn't lose).
+  - Doesn't win if not all dots eaten.
+
+General Comments
+
+- The error messages are descriptive to aid debugging if an assertion fails.
+- Each test calls the appropriate function with various inputs to check all critical edge and task-specific cases.
+- Follows best practices for test case isolation and clarity.
+
+Final Note
+
+This suite provides full behavioral coverage of the gameplay logic as
+specified in `arcade_game.py`. To run these tests, simply execute the
+file with a compatible test runner (pytest or python -m unittest).
+Make sure the tested functions are correctly imported from the
+`arcade_game` module (as in your header).
+
+If you need any enhancements, parameterizations, or help troubleshooting
+failing test cases, let me know!
+"""
 import unittest
 import pytest
 from arcade_game import eat_ghost, score, lose, win
 
 
 class GhostGobbleGameTest(unittest.TestCase):
-
+    """
+    Unit tests for the Ghost Gobble arcade game functions using unittest framework.
+    """
     @pytest.mark.task(taskno=1)
     def test_ghost_gets_eaten(self):
         actual_result = eat_ghost(True, True)

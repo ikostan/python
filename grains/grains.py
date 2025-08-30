@@ -31,4 +31,4 @@ def total() -> int:
     :rtype: int
     """
     # return sum(square(sqr) for sqr in range(1, 65))
-    return 2 ** 64 - 1
+    return 2**64 - 1

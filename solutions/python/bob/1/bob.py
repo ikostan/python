@@ -1,6 +1,5 @@
 """
-Your task is to determine what Bob will reply to someone when they say something
-to him or ask him a question.
+Your task is to determine what Bob will reply to someone when they say something to him or ask him a question.
 
 Bob only ever answers one of five things:
 
@@ -22,10 +21,8 @@ def response(hey_bob: str) -> str:
     :param hey_bob: str
     :return: str
     """
-    # Remove whitespaces
-    hey_bob = hey_bob.strip()
     # Empty string -> responds to silence.
-    if not hey_bob:
+    if not hey_bob.strip():
         return "Fine. Be that way!"
 
     # Yell at Bob
@@ -50,4 +47,4 @@ def is_question(hey_bob: str) -> bool:
     :param hey_bob: str
     :return: bool
     """
-    return hey_bob[-1] == "?"
+    return "?" in hey_bob and hey_bob.strip()[-1] == '?'

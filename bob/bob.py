@@ -1,5 +1,6 @@
 """
-Your task is to determine what Bob will reply to someone when they say something to him or ask him a question.
+Your task is to determine what Bob will reply to someone when they say something
+to him or ask him a question.
 
 Bob only ever answers one of five things:
 

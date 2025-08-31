@@ -50,4 +50,4 @@ def is_question(hey_bob: str) -> bool:
     :param hey_bob: str
     :return: bool
     """
-    return hey_bob[-1] == '?'
+    return hey_bob[-1] == "?"

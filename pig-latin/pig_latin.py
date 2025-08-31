@@ -49,7 +49,7 @@ def process_text(text: str) -> str:
         i = text.index("qu")
         return text[i + 2 :] + text[: i + 2] + "ay"
 
-    Rule 4
+    # Rule 4
     if is_rule_4(text):
         # If a word starts with one or more consonants followed by "y", first move the
         # consonants preceding the "y" to the end of the word, and then add an "ay" sound

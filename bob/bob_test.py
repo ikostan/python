@@ -8,7 +8,7 @@ from bob import (
     response,
 )
 
-
+# pylint: disable=C0301
 class BobTest(unittest.TestCase):
     def test_stating_something(self):
         self.assertEqual(response("Tom-ay-to, tom-aaaah-to."), "Whatever.")

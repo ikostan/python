@@ -28,34 +28,33 @@ def process_text(text: str) -> str:
     :return:
     """
     # Rule 1
-    # If a word begins with a vowel,
-    # or starts with "xr" or "yt",
-    # add an "ay" sound to the end of the word.
     if is_rule_1(text):
+        # If a word begins with a vowel,
+        # or starts with "xr" or "yt",
+        # add an "ay" sound to the end of the word.
         return text + "ay"
-
     # Rule 2
-    # If a word begins with one or more consonants, first move those consonants
-    # to the end of the word and then add an "ay" sound to the end of the word.
-    if is_rule_2(text):
+    elif is_rule_2(text):
+        # If a word begins with one or more consonants, first move those consonants
+        # to the end of the word and then add an "ay" sound to the end of the word.
         i = get_last_consonant_indx(text)
         return text[i + 1 :] + text[: i + 1] + "ay"
-
     # Rule 3
-    # If a word starts with zero or more consonants followed by "qu", first move
-    # those consonants (if any) and the "qu" part to the end of the word, and then
-    # add an "ay" sound to the end of the word.
-    if is_rule_3(text):
+    elif is_rule_3(text):
+        # If a word starts with zero or more consonants followed by "qu", first move
+        # those consonants (if any) and the "qu" part to the end of the word, and then
+        # add an "ay" sound to the end of the word.
         i = text.index("qu")
         return text[i + 2 :] + text[: i + 2] + "ay"
-
     # Rule 4
-    # If a word starts with one or more consonants followed by "y", first move the
-    # consonants preceding the "y" to the end of the word, and then add an "ay" sound
-    # to the end of the word.
-    if is_rule_4(text):
+    elif is_rule_4(text):
+        # If a word starts with one or more consonants followed by "y", first move the
+        # consonants preceding the "y" to the end of the word, and then add an "ay" sound
+        # to the end of the word.
         i = text.index("y")
         return text[i:] + text[:i] + "ay"
+    else:
+        raise ValueError(f"Unhandled word in Pig Latin translation: '{text}'")
 
 
 def is_rule_1(text: str) -> bool:

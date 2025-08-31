@@ -1,3 +1,5 @@
+# pylint: disable=C0114, C0115, C0116
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/bob/canonical-data.json
 # File last updated on 2025-01-10
@@ -8,7 +10,7 @@ from bob import (
     response,
 )
 
-# pylint: disable=C0301
+
 class BobTest(unittest.TestCase):
     def test_stating_something(self):
         self.assertEqual(response("Tom-ay-to, tom-aaaah-to."), "Whatever.")

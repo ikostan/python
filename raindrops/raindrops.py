@@ -35,4 +35,4 @@ def convert(number: int) -> str:
     if number % 7 == 0:
         result += "Plong"
     # is not divisible by 3, 5, or 7, the result should be the number as a string.
-    return result if result else str(number)
+    return result or str(number)

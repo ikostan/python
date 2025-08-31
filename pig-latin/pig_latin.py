@@ -39,7 +39,7 @@ def process_text(text: str) -> str:
     # to the end of the word and then add an "ay" sound to the end of the word.
     if is_rule_2(text):
         i = get_last_consonant_indx(text)
-        return text[i + 1:] + text[:i + 1] + "ay"
+        return text[i + 1 :] + text[: i + 1] + "ay"
 
     # Rule 3
     # If a word starts with zero or more consonants followed by "qu", first move
@@ -47,7 +47,7 @@ def process_text(text: str) -> str:
     # add an "ay" sound to the end of the word.
     if is_rule_3(text):
         i = text.index("qu")
-        return text[i + 2:] + text[:i + 2] + "ay"
+        return text[i + 2 :] + text[: i + 2] + "ay"
 
     # Rule 4
     # If a word starts with one or more consonants followed by "y", first move the

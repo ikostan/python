@@ -73,24 +73,24 @@ def is_paired(input_string: str) -> bool:
                     paired = False
                     logger.info("No matching bracket found: %s. Return False.", bracket)
                     break
-                else:
-                    if brackets_list[i + 1] == PAIRS[bracket]:
-                        logger.info(
-                            "Matching pair found: %s.",
-                            brackets_list[:2],
-                        )
-                        del brackets_list[1]
-                        del brackets_list[0]
-                        break
-                    elif brackets_list[-1] == PAIRS[bracket]:
-                        logger.info(
-                            "Matching pair found: %s %s.",
-                            brackets_list[0],
-                            brackets_list[-1],
-                        )
-                        del brackets_list[0]
-                        del brackets_list[-1]
-                        break
+
+                if brackets_list[i + 1] == PAIRS[bracket]:
+                    logger.info(
+                        "Matching pair found: %s.",
+                        brackets_list[:2],
+                    )
+                    del brackets_list[1]
+                    del brackets_list[0]
+                    break
+                elif brackets_list[-1] == PAIRS[bracket]:
+                    logger.info(
+                        "Matching pair found: %s %s.",
+                        brackets_list[0],
+                        brackets_list[-1],
+                    )
+                    del brackets_list[0]
+                    del brackets_list[-1]
+                    break
             else:
                 paired = False
                 break

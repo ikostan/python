@@ -19,7 +19,7 @@ def translate(text: str) -> str:
     :return:
     """
     # Setup logging (console handler for visibility)
-    logging.basicConfig(level=logging.INFO, format='%(message)s')
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     logger = logging.getLogger(__name__)
     logger.info(f"Translating text: {text}")
     words: list = text.split(" ")
@@ -49,7 +49,7 @@ def process_text(text: str, logger: logging.Logger) -> str:
         # to the end of the word and then add an "ay" sound to the end of the word.
         logger.info(f"Applied Rule #2 to '{text}'")
         i = get_last_consonant_indx(text)
-        return f"{text[i + 1:]}{text[: i + 1]}ay"
+        return f"{text[i + 1 :]}{text[: i + 1]}ay"
 
     # Rule 3
     if is_rule_3(text):
@@ -58,7 +58,7 @@ def process_text(text: str, logger: logging.Logger) -> str:
         # add an "ay" sound to the end of the word.
         logger.info(f"Applied Rule #3 to '{text}'")
         i = text.index("qu")
-        return f"{text[i + 2:]}{text[: i + 2]}ay"
+        return f"{text[i + 2 :]}{text[: i + 2]}ay"
 
     # Rule 4
     if is_rule_4(text):

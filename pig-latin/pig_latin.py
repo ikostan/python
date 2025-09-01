@@ -16,7 +16,7 @@ def translate(text: str) -> str:
     :param text: The English text to translate
     :return: The text translated to Pig Latin
     """
-    words: list[str] = text.split(" ")
+    words: list[str] = text.lower().split(" ")
     return " ".join(process_word(word) for word in words)
 
 

@@ -12,12 +12,10 @@ code that can verify that brackets, braces, and parentheses are balanced
 before attempting to run it on the Bracketeer™.
 """
 
-LEFT: str = "[{("
-RIGHT: str = "]})"
 PAIRS: dict = {
-    "[": "]",
-    "{": "}",
-    "(": ")",
+    "]": "[",
+    "}": "{",
+    ")": "(",
 }
 
 
@@ -38,7 +36,7 @@ def is_paired(input_string: str) -> bool:
         return True
 
     # Remove all non bracket items and convert a string to a list.
-    brackets_list: list = [
+    brackets_list: list[str] = [
         bracket for bracket in input_string if bracket in "(){}[]"
     ]
 
@@ -46,32 +44,12 @@ def is_paired(input_string: str) -> bool:
     if len(brackets_list) % 2 != 0:
         return False
 
-    paired: bool = True
-    while paired and brackets_list:
-        for i, bracket in enumerate(brackets_list):
-            # Right side bracket found
-            if bracket in RIGHT:
-                paired = False
-                break
+    stack: list[str] = []
+    for bracket in brackets_list:
+        if bracket in "({[":
+            stack.append(bracket)
+        elif bracket in PAIRS:
+            if not stack or stack.pop() != PAIRS[bracket]:
+                return False
 
-            # No matching pair found
-            if (
-                brackets_list[i + 1] != PAIRS[bracket]
-                and brackets_list[-1] != PAIRS[bracket]
-            ):
-                paired = False
-                break
-
-            # Matching pair found next to it
-            if brackets_list[i + 1] == PAIRS[bracket]:
-                del brackets_list[1]
-                del brackets_list[0]
-                break
-
-            # Matching pair found at the end of the list
-            if brackets_list[-1] == PAIRS[bracket]:
-                del brackets_list[0]
-                del brackets_list[-1]
-                break
-
-    return paired
+    return not stack

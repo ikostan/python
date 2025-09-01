@@ -60,7 +60,7 @@ def process_word(text: str) -> str:
         i = get_consonant_cluster_length(text)
         return f"{text[i + 1 :]}{text[: i + 1]}ay"
 
-    # raise ValueError(f"Unhandled word in Pig Latin translation: '{text}'")
+    raise ValueError(f"Unhandled word in Pig Latin translation: '{text}'")
 
 
 def is_rule_3(text: str) -> bool:

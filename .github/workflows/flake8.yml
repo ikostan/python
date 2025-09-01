@@ -61,7 +61,3 @@ jobs:
         # W191 indentation contains tabs
         run: |
           python -m flake8 . --count --select=E9,F63,F7,F82 --doctests --show-source --statistics
-      - name: "Benchmark Flake8 performance"
-        run: |
-          python -m flake8 . --max-complexity=10 --count --benchmark --show-source --statistics
-        # yamllint enable rule:line-length

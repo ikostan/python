@@ -28,11 +28,8 @@ def is_paired(input_string: str) -> bool:
     and nested correctly. Any other characters should be ignored. For example,
     "{what is (42)}?" is balanced and "[text}" is not.
 
-    :param input_string: The string to check for balanced brackets
-    :type input_string: str
-    :returns: True if all brackets are properly paired and nested,
-              False otherwise
-    :rtype: bool
+    :param input_string:
+    :return:
     """
     # Empty string
     if not input_string:

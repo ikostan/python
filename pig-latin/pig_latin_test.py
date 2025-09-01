@@ -12,6 +12,10 @@ from pig_latin import (
 
 
 class PigLatinTest(unittest.TestCase):
+
+    def test_word_with_capital_letter(self):
+        self.assertEqual(translate("Queen"), "eenQuay")
+
     def test_word_beginning_with_a(self):
         self.assertEqual(translate("apple"), "appleay")
 

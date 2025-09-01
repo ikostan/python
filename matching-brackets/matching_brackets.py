@@ -47,7 +47,6 @@ def is_paired(input_string: str) -> bool:
     paired: bool = True
     while paired and brackets_list:
         for i, bracket in enumerate(brackets_list):
-
             # Right side bracket found
             if bracket in RIGHT:
                 paired = False

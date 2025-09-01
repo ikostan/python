@@ -1,4 +1,4 @@
-# pylint: disable=C0301
+# pylint: disable=C0301, C0114, C0115, C0116
 
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/matching-brackets/canonical-data.json

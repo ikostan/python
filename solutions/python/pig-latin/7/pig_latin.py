@@ -21,7 +21,7 @@ def translate(text: str) -> str:
     # Setup logging (console handler for visibility)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     logger = logging.getLogger(__name__)
-    logger.info("Translating text: %s", text)
+    logger.info(f"Translating text: {text}")
     words: list = text.split(" ")
     return " ".join(process_text(word, logger) for word in words)
 
@@ -34,24 +34,20 @@ def process_text(text: str, logger: logging.Logger) -> str:
     :param text:
     :return:
     """
-    if not text:
-        logger.info("Skipping empty word: '%s'", text)
-        return ""
-
-    logger.info("Processing word: %s", text)
+    logger.info(f"Processing word: {text}")
     # Rule 1
     if is_rule_1(text):
         # If a word begins with a vowel,
         # or starts with "xr" or "yt",
         # add an "ay" sound to the end of the word.
-        logger.info("Applied Rule #1 to '%s'", text)
+        logger.info(f"Applied Rule #1 to '{text}'")
         return f"{text}ay"
 
     # Rule 2
     if is_rule_2(text):
         # If a word begins with one or more consonants, first move those consonants
         # to the end of the word and then add an "ay" sound to the end of the word.
-        logger.info("Applied Rule #2 to '%s'", text)
+        logger.info(f"Applied Rule #2 to '{text}'")
         i = get_last_consonant_indx(text)
         return f"{text[i + 1 :]}{text[: i + 1]}ay"
 
@@ -60,7 +56,7 @@ def process_text(text: str, logger: logging.Logger) -> str:
         # If a word starts with zero or more consonants followed by "qu", first move
         # those consonants (if any) and the "qu" part to the end of the word, and then
         # add an "ay" sound to the end of the word.
-        logger.info("Applied Rule #3 to '%s'", text)
+        logger.info(f"Applied Rule #3 to '{text}'")
         i = text.index("qu")
         return f"{text[i + 2 :]}{text[: i + 2]}ay"
 
@@ -69,7 +65,7 @@ def process_text(text: str, logger: logging.Logger) -> str:
         # If a word starts with one or more consonants followed by "y", first move the
         # consonants preceding the "y" to the end of the word, and then add an "ay" sound
         # to the end of the word.
-        logger.info("Applied Rule #4 to '%s'", text)
+        logger.info(f"Applied Rule #4 to '{text}'")
         i = text.index("y")
         return f"{text[i:]}{text[:i]}ay"
 

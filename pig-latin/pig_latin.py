@@ -8,6 +8,8 @@ vowels: the letters a, e, i, o, and u
 consonants: the other 21 letters of the English alphabet
 """
 
+import logging
+
 
 def translate(text: str) -> str:
     """
@@ -16,46 +18,56 @@ def translate(text: str) -> str:
     :param text:
     :return:
     """
+    # Setup logging (console handler for visibility)
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+    logger = logging.getLogger(__name__)
+    logger.info(f"Translating text: {text}")
     words: list = text.split(" ")
-    return " ".join(process_text(word) for word in words)
+    return " ".join(process_text(word, logger) for word in words)
 
 
-def process_text(text: str) -> str:
+def process_text(text: str, logger: logging.Logger) -> str:
     """
     Convert a string based on 4 rules of Pig Latin.
 
+    :param logger:
     :param text:
     :return:
     """
+    logger.info(f"Processing word: {text}")
     # Rule 1
     if is_rule_1(text):
         # If a word begins with a vowel,
         # or starts with "xr" or "yt",
         # add an "ay" sound to the end of the word.
-        return text + "ay"
+        logger.info(f"Applied Rule #1 to '{text}'")
+        return f"{text}ay"
 
     # Rule 2
     if is_rule_2(text):
         # If a word begins with one or more consonants, first move those consonants
         # to the end of the word and then add an "ay" sound to the end of the word.
+        logger.info(f"Applied Rule #2 to '{text}'")
         i = get_last_consonant_indx(text)
-        return text[i + 1 :] + text[: i + 1] + "ay"
+        return f"{text[i + 1:]}{text[: i + 1]}ay"
 
     # Rule 3
     if is_rule_3(text):
         # If a word starts with zero or more consonants followed by "qu", first move
         # those consonants (if any) and the "qu" part to the end of the word, and then
         # add an "ay" sound to the end of the word.
+        logger.info(f"Applied Rule #3 to '{text}'")
         i = text.index("qu")
-        return text[i + 2 :] + text[: i + 2] + "ay"
+        return f"{text[i + 2:]}{text[: i + 2]}ay"
 
     # Rule 4
     if is_rule_4(text):
         # If a word starts with one or more consonants followed by "y", first move the
         # consonants preceding the "y" to the end of the word, and then add an "ay" sound
         # to the end of the word.
+        logger.info(f"Applied Rule #4 to '{text}'")
         i = text.index("y")
-        return text[i:] + text[:i] + "ay"
+        return f"{text[i:]}{text[:i]}ay"
 
     raise ValueError(f"Unhandled word in Pig Latin translation: '{text}'")
 

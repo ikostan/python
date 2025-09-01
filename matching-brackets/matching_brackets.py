@@ -82,7 +82,8 @@ def is_paired(input_string: str) -> bool:
                     del brackets_list[1]
                     del brackets_list[0]
                     break
-                elif brackets_list[-1] == PAIRS[bracket]:
+
+                if brackets_list[-1] == PAIRS[bracket]:
                     logger.info(
                         "Matching pair found: %s %s.",
                         brackets_list[0],

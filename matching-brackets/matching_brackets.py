@@ -30,7 +30,8 @@ def is_paired(input_string: str) -> bool:
 
     :param input_string: The string to check for balanced brackets
     :type input_string: str
-    :returns: True if all brackets are properly paired and nested, False otherwise
+    :returns: True if all brackets are properly paired and nested,
+              False otherwise
     :rtype: bool
     """
     # Empty string

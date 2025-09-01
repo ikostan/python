@@ -65,35 +65,31 @@ def is_paired(input_string: str) -> bool:
                 logger.info("Right side bracket found: %s. Return False.", bracket)
                 break
 
-            if i + 1 < len(brackets_list):
-                if (
+            if (
                     brackets_list[i + 1] != PAIRS[bracket]
                     and brackets_list[-1] != PAIRS[bracket]
-                ):
-                    paired = False
-                    logger.info("No matching bracket found: %s. Return False.", bracket)
-                    break
-
-                if brackets_list[i + 1] == PAIRS[bracket]:
-                    logger.info(
-                        "Matching pair found: %s.",
-                        brackets_list[:2],
-                    )
-                    del brackets_list[1]
-                    del brackets_list[0]
-                    break
-
-                if brackets_list[-1] == PAIRS[bracket]:
-                    logger.info(
-                        "Matching pair found: %s %s.",
-                        brackets_list[0],
-                        brackets_list[-1],
-                    )
-                    del brackets_list[0]
-                    del brackets_list[-1]
-                    break
-            else:
+            ):
                 paired = False
+                logger.info("No matching bracket found: %s. Return False.", bracket)
+                break
+
+            if brackets_list[i + 1] == PAIRS[bracket]:
+                logger.info(
+                    "Matching pair found: %s.",
+                    brackets_list[:2],
+                )
+                del brackets_list[1]
+                del brackets_list[0]
+                break
+
+            if brackets_list[-1] == PAIRS[bracket]:
+                logger.info(
+                    "Matching pair found: %s %s.",
+                    brackets_list[0],
+                    brackets_list[-1],
+                )
+                del brackets_list[0]
+                del brackets_list[-1]
                 break
 
     logger.info("Is paired: %s", paired)

@@ -26,4 +26,4 @@ jobs:
         pip install pytest
 
     - name: Run pytest
-      run: pytest --verbose --ignore=solutions
+      run: pytest . --verbose --ignore=solutions --log-cli-level=INFO

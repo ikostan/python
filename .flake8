@@ -3,8 +3,10 @@
 # https://flake8.pycqa.org/en/3.1.1/user/configuration.html#configuration
 # Errors to exclude:
 # W191 indentation contains tabs
-ignore = W191, W503
+ignore = W191, W503, E203
 exclude =
+    solutions/,
+    *_test.py,
     .git,
     __pycache__,
     .circleci,
@@ -22,4 +24,3 @@ exclude =
     /.venv,
     migrations,
 max-complexity = 10
-max-line-length = 145

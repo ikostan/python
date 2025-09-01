@@ -17,7 +17,11 @@ def isosceles(sides: list) -> bool:
     but for the purposes of this exercise we'll say at least two.)
     """
     if all_sides_positive(sides) and no_inequality_violation(sides):
-        return sides[0] == sides[1] or sides[1] == sides[2] or sides[0] == sides[2]
+        return (
+            sides[0] == sides[1]
+            or sides[1] == sides[2]
+            or sides[0] == sides[2]
+        )
     return False
 
 
@@ -26,7 +30,11 @@ def scalene(sides: list) -> bool:
     A scalene triangle has all sides of different lengths.
     """
     if all_sides_positive(sides) and no_inequality_violation(sides):
-        return sides[0] != sides[1] and sides[1] != sides[2] and sides[0] != sides[2]
+        return (
+            sides[0] != sides[1]
+            and sides[1] != sides[2]
+            and sides[0] != sides[2]
+        )
     return False
 
 

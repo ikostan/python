@@ -1,8 +1,8 @@
 """
 The task is to translate text from English to Pig Latin.
-The translation is defined using four rules, which look at the pattern of vowels
-and consonants at the beginning of a word. These rules look at each word's use
-of vowels and consonants:
+The translation is defined using four rules, which look at the pattern
+of vowels and consonants at the beginning of a word. These rules look
+at each word's use of vowels and consonants:
 
 vowels: the letters a, e, i, o, and u
 consonants: the other 21 letters of the English alphabet
@@ -22,7 +22,8 @@ def translate(text: str) -> str:
 
 def process_word(text: str) -> str:
     """
-    Process a single word and convert it to Pig Latin using the four translation rules.
+    Process a single word and convert it to Pig Latin using
+    the four translation rules.
 
     :param text: The English word to convert
     :return: The word converted to Pig Latin
@@ -39,24 +40,25 @@ def process_word(text: str) -> str:
 
     # Rule 3
     if is_rule_3(text):
-        # If a word starts with zero or more consonants followed by "qu", first move
-        # those consonants (if any) and the "qu" part to the end of the word, and then
-        # add an "ay" sound to the end of the word.
+        # If a word starts with zero or more consonants followed by "qu",
+        # first move those consonants (if any) and the "qu" part to the
+        # end of the word, and then add an "ay" sound to the end of the word.
         i = text.index("qu")
         return f"{text[i + 2 :]}{text[: i + 2]}ay"
 
     # Rule 4
     if is_rule_4(text):
-        # If a word starts with one or more consonants followed by "y", first move the
-        # consonants preceding the "y" to the end of the word, and then add an "ay" sound
-        # to the end of the word.
+        # If a word starts with one or more consonants followed by "y",
+        # first move the consonants preceding the "y" to the end of the
+        # word, and then add an "ay" sound to the end of the word.
         i = text.index("y")
         return f"{text[i:]}{text[:i]}ay"
 
     # Rule 2
     if not is_vowel(text[0]):
-        # If a word begins with one or more consonants, first move those consonants
-        # to the end of the word and then add an "ay" sound to the end of the word.
+        # If a word begins with one or more consonants, first move those
+        # consonants to the end of the word and then add an "ay" sound
+        # to the end of the word.
         i = get_consonant_cluster_length(text)
         return f"{text[i + 1 :]}{text[: i + 1]}ay"
 

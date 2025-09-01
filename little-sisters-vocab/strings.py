@@ -13,8 +13,8 @@ def add_prefix_un(word: str) -> str:
 
 def make_word_groups(vocab_words: list[str]) -> str:
     """
-    Transform a list containing a prefix and words into a string with the prefix
-    followed by the words with prefix prepended.
+    Transform a list containing a prefix and words into a string with
+    the prefix followed by the words with prefix prepended.
 
     :param vocab_words: list - of vocabulary words with prefix in first index.
     :return: str - of prefix followed by vocabulary words with

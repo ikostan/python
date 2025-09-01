@@ -8,7 +8,8 @@ def add_me_to_the_queue(
     person_name: str,
 ) -> list[str]:
     """
-    Add a person to the 'express' or 'normal' queue depending on the ticket number.
+    Add a person to the 'express' or 'normal' queue depending
+    on the ticket number.
 
     :param express_queue: list[str] - names in the Fast-track queue.
     :param normal_queue: list[str] - names in the normal queue.
@@ -35,7 +36,9 @@ def find_my_friend(queue: list[str], friend_name: str) -> int:
     return queue.index(friend_name)
 
 
-def add_me_with_my_friends(queue: list[str], index: int, person_name: str) -> list[str]:
+def add_me_with_my_friends(
+    queue: list[str], index: int, person_name: str
+) -> list[str]:
     """
     Insert the late arrival's name at a specific index of the queue.
 

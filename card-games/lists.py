@@ -1,7 +1,8 @@
 """
 Functions for tracking poker hands and assorted card tasks.
 
-Python list documentation: https://docs.python.org/3/tutorial/datastructures.html
+Python list documentation:
+https://docs.python.org/3/tutorial/datastructures.html
 """
 
 
@@ -49,10 +50,12 @@ def card_average(hand: list[list]) -> float:
 
 def approx_average_is_average(hand: list[int]) -> bool:
     """
-    Return if the (average of first and last card values) OR ('middle' card) == calculated average.
+    Return if the (average of first and last card values) OR
+    ('middle' card) == calculated average.
 
     :param hand: list - cards in hand.
-    :return: bool - does one of the approximate averages equal the `true average`?
+    :return: bool - does one of the approximate averages
+             equal the `true average`?
     """
     avg: float = card_average(hand)
     return avg in ((hand[0] + hand[-1]) / 2, hand[len(hand) // 2])
@@ -60,7 +63,9 @@ def approx_average_is_average(hand: list[int]) -> bool:
 
 def average_even_is_average_odd(hand: list[int]) -> bool:
     """
-    Return if the (average of even indexed card values) == (average of odd indexed card values).
+    Return if the
+    (average of even indexed card values) ==
+    (average of odd indexed card values).
 
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?

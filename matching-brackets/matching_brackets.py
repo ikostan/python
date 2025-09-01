@@ -38,7 +38,9 @@ def is_paired(input_string: str) -> bool:
         return True
 
     # Remove all non bracket items and convert a string to a list.
-    brackets_list: list = [bracket for bracket in input_string if bracket in "(){}[]"]
+    brackets_list: list = [
+        bracket for bracket in input_string if bracket in "(){}[]"
+    ]
 
     # Odd number of brackets
     if len(brackets_list) % 2 != 0:

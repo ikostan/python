@@ -34,5 +34,6 @@ def convert(number: int) -> str:
     # is divisible by 7, add "Plong" to the result.
     if number % 7 == 0:
         result += "Plong"
-    # is not divisible by 3, 5, or 7, the result should be the number as a string.
+    # is not divisible by 3, 5, or 7,
+    # the result should be the number as a string.
     return result or str(number)

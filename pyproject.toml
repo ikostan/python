@@ -34,7 +34,7 @@ exclude = [
 ]
 
 # Line length and indentation settings, same as Black
-line-length = 88
+line-length = 79
 indent-width = 4
 
 # Set target version to Python 3.12

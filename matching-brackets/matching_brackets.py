@@ -66,8 +66,8 @@ def is_paired(input_string: str) -> bool:
                 break
 
             if (
-                    brackets_list[i + 1] != PAIRS[bracket]
-                    and brackets_list[-1] != PAIRS[bracket]
+                brackets_list[i + 1] != PAIRS[bracket]
+                and brackets_list[-1] != PAIRS[bracket]
             ):
                 paired = False
                 logger.info("No matching bracket found: %s. Return False.", bracket)

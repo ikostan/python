@@ -17,10 +17,10 @@ def translate(text: str) -> str:
     :return: The text translated to Pig Latin
     """
     words: list[str] = text.split(" ")
-    return " ".join(process_word(word) for word in words)
+    return " ".join(process_words(word) for word in words)
 
 
-def process_word(text: str) -> str:
+def process_words(text: str) -> str:
     """
     Process a single word and convert it to Pig Latin using the four translation rules.
 
@@ -43,7 +43,7 @@ def process_word(text: str) -> str:
         # those consonants (if any) and the "qu" part to the end of the word, and then
         # add an "ay" sound to the end of the word.
         i = text.index("qu")
-        return f"{text[i + 2 :]}{text[: i + 2]}ay"
+        return f"{text[i + 2:]}{text[: i + 2]}ay"
 
     # Rule 4
     if is_rule_4(text):
@@ -54,11 +54,11 @@ def process_word(text: str) -> str:
         return f"{text[i:]}{text[:i]}ay"
 
     # Rule 2
-    if not is_vowel(text[0]):
+    if is_consonant(text[0]):
         # If a word begins with one or more consonants, first move those consonants
         # to the end of the word and then add an "ay" sound to the end of the word.
         i = get_consonant_cluster_length(text)
-        return f"{text[i + 1 :]}{text[: i + 1]}ay"
+        return f"{text[i + 1:]}{text[: i + 1]}ay"
 
     raise ValueError(f"Unhandled word in Pig Latin translation: '{text}'")
 
@@ -106,6 +106,16 @@ def is_vowel(char: str) -> bool:
     return char in "aeiou"
 
 
+def is_consonant(char: str) -> bool:
+    """
+    Check if a character is a consonant (one of the 21 non-vowel letters).
+
+    :param char: The character to check
+    :return: True if the character is a consonant, False otherwise
+    """
+    return char.isalpha() and not is_vowel(char)
+
+
 def get_consonant_cluster_length(text: str) -> int:
     """
     Find the length of the consonant cluster at the beginning of a word.
@@ -115,7 +125,7 @@ def get_consonant_cluster_length(text: str) -> int:
     """
     i = 0
     for n, char in enumerate(text):
-        if not is_vowel(char):
+        if is_consonant(char):
             i = n
         else:
             break

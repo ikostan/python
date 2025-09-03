@@ -31,5 +31,9 @@ def is_isogram(string: str) -> bool:
     :returns: True if the string is an isogram, False otherwise
     :rtype: bool
     """
+    # empty string
+    if not string:
+        return True
+
     letters: list[str] = [char for char in string.lower() if char.isalpha()]
-    return len(letters) == set(letters)
+    return len(letters) == len(set(letters))

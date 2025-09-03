@@ -75,13 +75,8 @@ def is_rule_3(text: str) -> bool:
     :return: True if the word matches the pattern, False otherwise
     """
     if "qu" in text:
-        if text[:2] == "qu":
-            return True
-
-        for char in text[: text.index("qu")]:
-            if is_vowel(char):
-                return False
-        return True
+        qu_indx: int = text.index("qu")
+        return all(not is_vowel(char) for char in text[: qu_indx])
     return False
 
 
@@ -93,10 +88,8 @@ def is_rule_4(text: str) -> bool:
     :return: True if the word matches the pattern, False otherwise
     """
     if "y" in text and text[0] != "y":
-        for char in text[: text.index("y")]:
-            if is_vowel(char):
-                return False
-        return True
+        y_indx: int = text.index("y")
+        return all(not is_vowel(char) for char in text[: y_indx])
     return False
 
 

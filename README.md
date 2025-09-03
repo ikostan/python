@@ -1,4 +1,4 @@
-# [Exercism Python Track](https://exercism.io/my/tracks/python)
+# [Exercism Python Track](https://exercism.io/tracks/python)
 
 [![Pytest Workflow](https://github.com/ikostan/python/actions/workflows/pytest.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/pytest.yml)
 [![Pylint](https://github.com/ikostan/python/actions/workflows/pylint.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/pylint.yml)

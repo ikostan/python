@@ -76,7 +76,7 @@ def is_rule_3(text: str) -> bool:
     """
     if "qu" in text:
         qu_indx: int = text.index("qu")
-        return all(not is_vowel(char) for char in text[: qu_indx])
+        return all(not is_vowel(char) for char in text[:qu_indx])
     return False
 
 
@@ -89,7 +89,7 @@ def is_rule_4(text: str) -> bool:
     """
     if "y" in text and text[0] != "y":
         y_indx: int = text.index("y")
-        return all(not is_vowel(char) for char in text[: y_indx])
+        return all(not is_vowel(char) for char in text[:y_indx])
     return False
 
 

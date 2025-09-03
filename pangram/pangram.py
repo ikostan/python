@@ -9,6 +9,7 @@ in the English alphabet.
 They're running a competition to get suggestions for sentences that they can use.
 You're in charge of checking the submissions to see if they are valid.
 """
+
 import string
 
 letters: str = string.ascii_lowercase
@@ -28,5 +29,7 @@ def is_pangram(sentence: str) -> bool:
         return False
 
     # Convert sentence to lowercase and extract unique alphabetic characters
-    unique_letters: set = set( char for char in sentence.lower() if char.isalpha())
+    unique_letters: set = set(
+        char for char in sentence.lower() if char.isalpha()
+    )
     return len(unique_letters) == 26

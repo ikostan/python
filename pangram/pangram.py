@@ -23,5 +23,6 @@ def is_pangram(sentence: str) -> bool:
     :return: True if the sentence contains all 26 letters of the English alphabet, False otherwise
     :rtype: bool
     """
-    sentence = sentence.lower()
-    return all(char in letters for char in sentence if char.isalpha())
+    # Convert sentence to lowercase and extract unique alphabetic characters
+    unique_letters: set = set( char for char in sentence.lower() if char.isalpha())
+    return all(char in letters for char in unique_letters)

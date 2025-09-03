@@ -13,11 +13,11 @@ use. You're in charge of checking the submissions to see if they are valid.
 
 def is_pangram(sentence: str) -> bool:
     """
-    Verify that the random sentences uses all the letters in the English alphabet.
+    Verify that the random sentences uses all the letters in the English.
 
     :param sentence: The sentence to check for pangram validity
     :type sentence: str
-    :return: True if the sentence contains all 26 letters of the English alphabet,
+    :return: True if the sentence contains all 26 letters of the English,
              False otherwise
     :rtype: bool
     """

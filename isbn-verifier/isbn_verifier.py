@@ -40,7 +40,7 @@ def formatted_isbn(isbn: str) -> list[int]:
     Ignores non-digit characters except for trailing 'X'.
 
     :param isbn: ISBN string that may contain digits, hyphens, and trailing 'X'
-    :return: List of integers representing ISBN digits, with 'X' converted to 10
+    :return: List of integers representing ISBN digits, 'X' converted to 10
     """
     result: list[int] = []
     for char in isbn:

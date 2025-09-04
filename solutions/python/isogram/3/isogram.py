@@ -22,9 +22,9 @@ def is_isogram(string: str) -> bool:
     """
     Determine if a word or phrase is an isogram.
 
-    An isogram is a word or phrase without repeating letters. Spaces and
-    hyphens are allowed to appear multiple times, but alphabetic
-    characters must be unique (case-insensitive).
+    An isogram is a word or phrase without repeating letters. Spaces and hyphens
+    are allowed to appear multiple times, but alphabetic characters must be unique
+    (case-insensitive).
 
     :param string: The word or phrase to check
     :type string: str

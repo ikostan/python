@@ -1,3 +1,5 @@
+# pylint: disable=C0114, C0115, C0116, R0904
+
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/isogram/canonical-data.json
 # File last updated on 2023-07-19

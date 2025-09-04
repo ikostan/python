@@ -32,7 +32,7 @@ def calc_formula(digits: list[int]) -> int:
     return result
 
 
-def formated_isbn(isbn: str) -> list[int]:
+def formatted_isbn(isbn: str) -> list[int]:
     """
     Extract and format ISBN digits from input string.
 
@@ -62,7 +62,7 @@ def is_valid(isbn: str) -> bool:
     if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
         return False
     # Convert all isbn chars to digits
-    isbn_digits: list[int] = formated_isbn(isbn)
+    isbn_digits: list[int] = formatted_isbn(isbn)
     # ISBN total length should be = 10
     if len(isbn_digits) != 10:
         return False

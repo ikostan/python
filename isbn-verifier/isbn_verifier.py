@@ -51,7 +51,7 @@ def is_valid(isbn: str) -> bool:
     if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
         return False
     # In case X is present, it should be at the end of the string only
-    if 'X' in isbn and isbn.index('X') != len(isbn) - 1:
+    if "X" in isbn and isbn.index("X") != len(isbn) - 1:
         return False
 
     # Convert all isbn chars to digits

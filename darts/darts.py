@@ -29,5 +29,5 @@ def score(x: int, y: int) -> int:
     # Middle circle
     if distance > 1:
         return 5
-    # Inner circle 
+    # Inner circle
     return 10

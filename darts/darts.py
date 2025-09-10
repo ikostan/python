@@ -20,10 +20,14 @@ def score(x: int, y: int) -> int:
     """
     # Calculate distance form the center of the circle (0, 0)
     distance: float = sqrt(pow(x, 2) + pow(y, 2))
+    # Outside target
     if distance > 10:
         return 0
+    # Outer circle
     if distance > 5:
         return 1
+    # Middle circle
     if distance > 1:
         return 5
+    # Inner circle 
     return 10

@@ -44,7 +44,8 @@ def rotate(text: str, key: int) -> str:
 def replace_char(char: str, key: int) -> str:
     """
     Shifts the character by the specified key positions within its alphabet
-    (uppercase or lowercase). Uses modular arithmetic to wrap around the alphabet.
+    (uppercase or lowercase). Uses modular arithmetic to wrap around the
+    alphabet.
 
     :param char: The alphabetic character to rotate
     :param key: The number of positions to shift the character

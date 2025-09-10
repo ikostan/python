@@ -3,7 +3,7 @@
 from math import sqrt
 
 
-def score(x: int, y: int) -> int:
+def score(x: float, y: float) -> int:
     """
     Calculate the points scored in a single toss of a Darts game.
 

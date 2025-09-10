@@ -32,32 +32,18 @@ def rotate(text: str, key: int) -> str:
     """
     new_str: list[str] = []
     for char in text:
+        # Lower case
+        if char in LETTERS_LOWER:
+            new_str.append(
+                LETTERS_LOWER[(LETTERS_LOWER.index(char) + key) % 26]
+            )
+        # Upper case
+        elif char in LETTERS_UPPER:
+            new_str.append(
+                LETTERS_UPPER[(LETTERS_UPPER.index(char) + key) % 26]
+            )
         # Not a letter
-        if not char.isalpha():
-            new_str.append(char)
         else:
-            new_str.append(replace_char(char, key))
+            new_str.append(char)
     # Convert to a string
     return "".join(new_str)
-
-
-def replace_char(char: str, key: int) -> str:
-    """
-    Shifts the character by the specified key positions within its alphabet
-    (uppercase or lowercase). Uses modular arithmetic to wrap around the
-    alphabet.
-
-    :param char: The alphabetic character to rotate
-    :param key: The number of positions to shift the character
-    :return: The rotated character in the same case as the input
-    """
-    if char in LETTERS_UPPER:
-        new_index: int = LETTERS_UPPER.index(char) + key
-        if new_index < 26:
-            return LETTERS_UPPER[new_index]
-        return LETTERS_UPPER[new_index - 26]
-
-    new_index = LETTERS_LOWER.index(char) + key
-    if new_index < 26:
-        return LETTERS_LOWER[new_index]
-    return LETTERS_LOWER[new_index - 26]

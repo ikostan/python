@@ -19,19 +19,6 @@ If the result is 0, then it is a valid ISBN-10, otherwise it is invalid.
 ISBN: str = "0123456789X"
 
 
-def calc_formula(digits: list[int]) -> int:
-    """
-    Calculate the weighted sum for ISBN-10 validation formula.
-
-    :param digits: List of integer digits to calculate the formula for
-    :return: The weighted sum result used in ISBN-10 validation
-    """
-    result: int = 0
-    for i, digit in enumerate(digits):
-        result += digit * (10 - i)
-    return result
-
-
 def formatted_isbn(isbn: str) -> list[int]:
     """
     Extract and format ISBN digits from input string.
@@ -48,6 +35,8 @@ def formatted_isbn(isbn: str) -> list[int]:
             result.append(int(char))
     if isbn[-1].lower() == "x":
         result.append(10)
+
+    print(f"result: {result}, len: {len(result)}")
     return result
 
 
@@ -61,10 +50,16 @@ def is_valid(isbn: str) -> bool:
     # Non ISBN chars or empty strings not allowed
     if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
         return False
+    # In case X is present, it should be at the end of the string only
+    if 'X' in isbn and isbn.index('X') != len(isbn) - 1:
+        return False
+
     # Convert all isbn chars to digits
     isbn_digits: list[int] = formatted_isbn(isbn)
     # ISBN total length should be = 10
     if len(isbn_digits) != 10:
         return False
 
-    return calc_formula(isbn_digits) % 11 == 0
+    return (
+        sum(digit * (10 - i) for i, digit in enumerate(isbn_digits)) % 11 == 0
+    )

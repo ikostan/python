@@ -45,8 +45,9 @@ def is_valid(isbn: str) -> bool:
     :param isbn: 9 digits ISBN 10 format
     :return: Tru if isbn is valid, False otherwise
     """
-    # Non ISBN chars or empty strings not allowed
+    # Make sure that 'X' has an upper case
     isbn = isbn.upper()
+    # Non ISBN chars or empty strings not allowed
     if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
         return False
     # In case X is present, it should be at the end of the string only

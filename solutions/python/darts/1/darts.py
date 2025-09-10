@@ -1,7 +1,5 @@
 """Darts is a game where players throw darts at a target."""
 
-from math import sqrt
-
 
 def score(x: int, y: int) -> int:
     """
@@ -18,16 +16,4 @@ def score(x: int, y: int) -> int:
     :param y: The y-coordinate where the dart landed
     :return: The points scored (0, 1, 5, or 10)
     """
-    # Calculate distance form the center of the circle (0, 0)
-    distance: float = sqrt(pow(x, 2) + pow(y, 2))
-    # Outside target
-    if distance > 10:
-        return 0
-    # Outer circle
-    if distance > 5:
-        return 1
-    # Middle circle
-    if distance > 1:
-        return 5
-    # Inner circle
-    return 10
+    pass

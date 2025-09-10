@@ -33,10 +33,8 @@ def formatted_isbn(isbn: str) -> list[int]:
     for char in isbn:
         if char.isdigit():
             result.append(int(char))
-    if isbn[-1].lower() == "x":
+    if isbn[-1] == "X":
         result.append(10)
-
-    print(f"result: {result}, len: {len(result)}")
     return result
 
 
@@ -48,6 +46,7 @@ def is_valid(isbn: str) -> bool:
     :return: Tru if isbn is valid, False otherwise
     """
     # Non ISBN chars or empty strings not allowed
+    isbn = isbn.upper()
     if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
         return False
     # In case X is present, it should be at the end of the string only

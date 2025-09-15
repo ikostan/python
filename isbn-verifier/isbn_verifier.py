@@ -16,46 +16,24 @@ d₆ * 5 + d₇ * 4 + d₈ * 3 + d₉ * 2 + d₁₀ * 1) mod 11 == 0
 If the result is 0, then it is a valid ISBN-10, otherwise it is invalid.
 """
 
-ISBN: str = "0123456789X"
-
-
-def formatted_isbn(isbn: str) -> list[int]:
-    """
-    Extract and format ISBN digits from input string.
-
-    Converts ISBN string to list of integers, treating 'X' as 10.
-    Ignores non-digit characters except for trailing 'X'.
-
-    :param isbn: ISBN string that may contain digits, hyphens, and trailing 'X'
-    :return: List of integers representing ISBN digits, 'X' converted to 10
-    """
-    result: list[int] = []
-    for char in isbn:
-        if char.isdigit():
-            result.append(int(char))
-    if isbn[-1] == "X":
-        result.append(10)
-    return result
-
 
 def is_valid(isbn: str) -> bool:
     """
     Verify ISBN.
 
     :param isbn: 9 digits ISBN 10 format
-    :return: Tru if isbn is valid, False otherwise
+    :return: True if isbn is valid, False otherwise
     """
-    # Make sure that 'X' has an upper case
-    isbn = isbn.upper()
-    # Non ISBN chars or empty strings not allowed
-    if not all(char in ISBN for char in isbn.replace("-", "")) or not isbn:
-        return False
-    # In case X is present, it should be at the end of the string only
-    if "X" in isbn and isbn.index("X") != len(isbn) - 1:
-        return False
-
-    # Convert all isbn chars to digits
-    isbn_digits: list[int] = formatted_isbn(isbn)
+    isbn_digits: list[int] = []
+    for char in isbn:
+        if char == "-":
+            continue
+        if char.isdigit():
+            isbn_digits.append(int(char))
+        elif char.upper() == "X" and len(isbn_digits) == 9:
+            isbn_digits.append(10)
+        else:
+            return False
     # ISBN total length should be = 10
     if len(isbn_digits) != 10:
         return False

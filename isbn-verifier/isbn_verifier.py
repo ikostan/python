@@ -28,7 +28,7 @@ def is_valid(isbn: str) -> bool:
     for char in isbn:
         if char == "-":
             continue
-        elif char.isdigit():
+        if char.isdigit():
             isbn_digits.append(int(char))
         elif char.upper() == "X" and len(isbn_digits) == 9:
             isbn_digits.append(10)

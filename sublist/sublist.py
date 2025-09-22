@@ -38,7 +38,7 @@ def sublist(list_one: list, list_two: list) -> str:
     len2: int = len(list_two)
 
     if len1 == len2:
-        if list_one is list_two or list_one == list_two:
+        if list_one == list_two:
             return EQUAL
         return UNEQUAL
 

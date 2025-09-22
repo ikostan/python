@@ -13,11 +13,44 @@ You can learn more here: https://en.wikipedia.org/wiki/Enumerated_type
 
 # Possible sublist categories.
 # Change the values as you see fit.
-SUBLIST = None
-SUPERLIST = None
-EQUAL = None
-UNEQUAL = None
+SUBLIST = "SUBLIST"
+SUPERLIST = "SUPERLIST"
+EQUAL = "EQUAL"
+UNEQUAL = "UNEQUAL"
 
 
-def sublist(list_one, list_two):
-    pass
+def sublist(list_one: list, list_two: list) -> str:
+    """
+    Classify the relationship between two lists.
+
+    Determines whether ``list_one`` and ``list_two`` are equal, or whether one
+    is a contiguous sublist of the other, and returns the appropriate constant.
+
+    :param list_one: First list to compare.
+    :type list_one: list
+    :param list_two: Second list to compare.
+    :type list_two: list
+    :returns: One of ``EQUAL``, ``SUBLIST``, ``SUPERLIST``, or ``UNEQUAL``.
+    :rtype: str
+    """
+
+    len1: int = len(list_one)
+    len2: int = len(list_two)
+
+    if len1 == len2:
+        if list_one == list_two:
+            return EQUAL
+        return UNEQUAL
+
+    l1: str = ",".join(str(i) for i in list_one)
+    l2: str = ",".join(str(i) for i in list_two)
+
+    if len1 > len2:
+        if l2 in l1:
+            return SUPERLIST
+
+    if len2 > len1:
+        if l1 in l2:
+            return SUBLIST
+
+    return UNEQUAL

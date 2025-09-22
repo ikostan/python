@@ -37,7 +37,7 @@ def sublist(list_one: list, list_two: list) -> str:
         return EQUAL
 
     if len(list_one) == len(list_two) and not (
-        list_one is list_two or list_one == list_two
+            list_one is list_two or list_one == list_two
     ):
         return UNEQUAL
 
@@ -45,13 +45,11 @@ def sublist(list_one: list, list_two: list) -> str:
     l2: str = ",".join(str(i) for i in list_two)
 
     if len(l1) > len(l2):
-        for i in range(0, len(l1) - len(l2) + 1):
-            if l1[i:].startswith(l2):
-                return SUPERLIST
+        if l2 in l1:
+            return SUPERLIST
 
     if len(l2) > len(l1):
-        for i in range(0, len(l2) - len(l1) + 1):
-            if l2[i:].startswith(l1):
-                return SUBLIST
+        if l1 in l2:
+            return SUBLIST
 
     return UNEQUAL

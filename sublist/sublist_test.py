@@ -1,4 +1,4 @@
-# pylint: disable=C0301
+# pylint: disable=C0301, C0116
 # These tests are auto-generated with test data from:
 # https://github.com/exercism/problem-specifications/tree/main/exercises/sublist/canonical-data.json
 # File last updated on 2023-07-19

@@ -13,10 +13,10 @@ You can learn more here: https://en.wikipedia.org/wiki/Enumerated_type
 
 # Possible sublist categories.
 # Change the values as you see fit.
-SUBLIST = "SUBLIST"
-SUPERLIST = "SUPERLIST"
-EQUAL = "EQUAL"
-UNEQUAL = "UNEQUAL"
+SUBLIST = 0
+SUPERLIST = 1
+EQUAL = 2
+UNEQUAL = 3
 
 
 def sublist(list_one: list, list_two: list) -> str:

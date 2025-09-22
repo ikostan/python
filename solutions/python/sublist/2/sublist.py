@@ -1,0 +1,57 @@
+"""
+This exercise stub and the test suite contain several enumerated constants.
+
+Enumerated constants can be done with a NAME assigned to an arbitrary,
+but unique value. An integer is traditionally used because it’s memory
+efficient.
+
+It is a common practice to export both constants and functions that work with
+those constants (ex. the constants in the os, subprocess and re modules).
+
+You can learn more here: https://en.wikipedia.org/wiki/Enumerated_type
+"""
+
+# Possible sublist categories.
+# Change the values as you see fit.
+SUBLIST = "SUBLIST"
+SUPERLIST = "SUPERLIST"
+EQUAL = "EQUAL"
+UNEQUAL = "UNEQUAL"
+
+
+def sublist(list_one: list, list_two: list) -> str:
+    """
+    Classify the relationship between two lists.
+
+    Determines whether ``list_one`` and ``list_two`` are equal, or whether one
+    is a contiguous sublist of the other, and returns the appropriate constant.
+
+    :param list_one: First list to compare.
+    :type list_one: list
+    :param list_two: Second list to compare.
+    :type list_two: list
+    :returns: One of ``EQUAL``, ``SUBLIST``, ``SUPERLIST``, or ``UNEQUAL``.
+    :rtype: str
+    """
+    if list_one is list_two or list_one == list_two:
+        return EQUAL
+
+    if len(list_one) == len(list_two) and not (
+        list_one is list_two or list_one == list_two
+    ):
+        return UNEQUAL
+
+    l1: str = ",".join(str(i) for i in list_one)
+    l2: str = ",".join(str(i) for i in list_two)
+
+    if len(l1) > len(l2):
+        for i in range(0, len(l1) - len(l2) + 1):
+            if l1[i:].startswith(l2):
+                return SUPERLIST
+
+    if len(l2) > len(l1):
+        for i in range(0, len(l2) - len(l1) + 1):
+            if l2[i:].startswith(l1):
+                return SUBLIST
+
+    return UNEQUAL

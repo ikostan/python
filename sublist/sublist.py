@@ -34,10 +34,7 @@ def sublist(list_one: list, list_two: list) -> int:
     :rtype: int
     """
 
-    len1: int = len(list_one)
-    len2: int = len(list_two)
-
-    if len1 == len2:
+    if len(list_one) == len(list_two):
         if list_one == list_two:
             return EQUAL
         return UNEQUAL

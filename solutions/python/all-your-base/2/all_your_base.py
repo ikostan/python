@@ -35,10 +35,10 @@ def rebase(input_base: int, digits: list[int], output_base: int) -> list[int]:
         raise ValueError("output base must be >= 2")
 
     # Step 2: Calculate the Intermediate Value Using input_base and digits
-    # Start from the least significant number (from the right in original list)
+    # Start from the least significant number (from the right)
     # -> hence reverse the list
     intermediate_val: int = sum(
-        digit * (input_base**i) for i, digit in enumerate(digits[::-1])
+        digit * (input_base**i) for i, digit in enumerate(reversed(digits))
     )
 
     # Step 3: Convert the Intermediate Value to digits in output_base
@@ -50,11 +50,11 @@ def rebase(input_base: int, digits: list[int], output_base: int) -> list[int]:
             intermediate_val // output_base,
             intermediate_val % output_base,
         )
-        # Add the next least significant number into a new list of digits
-        # Start always from the right
-        answer.insert(0, remainder)
+        # Add the least significant number into a new list of digits
+        answer.append(remainder)
         # Break the loop since reach zero, no more calculation needed
         if intermediate_val == 0:
             break
 
-    return answer
+    # Reverse the list to place the most significant digit first (leftmost).
+    return answer[::-1]

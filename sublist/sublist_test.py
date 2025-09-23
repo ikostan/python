@@ -89,3 +89,13 @@ class SublistTest(unittest.TestCase):
         self.assertEqual(
             sublist(list(range(3, 200, 3)), list(range(15, 200, 15))), UNEQUAL
         )
+
+
+if __name__ == '__main__':
+    import time
+
+    start_time = time.time()
+    unittest.main(verbosity=2)  # Verbosity=2 for detailed output; adjust if needed
+    end_time = time.time()
+    duration = end_time - start_time
+    print(f"\nAll tests completed in {duration:.4f} seconds.")

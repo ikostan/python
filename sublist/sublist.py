@@ -19,7 +19,7 @@ EQUAL = 2
 UNEQUAL = 3
 
 
-def sublist(list_one: list, list_two: list) -> str:
+def sublist(list_one: list, list_two: list) -> int:
     """
     Classify the relationship between two lists.
 
@@ -31,7 +31,7 @@ def sublist(list_one: list, list_two: list) -> str:
     :param list_two: Second list to compare.
     :type list_two: list
     :returns: One of ``EQUAL``, ``SUBLIST``, ``SUPERLIST``, or ``UNEQUAL``.
-    :rtype: str
+    :rtype: int
     """
 
     len1: int = len(list_one)
@@ -45,12 +45,10 @@ def sublist(list_one: list, list_two: list) -> str:
     l1: str = ",".join(str(i) for i in list_one)
     l2: str = ",".join(str(i) for i in list_two)
 
-    if len1 > len2:
-        if l2 in l1:
-            return SUPERLIST
+    if l2 in l1:
+        return SUPERLIST
 
-    if len2 > len1:
-        if l1 in l2:
-            return SUBLIST
+    if l1 in l2:
+        return SUBLIST
 
     return UNEQUAL

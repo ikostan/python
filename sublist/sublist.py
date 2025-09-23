@@ -33,19 +33,19 @@ def sublist(list_one: list, list_two: list) -> int:
     :returns: One of ``EQUAL``, ``SUBLIST``, ``SUPERLIST``, or ``UNEQUAL``.
     :rtype: int
     """
-
+    # Step #1: test list with same length
     if len(list_one) == len(list_two):
         if list_one == list_two:
             return EQUAL
         return UNEQUAL
-
+    # Step #2: convert list to a string
     l1: str = ",".join(str(i) for i in list_one)
     l2: str = ",".join(str(i) for i in list_two)
-
+    # Step #3: check for substring
     if l2 in l1:
         return SUPERLIST
 
     if l1 in l2:
         return SUBLIST
-
+    # Step #4: Return default
     return UNEQUAL

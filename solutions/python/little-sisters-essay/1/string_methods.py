@@ -17,22 +17,18 @@ def check_sentence_ending(sentence: str) -> bool:
     Check the ending of the sentence to verify that a period is present.
 
     :param sentence: str - a sentence to check.
-    :return: bool - return True if punctuated correctly with period,
-             False otherwise.
+    :return: bool - return True if punctuated correctly with period, False otherwise.
     """
 
-    return sentence[-1] in ".!?"
+    return True if sentence[-1] in ".!?" else False
 
 
 def clean_up_spacing(sentence: str) -> str:
     """
-    Verify that there isn't any whitespace at the start and end of the
-    sentence.
+    Verify that there isn't any whitespace at the start and end of the sentence.
 
-    :param sentence: str - a sentence to clean of leading and trailing
-           space characters.
-    :return: str - a sentence that has been cleaned of leading and
-             trailing space characters.
+    :param sentence: str - a sentence to clean of leading and trailing space characters.
+    :return: str - a sentence that has been cleaned of leading and trailing space characters.
     """
 
     return sentence.strip()

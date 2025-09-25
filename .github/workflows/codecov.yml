@@ -32,7 +32,7 @@ jobs:
         # yamllint disable rule:line-length
         run: |
           python -c "import os; print(os.getcwd())"
-          python -m pytest tests/ -v --cov-report term-missing --cov=lessons --cov-report=xml
+          python -m pytest . -v --cov-report term-missing --cov=lessons --cov-report=xml
         # yamllint enable rule:line-length
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5.5.0

@@ -21,7 +21,7 @@ jobs:
       matrix:
         python-version: ["3.12"]
     steps:
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v5"
       - name: "Cache PIP Dependencies"
         uses: "actions/cache@v4"
         with:

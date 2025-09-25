@@ -33,11 +33,14 @@ jobs:
         run: |
           python -c "import os; print(os.getcwd())"
           python -m pytest . --ignore=solutions --log-cli-level=INFO -v --cov-report term-missing --cov --cov-branch --cov-report=xml
+      - name: List test files
+        run: |
+          ls *.xml
         # yamllint enable rule:line-length
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5.5.0
         with:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
           fail_ci_if_error: true  # optional (default = false)
           verbose: true  # optional (default = false)cd

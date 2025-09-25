@@ -1,4 +1,6 @@
 # pylint: disable=C0301, C0114, C0115, C0116, R0904
+"""Testing Little Sister's Essay solution."""
+
 import unittest
 import pytest
 from string_methods import (capitalize_title,

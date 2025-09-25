@@ -4,6 +4,7 @@
 [![Pylint](https://github.com/ikostan/python/actions/workflows/pylint.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/pylint.yml)
 [![Ruff Lint and Format](https://github.com/ikostan/python/actions/workflows/ruff.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/ruff.yml)
 [![Flake8](https://github.com/ikostan/python/actions/workflows/flake8.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/flake8.yml)
+[![codecov](https://codecov.io/github/ikostan/python/graph/badge.svg?token=G78RWJWJ38)](https://codecov.io/github/ikostan/python)
 
 <div align="center"> 
 <img width="9%" height="9%" src="https://github.com/ikostan/Exercism_Python_Track/blob/master/img/python-track.png" hspace="20">

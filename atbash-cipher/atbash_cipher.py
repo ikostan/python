@@ -21,8 +21,8 @@ def encode(plain_text: str) -> str:
     :returns: Encoded text (grouped in 5-character blocks when length >= 5).
     :rtype: str
     """
-    temp_txt: [str] = [
-        _replace(char) for char in plain_text if char not in ".,!? "
+    temp_txt: list[str] = [
+        _replace(char.lower()) for char in plain_text if char.isalnum()
     ]
     if len(temp_txt) > 4:
         step: int = 5
@@ -50,8 +50,8 @@ def _replace(char: str) -> str:
     :returns: Transformed character.
     :rtype: str
     """
-    if char.lower().isalpha():
-        return alphabet[-(alphabet.index(char.lower()) + 1)]
+    if char.isalpha():
+        return alphabet[-(alphabet.index(char) + 1)]
     return char
 
 

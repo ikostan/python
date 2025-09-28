@@ -24,18 +24,9 @@ def encode(plain_text: str) -> str:
     temp_txt: list[str] = [
         _replace(char.lower()) for char in plain_text if char.isalnum()
     ]
-    if len(temp_txt) > 4:
-        step: int = 5
-        i_start: int = 0
-        i_end: int = i_start + step
-        txt: list[str] = []
-        while i_start <= len(temp_txt):
-            tmp: str = "".join(temp_txt[i_start:i_end])
-            if tmp:
-                txt.append(tmp)
-            i_start, i_end = i_end, i_end + step
-        return " ".join(txt)
-    return "".join(temp_txt)
+    return " ".join(
+        "".join(temp_txt[i : i + 5]) for i in range(0, len(temp_txt), 5)
+    )
 
 
 def _replace(char: str) -> str:

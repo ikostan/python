@@ -13,8 +13,8 @@ def encode(plain_text: str) -> str:
     Encode text using the Atbash cipher.
 
     Letters are mirrored in the lowercase Latin alphabet; digits are preserved.
-    Punctuation characters '.,!?;:-' and spaces are removed. The result is grouped
-    into 5-character blocks separated by spaces for readability.
+    Punctuation characters '.,!?;:-' and spaces are removed. The result is
+    grouped into 5-character blocks separated by spaces for readability.
 
     :param plain_text: Input text to encode.
     :type plain_text: str

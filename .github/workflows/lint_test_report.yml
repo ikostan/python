@@ -46,7 +46,6 @@ jobs:
     name: "Ruff Lint and Format"
     needs:
       - "changed-files"
-      - "yamllint"
     if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/ruff.yml"
 
@@ -54,7 +53,6 @@ jobs:
     name: "Pylint Workflow"
     needs:
       - "changed-files"
-      - "yamllint"
     if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/pylint.yml"
 
@@ -62,7 +60,6 @@ jobs:
     name: "Flake8 Workflow"
     needs:
        - "changed-files"
-       - "yamllint"
     if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/flake8.yml"
 
@@ -72,6 +69,7 @@ jobs:
       - "ruff"
       - "pylint"
       - "flake8"
+      - "yamllint"
     uses: "./.github/workflows/pytest.yml"
 
   codecov:

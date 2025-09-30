@@ -1,7 +1,7 @@
 ---
 name: "Ruff Lint and Format"
 
-on:
+on:  # yamllint disable-line rule:truthy
   # Makes it reusable; called by other workflows
   workflow_call:
 

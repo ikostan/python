@@ -1,4 +1,5 @@
+---
 ignore:
   - "**/tests/"  # Ignores all files within any 'tests' directory
-  - "**/*_test.py" # Ignores files ending with '_test.py'
+  - "**/*_test.py"  # Ignores files ending with '_test.py'
   - "test_*.py"   # Ignores files starting with 'test_'

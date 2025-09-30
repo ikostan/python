@@ -1,7 +1,7 @@
 ---
 name: "Codecov Coverage Report"
 
-on:   # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   # Makes it reusable; called by other workflows
   workflow_call:
     secrets:

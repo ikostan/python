@@ -1,25 +1,38 @@
-name: Ruff Lint and Format
+---
+name: "Ruff Lint and Format"
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Makes it reusable; called by other workflows
+  workflow_call:
 
 jobs:
   ruff:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
+    # Adding 'timeout-minutes: 10' would prevent jobs from running
+    # indefinitely if something goes wrong
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v6
+      - uses: "actions/checkout@v5"
+      - name: "Set up Python 3.12"
+        uses: "actions/setup-python@v6"
         with:
-          python-version: '3.12'
-      - name: Install Ruff
+          python-version: "3.12"
+      - name: "Cache PIP Dependencies"
+        uses: "actions/cache@v4"
+        with:
+          path: ~/.cache/pip
+          key: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-
+            ${{ runner.os }}-pip-
+      - name: "Install Ruff"
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run Ruff lint
-        run: ruff check --output-format=github .
-      - name: Run Ruff format check
-        run: ruff format --check .
+      - name: "Run Ruff lint"
+        run: |
+          ruff check --output-format=github .
+      - name: "Run Ruff format check"
+        run: |
+          ruff format --check .

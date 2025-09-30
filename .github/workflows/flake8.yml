@@ -4,8 +4,16 @@ name: "Flake8"
 on:   # yamllint disable-line rule:truthy
   push:
     branches: [ main ]
+    paths:
+      - '**/*.py'
+      - 'requirements.txt'
+      - '.pylintrc'
   pull_request:
     branches: [ main ]
+    paths:
+      - '**/*.py'
+      - 'requirements.txt'
+      - '.pylintrc'
 
 permissions:
   contents: "read"
@@ -22,19 +30,20 @@ jobs:
         python-version: ["3.12"]
     steps:
       - uses: "actions/checkout@v5"
-      - name: "Cache PIP Dependencies"
-        uses: "actions/cache@v4"
-        with:
-          path: "~/.cache/pip"
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
       - name: Set up Python ${{ matrix.python-version }}
         # This is the version of the action for setting up Python,
         # not the Python version.
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+      - name: "Cache PIP Dependencies"
+        uses: "actions/cache@v4"
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-
+            ${{ runner.os }}-pip-
       # You can test your matrix by printing the current
       # Python version
       - name: "Display Python Version"

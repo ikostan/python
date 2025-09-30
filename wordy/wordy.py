@@ -9,8 +9,6 @@ the expression from left-to-right, ignoring the
 typical order of operations.
 """
 
-import string
-
 STR_TO_OPERATOR: dict = {
     "plus": "+",
     "minus": "-",
@@ -53,8 +51,8 @@ def answer(question: str) -> int:
             eval_str: str = "".join(new_question)
             result = eval(eval_str)
             return result
-        except Exception:
-            raise ValueError("syntax error")
+        except Exception as exc:
+            raise ValueError("syntax error") from exc
 
     # Reduce iteratively: evaluate the first three-token slice
     # and fold the result left-to-right.
@@ -68,8 +66,8 @@ def answer(question: str) -> int:
             if len(new_question) < 3:
                 _validate_evaluation_pattern(new_question)
                 return eval("".join(new_question))
-        except Exception:
-            raise ValueError("syntax error")
+        except Exception as exc:
+            raise ValueError("syntax error") from exc
     return result
 
 
@@ -82,10 +80,10 @@ def _validate_evaluation_pattern(val: list) -> None:
     :type val: list
     :raises ValueError: If the pattern is invalid (syntax error).
     """
-    if len(val) == 3 and not val[1] in STR_TO_OPERATOR.values():
+    if len(val) == 3 and val[1] not in STR_TO_OPERATOR.values():
         raise ValueError("syntax error")
 
-    if len(val) == 2 and not val[0] in STR_TO_OPERATOR.values():
+    if len(val) == 2 and val[0] not in STR_TO_OPERATOR.values():
         raise ValueError("syntax error")
 
 
@@ -104,15 +102,16 @@ def _reformat(question: str) -> list:
     # 2: Convert all operators writen in word into proper math sign
     question_list: list[str] = question.split()
     formated_question_list: list[str] = []
-    for i, item in enumerate(question_list):
+    for item in question_list:
         if not (
             item.isdigit()
-            or item in STR_TO_OPERATOR.keys()
+            or item in STR_TO_OPERATOR
             or item in STR_TO_OPERATOR.values()
             or any(val in item for val in STR_TO_OPERATOR.values())
         ):
             continue
-        elif item in STR_TO_OPERATOR.keys():
+
+        if item in STR_TO_OPERATOR:
             formated_question_list.append(STR_TO_OPERATOR[item])
         elif item.isdigit():
             formated_question_list.append(item)

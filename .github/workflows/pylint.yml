@@ -4,10 +4,6 @@ name: "Pylint Workflow"
 on:
   # Makes it reusable; called by other workflows
   workflow_call:
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
 
 jobs:
   build:

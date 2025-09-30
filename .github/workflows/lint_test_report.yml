@@ -19,14 +19,20 @@ jobs:
   ruff:
     name: "Ruff Lint and Format"
     uses: "./.github/workflows/ruff.yml"
+    needs:
+      - "yamllint"
 
   pylint:
     name: "Pylint Workflow"
-    uses: "./.github/workflows/pylint.yml"
+    uses:
+    needs:
+      - "yamllint"
 
   flake8:
     name: "Flake8 Workflow"
     uses: "./.github/workflows/flake8.yml"
+    needs:
+      - "yamllint"
 
   pytest:
     name: "Pytest Workflow"
@@ -34,7 +40,6 @@ jobs:
       - "ruff"
       - "pylint"
       - "flake8"
-      - "yamllint"
     uses: "./.github/workflows/pytest.yml"
 
   codecov:

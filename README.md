@@ -40,15 +40,18 @@ This setup provides a Docker container that replicates the GitHub Actions
 environment (`Ubuntu 24.04`, `Python 3.12`) for running linting and testing
 workflows locally. Use it to validate your code before pushing to GitHub.
 
-#### Prerequisites
+<details>
+  <summary>Prerequisites</summary>
 
 - Docker installed and running on your machine. Download from
   [docker.com](https://www.docker.com/get-started).
 - Your repo cloned locally (e.g., `git clone https://github.com/ikostan/python.git`).
 - Ensure `requirements.txt` exists in the repo root (even if empty).
   If you have a `.pylintrc`, it should be in the root as well.
+</details>
 
-#### Building and Using the Docker Container
+<details>
+  <summary>Building and Using the Docker Container</summary>
 
 1. **Place the files**:
    - Save the `Dockerfile` and `run_ci_tests.sh` in your repo root.
@@ -103,8 +106,10 @@ workflows locally. Use it to validate your code before pushing to GitHub.
      ruff check --output-format=github .
      pytest . --verbose --ignore=solutions --log-cli-level=INFO
      ```
+</details>
 
-#### Notes
+<details>
+  <summary>Notes</summary>
 
 - **Failures**: If tests fail, fix your code and rebuild/run again. The env matches GitHub,
   so issues should align.
@@ -116,5 +121,6 @@ workflows locally. Use it to validate your code before pushing to GitHub.
 - **Cleanup**: Use `docker image prune` to remove old images if needed.
 - **Windows-Specific**: If mounting fails (e.g., permission issues), ensure your drive is shared
   in Docker Desktop settings. Use forward slashes in paths if needed, but Docker handles backslashes.
+</details>
 
 **This keeps things simple:** build once, run tests locally, catch issues early.

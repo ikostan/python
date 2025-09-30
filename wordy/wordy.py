@@ -42,26 +42,22 @@ def answer(question: str) -> int:
     :raises ValueError: If the operation is unknown or the syntax is invalid.
     """
     _validate_errors(question)
-    result: int = 0
     new_question: list[str] = _reformat(question)
     # Reduce iteratively: evaluate the first three-token slice
     # and fold the result left-to-right.
-    result: int = 0
     while new_question:
         try:
             if len(new_question) == 3:
                 _validate_evaluation_pattern(new_question)
-                result = _math_operation(new_question)
-                break
+                return _math_operation(new_question)
             if len(new_question) == 1:
-                result = int(new_question[0])
-                break
+                return int(new_question[0])
             _validate_evaluation_pattern(new_question[:3])
             result = _math_operation(new_question[:3])
             new_question = [str(result)] + new_question[3:]
         except Exception as exc:
             raise ValueError("syntax error") from exc
-    return result
+    raise ValueError("syntax error")  # Safety net for empty cases
 
 
 def _math_operation(question: list[str]) -> int:
@@ -88,17 +84,19 @@ def _math_operation(question: list[str]) -> int:
         result = int(question[0]) // int(question[-1])
     elif math_operator == "*":
         result = int(question[0]) * int(question[-1])
+    else:
+        raise ValueError("syntax error")
 
     return result
 
 
-def _validate_evaluation_pattern(val: list) -> None:
+def _validate_evaluation_pattern(val: list[str]) -> None:
     """
     Ensure a token slice matches expected evaluation patterns.
 
     :param val: Token slice to validate, e.g.,
                 ['3', '+', '4'] or ['+', '4'] during reduction.
-    :type val: list
+    :type val: list[str]
     :raises ValueError: If the pattern is invalid (syntax error).
     """
     if len(val) == 3 and val[1] not in STR_TO_OPERATOR.values():
@@ -108,7 +106,7 @@ def _validate_evaluation_pattern(val: list) -> None:
         raise ValueError("syntax error")
 
 
-def _reformat(question: str) -> list:
+def _reformat(question: str) -> list[str]:
     """
     Tokenize a natural-language math question into numbers
     and operator symbols.
@@ -126,9 +124,9 @@ def _reformat(question: str) -> list:
     for item in question_list:
         if not (
             item.isdigit()
+            or item[1:].isdigit()
             or item in STR_TO_OPERATOR
             or item in STR_TO_OPERATOR.values()
-            or any(val in item for val in STR_TO_OPERATOR.values())
         ):
             continue
 

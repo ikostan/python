@@ -24,7 +24,7 @@ jobs:
 
   pylint:
     name: "Pylint Workflow"
-    uses:
+    uses: "./.github/workflows/pylint.yml"
     needs:
       - "yamllint"
 

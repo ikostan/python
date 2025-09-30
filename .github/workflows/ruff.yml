@@ -1,19 +1,9 @@
 ---
 name: "Ruff Lint and Format"
 
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
+on:  # yamllint disable-line rule:truthy
+  # Makes it reusable; called by other workflows
+  workflow_call:
 
 jobs:
   ruff:
@@ -31,7 +21,8 @@ jobs:
         uses: "actions/cache@v4"
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          key: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
             ${{ runner.os }}-pip-

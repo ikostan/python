@@ -74,20 +74,20 @@ def _math_operation(question: list[str]) -> int:
     :rtype: int
     """
     math_operator: str = question[1]
-    result: int = 0
 
     if math_operator == "+":
-        result = int(question[0]) + int(question[-1])
-    elif math_operator == "-":
-        result = int(question[0]) - int(question[-1])
-    elif math_operator == "/":
-        result = int(question[0]) // int(question[-1])
-    elif math_operator == "*":
-        result = int(question[0]) * int(question[-1])
-    else:
-        raise ValueError("syntax error")
+        return int(question[0]) + int(question[-1])
 
-    return result
+    if math_operator == "-":
+        return int(question[0]) - int(question[-1])
+
+    if math_operator == "/":
+        return int(question[0]) // int(question[-1])
+
+    if math_operator == "*":
+        return int(question[0]) * int(question[-1])
+
+    raise ValueError("syntax error")
 
 
 def _validate_evaluation_pattern(val: list[str]) -> None:

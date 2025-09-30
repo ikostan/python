@@ -1,11 +1,13 @@
 ---
-name: Codecov Coverage Report
+name: "Codecov Coverage Report"
 
 on:   # yamllint disable-line rule:truthy
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Makes it reusable; called by other workflows
+  workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        description: "CODECOV Auth Token"
+        required: true
 
 jobs:
   run:
@@ -15,27 +17,28 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: ["ubuntu-latest"]
         python-version: ["3.12"]
     steps:
-      - uses: actions/checkout@main
-      - name: Setup Python
-        uses: actions/setup-python@main
+      - uses: "actions/checkout@main"
+      - name: "Setup Python"
+        uses: "actions/setup-python@main"
         with:
           python-version: ${{ matrix.python-version }}
       - name: "Cache PIP Dependencies"
         uses: "actions/cache@v4"
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
+          key: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-${{ matrix.python-version }}-
             ${{ runner.os }}-pip-
-      - name: Install prerequisites
+      - name: "Install prerequisites"
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
-      - name: Install pytest, pytest-cov
+      - name: "Install pytest, pytest-cov"
         run: |
           pip install pytest
           pip install pytest-cov
@@ -44,12 +47,12 @@ jobs:
         run: |
           python -c "import os; print(os.getcwd())"
           python -m pytest . --ignore=solutions --log-cli-level=INFO -v --cov-report term-missing --cov --cov-branch --cov-report=xml
-      - name: List test files
+      - name: "List test files"
         run: |
           ls *.xml
         # yamllint enable rule:line-length
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5.5.1
+      - name: "Upload coverage to Codecov"
+        uses: "codecov/codecov-action@v5.5.1"
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml

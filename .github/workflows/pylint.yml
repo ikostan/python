@@ -1,15 +1,9 @@
 ---
-name: "Pylint"
+name: "Pylint Workflow"
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
-  pull_request:
-    branches: [ main ]
+  # Makes it reusable; called by other workflows
+  workflow_call:
     paths:
       - '**/*.py'
       - 'requirements.txt'

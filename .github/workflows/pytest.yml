@@ -2,10 +2,12 @@
 name: "Pytest Workflow"
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # Makes it reusable; called by other workflows
+  workflow_call:
+    paths:
+      - '**/*.py'
+      - 'requirements.txt'
+      - '.pylintrc'
 
 jobs:
   test:

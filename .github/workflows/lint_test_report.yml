@@ -1,0 +1,37 @@
+---
+name: "Lint->Test->Report"
+
+on:   # yamllint disable-line rule:truthy
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: "read"
+  pull-requests: "read"
+
+jobs:
+  ruff:
+    name: "Ruff Lint and Format"
+    uses: "./.github/workflows/ruff.yml"
+  pylint:
+    name: "Pylint Workflow"
+    uses: "./.github/workflows/pylint.yml"
+  flake8:
+    name: "Flake8 Workflow"
+    uses: "./.github/workflows/flake8.yml"
+  pytest:
+    name: "Pytest Workflow"
+    needs:
+      - "ruff"
+      - "pylint"
+      - "flake8"
+    uses: "./.github/workflows/pytest.yml"
+  codecov:
+    name: "Codecov Coverage Report"
+    needs:
+      - "pytest"
+    uses: "./.github/workflows/codecov.yml"
+    secrets:
+      CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"

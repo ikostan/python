@@ -46,20 +46,22 @@ def answer(question: str) -> int:
     new_question: list[str] = _reformat(question)
     # Reduce iteratively: evaluate the first three-token slice
     # and fold the result left-to-right.
+    result: int = 0
     while new_question:
         try:
             if len(new_question) == 3:
                 _validate_evaluation_pattern(new_question)
-                return _math_operation(new_question)
-
+                result = _math_operation(new_question)
+                break
             if len(new_question) == 1:
-                return int(new_question[0])
-
+                result = int(new_question[0])
+                break
             _validate_evaluation_pattern(new_question[:3])
             result = _math_operation(new_question[:3])
             new_question = [str(result)] + new_question[3:]
         except Exception as exc:
             raise ValueError("syntax error") from exc
+    return result
 
 
 def _math_operation(question: list[str]) -> int:

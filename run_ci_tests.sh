@@ -6,6 +6,10 @@ set -e
 # Display Python version
 python --version
 
+# Run YAML lint
+echo "Running YAML lint..."
+yamllint . || { echo "YAML lint failed"; exit 1; }
+
 # Run Ruff lint
 echo "Running Ruff lint..."
 ruff check --output-format=github . || { echo "Ruff lint failed"; exit 1; }

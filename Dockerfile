@@ -38,7 +38,8 @@ RUN pip install --no-cache-dir \
     flake8 \
     pylint \
     pytest \
-    pytest-cov
+    pytest-cov \
+    yamllint
 
 # Copy the rest of the code (including .pylintrc if present)
 COPY . .

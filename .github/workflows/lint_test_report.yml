@@ -4,16 +4,8 @@ name: "Lint->Test->Report"
 on:   # yamllint disable-line rule:truthy
   push:
     branches: [ main ]
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
   pull_request:
     branches: [ main ]
-    paths:
-      - '**/*.py'
-      - 'requirements.txt'
-      - '.pylintrc'
 
 permissions:
   contents: "read"

@@ -44,30 +44,49 @@ def answer(question: str) -> int:
     _validate_errors(question)
     result: int = 0
     new_question: list[str] = _reformat(question)
-
-    if len(new_question) <= 3:
-        try:
-            _validate_evaluation_pattern(new_question)
-            eval_str: str = "".join(new_question)
-            result = eval(eval_str)
-            return result
-        except Exception as exc:
-            raise ValueError("syntax error") from exc
-
     # Reduce iteratively: evaluate the first three-token slice
     # and fold the result left-to-right.
-    while len(new_question) >= 3:
+    while new_question:
         try:
-            _validate_evaluation_pattern(new_question[:3])
-            eval_str: str = "".join(new_question[:3])
-            val: int = eval(eval_str)
-            result = val
-            new_question = [str(result)] + new_question[3:]
-            if len(new_question) < 3:
+            if len(new_question) == 3:
                 _validate_evaluation_pattern(new_question)
-                return eval("".join(new_question))
+                return _math_operation(new_question)
+
+            if len(new_question) == 1:
+                return int(new_question[0])
+
+            _validate_evaluation_pattern(new_question[:3])
+            result = _math_operation(new_question[:3])
+            new_question = [str(result)] + new_question[3:]
         except Exception as exc:
             raise ValueError("syntax error") from exc
+
+
+def _math_operation(question: list[str]) -> int:
+    """
+    Compute a single binary arithmetic operation.
+
+    Expects a three-token slice like ``['3', '+', '4']`` and returns
+    the integer result. Division performs floor division (``//``) to
+    match exercise rules.
+
+    :param question: Three tokens ``[lhs, operator, rhs]``.
+    :type question: list[str]
+    :returns: The computed integer result.
+    :rtype: int
+    """
+    math_operator: str = question[1]
+    result: int = 0
+
+    if math_operator == "+":
+        result = int(question[0]) + int(question[-1])
+    elif math_operator == "-":
+        result = int(question[0]) - int(question[-1])
+    elif math_operator == "/":
+        result = int(question[0]) // int(question[-1])
+    elif math_operator == "*":
+        result = int(question[0]) * int(question[-1])
+
     return result
 
 
@@ -138,16 +157,3 @@ def _validate_errors(question: str) -> None:
     for item in WRONG_OPERATORS:
         if item in question:
             raise ValueError("syntax error")
-
-    digits: list[bool] = []
-    for char in question:
-        if char.isdigit():
-            digits.append(True)
-
-    operators: list[bool] = []
-    for key, val in STR_TO_OPERATOR.items():
-        if key in question or val in question:
-            operators.append(True)
-
-    if not any(digits + operators):
-        raise ValueError("unknown operation")

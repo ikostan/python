@@ -1,5 +1,5 @@
 ---
-name: "Lint->Test->Report"
+name: "Main Pipeline"
 
 on:   # yamllint disable-line rule:truthy
   push:
@@ -12,22 +12,62 @@ permissions:
   pull-requests: "read"
 
 jobs:
+  changed-files:
+    runs-on: "ubuntu-latest"
+    outputs:
+      python_changed: ${{ steps.python-files.outputs.any_changed }}
+      yaml_changed: ${{ steps.yaml-files.outputs.any_changed }}
+    steps:
+      - uses: "actions/checkout@v5"
+      - name: "Get changed Python files"
+        id: python-files
+        uses: "tj-actions/changed-files@v47"
+        with:
+          files: |
+            **/*.py
+            requirements.txt
+            .pylintrc
+      - name: "Get changed YAML files"
+        id: yaml-files
+        uses: "tj-actions/changed-files@v47"
+        with:
+          files: |
+            **/*.yml
+            **/*.yaml
+
+  yamllint:
+    name: "YAML Lint Workflow"
+    needs: changed-files
+    if: needs.changed-files.outputs.yaml_changed == 'true'
+    uses: "./.github/workflows/yamllint.yml"
+
   ruff:
     name: "Ruff Lint and Format"
+    needs: changed-files
+    if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/ruff.yml"
+
   pylint:
     name: "Pylint Workflow"
+    needs: changed-files
+    if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/pylint.yml"
+
   flake8:
     name: "Flake8 Workflow"
+    needs: changed-files
+    if: needs.changed-files.outputs.python_changed == 'true'
     uses: "./.github/workflows/flake8.yml"
+
   pytest:
     name: "Pytest Workflow"
     needs:
+      - "yamllint"
       - "ruff"
       - "pylint"
       - "flake8"
     uses: "./.github/workflows/pytest.yml"
+
   codecov:
     name: "Codecov Coverage Report"
     needs:

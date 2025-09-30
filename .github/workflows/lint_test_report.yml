@@ -26,7 +26,6 @@ jobs:
 
   flake8:
     name: "Flake8 Workflow"
-    needs:
     uses: "./.github/workflows/flake8.yml"
 
   pytest:

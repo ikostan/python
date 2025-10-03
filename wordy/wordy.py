@@ -72,10 +72,7 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
     """
     math_operator: str = question[0]
     # if the question contains an unknown operation.
-    if (
-        math_operator not in STR_TO_OPERATOR
-        and not math_operator.isdigit()
-    ):
+    if math_operator not in STR_TO_OPERATOR and not math_operator.isdigit():
         raise ValueError("unknown operation")
     # if the question is malformed or invalid.
     if math_operator.isdigit():

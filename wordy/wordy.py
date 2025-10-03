@@ -9,26 +9,14 @@ the expression from left-to-right, ignoring the
 typical order of operations.
 """
 
-STR_TO_OPERATOR: dict = {
+STR_TO_OPERATOR: dict[str, str] = {
     "plus": "+",
     "minus": "-",
     "multiplied": "*",
     "divided": "/",
 }
 
-WRONG_OPERATORS: list[str] = [
-    "plus?",
-    "minus?",
-    "multiplied?",
-    "divided?",
-    "plus plus",
-    "plus multiplied",
-    "minus multiplied",
-    "minus minus",
-    "multiplied multiplied",
-    "divided divided",
-    "What is?",
-]
+REPLACEABLE: tuple = ("What", "is", "by")
 
 
 def answer(question: str) -> int:
@@ -41,119 +29,63 @@ def answer(question: str) -> int:
     :rtype: int
     :raises ValueError: If the operation is unknown or the syntax is invalid.
     """
-    _validate_errors(question)
-    new_question: list[str] = _reformat(question)
-    # Reduce iteratively: evaluate the first three-token slice
-    # and fold the result left-to-right.
-    while new_question:
-        try:
-            if len(new_question) == 3:
-                _validate_evaluation_pattern(new_question)
-                return _math_operation(new_question)
-            if len(new_question) == 1:
-                return int(new_question[0])
-            _validate_evaluation_pattern(new_question[:3])
-            result = _math_operation(new_question[:3])
-            new_question = [str(result)] + new_question[3:]
-        except Exception as exc:
-            raise ValueError("syntax error") from exc
-    raise ValueError("syntax error")  # Safety net for empty cases
+    new_question: list[str] = [
+        word for word in question.replace("?", "").split() if word not in REPLACEABLE
+    ]
+    # Reduce iteratively:
+    # evaluate the first three-token slice and fold the result left-to-right.
+    try:
+        result, new_question = int(new_question[0]), new_question[1:]
+        while new_question:
+            result, new_question = _math_operation(result, new_question)
+    except ValueError as exc:
+        if exc.args[0] == "unknown operation":
+            raise exc
+        raise ValueError("syntax error") from exc
+    except IndexError as exc:
+        raise ValueError("syntax error") from exc
+
+    return result
 
 
-def _math_operation(question: list[str]) -> int:
+def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
     """
-    Compute a single binary arithmetic operation.
+    Compute a single binary arithmetic step for the current operator.
 
-    Expects a three-token slice like ``['3', '+', '4']`` and returns
-    the integer result. Division performs floor division (``//``) to
-    match exercise rules.
+    Expects the next tokens of the question to begin with the operator word
+    (e.g. ``plus``, ``minus``, ``multiplied``, ``divided``) followed by the
+    right-hand side operand. Division uses floor division (``//``) to comply
+    with the exercise rules.
 
-    :param question: Three tokens ``[lhs, operator, rhs]``.
+    :param result: Accumulated left-hand value computed so far.
+    :type result: int
+    :param question: Remaining tokens starting with the operator then rhs integer,
+                     e.g. ``['plus', '4', ...]``.
     :type question: list[str]
-    :returns: The computed integer result.
-    :rtype: int
+    :returns: A tuple of the new accumulated result and the remaining tokens after
+              consuming the operator and rhs.
+    :rtype: tuple[int, list[str]]
+    :raises ValueError: If the operator is unknown or the token sequence is malformed.
     """
-    math_operator: str = question[1]
-
-    if math_operator == "+":
-        return int(question[0]) + int(question[-1])
-
-    if math_operator == "-":
-        return int(question[0]) - int(question[-1])
-
-    if math_operator == "/":
-        return int(question[0]) // int(question[-1])
-
-    if math_operator == "*":
-        return int(question[0]) * int(question[-1])
-
-    raise ValueError("syntax error")
-
-
-def _validate_evaluation_pattern(val: list[str]) -> None:
-    """
-    Ensure a token slice matches expected evaluation patterns.
-
-    :param val: Token slice to validate, e.g.,
-                ['3', '+', '4'] or ['+', '4'] during reduction.
-    :type val: list[str]
-    :raises ValueError: If the pattern is invalid (syntax error).
-    """
-    if len(val) == 3 and val[1] not in STR_TO_OPERATOR.values():
-        raise ValueError("syntax error")
-
-    if len(val) == 2 and val[0] not in STR_TO_OPERATOR.values():
-        raise ValueError("syntax error")
-
-
-def _reformat(question: str) -> list[str]:
-    """
-    Tokenize a natural-language math question into numbers
-    and operator symbols.
-
-    :param question: Raw question string.
-    :type question: str
-    :returns: Token list with numbers and operator symbols.
-    :rtype: list[str]
-    """
-    # 1: Remove '?' mark
-    question = question.replace("?", "")
-    # 2: Convert all operators writen in word into proper math sign
-    question_list: list[str] = question.split()
-    formated_question_list: list[str] = []
-    for item in question_list:
-        if not (
-            item.isdigit()
-            or item[1:].isdigit()
-            or item in STR_TO_OPERATOR
-            or item in STR_TO_OPERATOR.values()
-        ):
-            continue
-
-        if item in STR_TO_OPERATOR:
-            formated_question_list.append(STR_TO_OPERATOR[item])
-        elif item.isdigit():
-            formated_question_list.append(item)
-        elif item in STR_TO_OPERATOR.values():
-            formated_question_list.append(item)
-        elif any(val in item for val in STR_TO_OPERATOR.values()):
-            formated_question_list.append(item)
-
-    return formated_question_list
-
-
-def _validate_errors(question: str) -> None:
-    """
-    Pre-validate unsupported or malformed questions.
-
-    :param question: Raw question string.
-    :type question: str
-    :raises ValueError: Unknown operation or malformed
-                        phrasing (syntax error).
-    """
-    if "cubed" in question:
+    math_operator: str = question[0]
+    # if the question contains an unknown operation.
+    if math_operator not in STR_TO_OPERATOR.keys() and not math_operator.isdigit():
         raise ValueError("unknown operation")
+    # if the question is malformed or invalid.
+    if math_operator.isdigit():
+        raise ValueError("syntax error")
+    # if the question is malformed or invalid.
+    if math_operator in STR_TO_OPERATOR and len(question) == 1:
+        raise ValueError("syntax error")
 
-    for item in WRONG_OPERATORS:
-        if item in question:
-            raise ValueError("syntax error")
+    if STR_TO_OPERATOR[math_operator] == "+":
+        return result + int(question[1]), question[2:]
+
+    if STR_TO_OPERATOR[math_operator] == "-":
+        return result - int(question[1]), question[2:]
+
+    if STR_TO_OPERATOR[math_operator] == "/":
+        return result // int(question[1]), question[2:]
+
+    if STR_TO_OPERATOR[math_operator] == "*":
+        return result * int(question[1]), question[2:]

@@ -30,7 +30,9 @@ def answer(question: str) -> int:
     :raises ValueError: If the operation is unknown or the syntax is invalid.
     """
     new_question: list[str] = [
-        word for word in question.replace("?", "").split() if word not in REPLACEABLE
+        word
+        for word in question.replace("?", "").split()
+        if word not in REPLACEABLE
     ]
     # Reduce iteratively:
     # evaluate the first three-token slice and fold the result left-to-right.
@@ -69,7 +71,10 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
     """
     math_operator: str = question[0]
     # if the question contains an unknown operation.
-    if math_operator not in STR_TO_OPERATOR.keys() and not math_operator.isdigit():
+    if (
+        math_operator not in STR_TO_OPERATOR.keys()
+        and not math_operator.isdigit()
+    ):
         raise ValueError("unknown operation")
     # if the question is malformed or invalid.
     if math_operator.isdigit():

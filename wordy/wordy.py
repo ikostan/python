@@ -61,18 +61,19 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
 
     :param result: Accumulated left-hand value computed so far.
     :type result: int
-    :param question: Remaining tokens starting with the operator then rhs integer,
-                     e.g. ``['plus', '4', ...]``.
+    :param question: Remaining tokens starting with the operator then rhs
+                     integer, e.g. ``['plus', '4', ...]``.
     :type question: list[str]
-    :returns: A tuple of the new accumulated result and the remaining tokens after
-              consuming the operator and rhs.
+    :returns: A tuple of the new accumulated result and the remaining tokens
+              after consuming the operator and rhs.
     :rtype: tuple[int, list[str]]
-    :raises ValueError: If the operator is unknown or the token sequence is malformed.
+    :raises ValueError: If the operator is unknown or the token sequence is
+                        malformed.
     """
     math_operator: str = question[0]
     # if the question contains an unknown operation.
     if (
-        math_operator not in STR_TO_OPERATOR.keys()
+        math_operator not in STR_TO_OPERATOR
         and not math_operator.isdigit()
     ):
         raise ValueError("unknown operation")
@@ -84,13 +85,15 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
         raise ValueError("syntax error")
 
     if STR_TO_OPERATOR[math_operator] == "+":
-        return result + int(question[1]), question[2:]
+        result += int(question[1])
 
     if STR_TO_OPERATOR[math_operator] == "-":
-        return result - int(question[1]), question[2:]
+        result -= int(question[1])
 
     if STR_TO_OPERATOR[math_operator] == "/":
-        return result // int(question[1]), question[2:]
+        result //= int(question[1])
 
     if STR_TO_OPERATOR[math_operator] == "*":
-        return result * int(question[1]), question[2:]
+        result *= int(question[1])
+
+    return result, question[2:]

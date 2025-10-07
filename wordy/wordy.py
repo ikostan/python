@@ -35,11 +35,15 @@ def answer(question: str) -> int:
         if word not in REPLACEABLE
     ]
     # Reduce iteratively:
-    # evaluate the first three-token slice and fold the result left-to-right.
+    # evaluate the first two-token slice and fold the result left-to-right.
     try:
         result, new_question = int(new_question[0]), new_question[1:]
         while new_question:
-            result, new_question = _math_operation(result, new_question)
+            _err_check(new_question)
+            result, new_question = (
+                _math_operation(result, new_question),
+                new_question[2:],
+            )
     except ValueError as exc:
         if exc.args[0] == "unknown operation":
             raise exc
@@ -50,7 +54,7 @@ def answer(question: str) -> int:
     return result
 
 
-def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
+def _math_operation(result: int, question: list[str]) -> int:
     """
     Compute a single binary arithmetic step for the current operator.
 
@@ -64,11 +68,34 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
     :param question: Remaining tokens starting with the operator then rhs
                      integer, e.g. ``['plus', '4', ...]``.
     :type question: list[str]
-    :returns: A tuple of the new accumulated result and the remaining tokens
-              after consuming the operator and rhs.
-    :rtype: tuple[int, list[str]]
-    :raises ValueError: If the operator is unknown or the token sequence is
-                        malformed.
+    :returns: Accumulated result after consuming the operator and rhs.
+    :rtype: int
+    """
+    math_operator: str = question[0]
+    operand: int = int(question[1])
+
+    match STR_TO_OPERATOR[math_operator]:
+        case "+":
+            result += operand
+        case "-":
+            result -= operand
+        case "/":
+            result //= operand
+        case "*":
+            result *= operand
+
+    return result
+
+
+def _err_check(question: list[str]) -> None:
+    """
+    Validate the upcoming operator/operand tokens and raise appropriate errors.
+
+    :param question: Remaining tokens starting at the operator; used to detect
+                     malformed sequences (e.g., missing rhs integer).
+    :type question: list[str]
+    :raises ValueError: If an unknown operation is encountered or the token
+                        sequence is syntactically invalid.
     """
     math_operator: str = question[0]
     # if the question contains an unknown operation.
@@ -80,17 +107,3 @@ def _math_operation(result: int, question: list[str]) -> tuple[int, list[str]]:
     # if the question is malformed or invalid.
     if math_operator in STR_TO_OPERATOR and len(question) == 1:
         raise ValueError("syntax error")
-
-    if STR_TO_OPERATOR[math_operator] == "+":
-        result += int(question[1])
-
-    if STR_TO_OPERATOR[math_operator] == "-":
-        result -= int(question[1])
-
-    if STR_TO_OPERATOR[math_operator] == "/":
-        result //= int(question[1])
-
-    if STR_TO_OPERATOR[math_operator] == "*":
-        result *= int(question[1])
-
-    return result, question[2:]

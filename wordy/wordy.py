@@ -9,13 +9,7 @@ the expression from left-to-right, ignoring the
 typical order of operations.
 """
 
-STR_TO_OPERATOR: dict[str, str] = {
-    "plus": "+",
-    "minus": "-",
-    "multiplied": "*",
-    "divided": "/",
-}
-
+OPERATORS: tuple = ("plus", "minus", "multiplied", "divided")
 REPLACEABLE: tuple = ("What", "is", "by")
 
 
@@ -74,14 +68,14 @@ def _math_operation(result: int, question: list[str]) -> int:
     math_operator: str = question[0]
     operand: int = int(question[1])
 
-    match STR_TO_OPERATOR[math_operator]:
-        case "+":
+    match math_operator:
+        case "plus":
             result += operand
-        case "-":
+        case "minus":
             result -= operand
-        case "/":
+        case "divided":
             result //= operand
-        case "*":
+        case "multiplied":
             result *= operand
 
     return result
@@ -99,11 +93,11 @@ def _err_check(question: list[str]) -> None:
     """
     math_operator: str = question[0]
     # if the question contains an unknown operation.
-    if math_operator not in STR_TO_OPERATOR and not math_operator.isdigit():
+    if math_operator not in OPERATORS and not math_operator.isdigit():
         raise ValueError("unknown operation")
     # if the question is malformed or invalid.
     if math_operator.isdigit():
         raise ValueError("syntax error")
     # if the question is malformed or invalid.
-    if math_operator in STR_TO_OPERATOR and len(question) == 1:
+    if math_operator in OPERATORS and len(question) == 1:
         raise ValueError("syntax error")

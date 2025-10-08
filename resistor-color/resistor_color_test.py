@@ -11,6 +11,7 @@ from resistor_color import (
 )
 
 
+# pylint: disable=duplicate-code
 class ResistorColorTest(unittest.TestCase):
     def test_black(self):
         self.assertEqual(color_code("black"), 0)

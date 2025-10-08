@@ -6,7 +6,8 @@ as an array, happen to map to their index in the array:
 Better Be Right Or Your Great Big Values Go Wrong.
 """
 
-COLORS: tuple = (  # pylint: disable=R0801
+# pylint: disable=duplicate-code
+COLORS: tuple = (
     "black",
     "brown",
     "red",

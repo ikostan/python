@@ -46,7 +46,7 @@ jobs:
         # yamllint disable rule:line-length
         run: |
           python -c "import os; print(os.getcwd())"
-          python -m pytest . --ignore=solutions --log-cli-level=INFO -v --cov-report term-missing --cov --cov-branch --cov-report=xml
+          python -m pytest . --ignore=solutions --log-cli-level=INFO -v --cov-report term-missing --cov --cov-branch --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
       - name: "List test files"
         run: |
           ls *.xml
@@ -60,3 +60,8 @@ jobs:
           verbose: true  # optional (default = false)cd
           flags: unittests # optional
           name: codecov-umbrella # optional
+      - name: "Upload test results to Codecov"
+        if: ${{ !cancelled() }}
+        uses: "codecov/test-results-action@v1"
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

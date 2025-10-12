@@ -67,5 +67,7 @@ def clean_up(combined_record_group: tuple) -> str:
     """
     result: str = ""
     for line in combined_record_group:
-        result += f"{tuple(item for i, item in enumerate(line) if i != 1)}\n"
+        result += f"{tuple(
+            item for index, item in enumerate(line) if index != 1
+        )}\n"
     return result

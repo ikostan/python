@@ -40,8 +40,7 @@ def compare_records(azara_record: tuple, rui_record: tuple) -> bool:
 
 def create_record(azara_record: tuple, rui_record: tuple) -> (tuple, str):
     """
-    Combine the two record types (if possible) and create a combined record
-    group.
+    Combine the two record types (if possible) and create a combined record group.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
@@ -55,8 +54,7 @@ def create_record(azara_record: tuple, rui_record: tuple) -> (tuple, str):
 
 def clean_up(combined_record_group: tuple) -> str:
     """
-    Clean up a combined record group into a multi-line string of single
-    records.
+    Clean up a combined record group into a multi-line string of single records.
 
     :param combined_record_group: tuple - everything from both participants.
     :return: str - everything "cleaned", excess coordinates and information
@@ -67,7 +65,5 @@ def clean_up(combined_record_group: tuple) -> str:
     """
     result: str = ""
     for line in combined_record_group:
-        result += (
-            f"{tuple(item for index, item in enumerate(line) if index != 1)}\n"
-        )
+        result += f"{tuple([l for i, l in enumerate(line) if i != 1])}\n"
     return result

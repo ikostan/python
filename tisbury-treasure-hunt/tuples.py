@@ -38,7 +38,7 @@ def compare_records(azara_record: tuple, rui_record: tuple) -> bool:
     return azara_record[-1] == "".join(rui_record[1])
 
 
-def create_record(azara_record: tuple, rui_record: tuple) -> (tuple, str):
+def create_record(azara_record: tuple, rui_record: tuple) -> tuple | str:
     """
     Combine the two record types (if possible) and create a combined record
     group.

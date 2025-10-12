@@ -9,13 +9,14 @@ import string
 CHARS: str = string.ascii_uppercase
 
 
-def rows(letter: str) -> list:
+def rows(letter: str) -> list[str]:
     """
     Return the diamond rows from 'A' to ``letter``.
 
     Builds the upper half and mirrors it to form a symmetric diamond.
 
-    :param str letter: Uppercase letter (``'A'``-``'Z'``) marking the widest row.
+    :param str letter: Uppercase letter (``'A'``-``'Z'``) marking the
+                       widest row.
     :returns: The full diamond as a list of strings, one per row.
     :rtype: list
     :raises ValueError: If ``letter`` is not an ASCII uppercase character.
@@ -26,13 +27,15 @@ def rows(letter: str) -> list:
 
     for i, char in enumerate(CHARS[: letter_index + 1]):
         # All rows have as many trailing spaces as leading spaces.
-        spaces: str = " " * (letter_index - i)
+        spaces_length: int = letter_index - i
+        spaces: str = " " * spaces_length
         # The first/last row contains one 'A'.
-        if i == 0:
+        if char == "A":
             result.append(spaces + char + spaces)
         else:
-            middle: str = " " * (row_length - 2 - (len(spaces) * 2))
-            # All rows, except the first and last, have exactly two identical letters.
+            middle: str = " " * (row_length - 2 - (spaces_length * 2))
+            # All rows, except the first and last,
+            # have exactly two identical letters.
             result.append(spaces + char + middle + char + spaces)
     # Mirror the list: the bottom half has the letters in descending order.
     result = result + result[::-1][1:]

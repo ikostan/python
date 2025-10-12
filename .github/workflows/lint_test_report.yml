@@ -46,6 +46,6 @@ jobs:
     name: "Codecov Coverage Report"
     needs:
       - "pytest"
-    uses: "./.github/workflows/codecov.yml"
+    uses: "./.github/workflows/codecov.yml@main"
     secrets:
       CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"

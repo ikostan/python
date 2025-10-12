@@ -32,7 +32,8 @@ def rows(letter: str) -> list:
             result.append(spaces + char + spaces)
         else:
             middle: str = " " * (row_length - 2 - (len(spaces) * 2))
-            # All rows, except the first and last, have exactly two identical letters.
+            # All rows, except the first and last,
+            # have exactly two identical letters.
             result.append(spaces + char + middle + char + spaces)
     # Mirror the list: the bottom half has the letters in descending order.
     result = result + result[::-1][1:]

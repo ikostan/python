@@ -15,7 +15,8 @@ def rows(letter: str) -> list[str]:
 
     Builds the upper half and mirrors it to form a symmetric diamond.
 
-    :param str letter: Uppercase letter (``'A'``-``'Z'``) marking the widest row.
+    :param str letter: Uppercase letter (``'A'``-``'Z'``) marking the
+                       widest row.
     :returns: The full diamond as a list of strings, one per row.
     :rtype: list
     :raises ValueError: If ``letter`` is not an ASCII uppercase character.

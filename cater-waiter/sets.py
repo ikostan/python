@@ -56,8 +56,10 @@ def categorize_dish(dish_name: str, dish_ingredients: set) -> str:
 
     This function should return a string with the `dish name: <CATEGORY>
     (which meal category the dish belongs to).
-    `<CATEGORY>` can be any one of  (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
-    All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
+    `<CATEGORY>` can be any one of  (VEGAN, VEGETARIAN, PALEO, KETO,
+    or OMNIVORE).
+    All dishes will "fit" into one of the categories imported from
+    `sets_categories_data.py`
     """
 
     categories = [
@@ -103,7 +105,8 @@ def compile_ingredients(dishes: list) -> set:
     :param dishes: list - of dish ingredient sets.
     :return: set - of ingredients compiled from `dishes`.
 
-    This function should return a `set` of all ingredients from all listed dishes.
+    This function should return a `set` of all ingredients from
+    all listed dishes.
     """
 
     all_ingredients = set()
@@ -122,8 +125,8 @@ def separate_appetizers(dishes: list, appetizers: list) -> list:
     :param appetizers: list - of appetizer names.
     :return: list - of dish names that do not appear on appetizer list.
 
-    The function should return the list of dish names with appetizer names removed.
-    Either list could contain duplicates and may require de-duping.
+    The function should return the list of dish names with appetizer names
+    removed. Either list could contain duplicates and may require de-duping.
     """
 
     return list(set(dishes).difference(appetizers))
@@ -145,7 +148,8 @@ def singleton_ingredients(dishes: List[Set[str]], intersection) -> set:
     category. `<CATEGORY>` can be any one of:
     (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
 
-    The function should return a `set` of ingredients that only appear in a single dish.
+    The function should return a `set` of ingredients that only appear in a
+    single dish.
     """
 
     singletons: set = set()

@@ -1,4 +1,5 @@
 """Functions for compiling dishes and ingredients for a catering company."""
+from typing import List, Set
 
 from sets_categories_data import (
     VEGAN,
@@ -59,26 +60,24 @@ def categorize_dish(dish_name: str, dish_ingredients: set) -> str:
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
     """
 
-    if dish_ingredients.issubset(ALCOHOLS):
-        return f"{dish_name}: ALCOHOLS"
+    categories = [
+        (ALCOHOLS, "ALCOHOLS"),
+        (VEGETARIAN, "VEGETARIAN"),
+        (KETO, "KETO"),
+        (PALEO, "PALEO"),
+        (OMNIVORE, "OMNIVORE"),
+        (VEGAN, "VEGAN"),
+        (SPECIAL_INGREDIENTS, "SPECIAL_INGREDIENTS"),
+    ]
 
-    if dish_ingredients.issubset(VEGETARIAN):
-        return f"{dish_name}: VEGETARIAN"
+    result: str = ""
 
-    if dish_ingredients.issubset(KETO):
-        return f"{dish_name}: KETO"
+    for category_set, category_name in categories:
+        if dish_ingredients.issubset(category_set):
+            result = f"{dish_name}: {category_name}"
+            break
 
-    if dish_ingredients.issubset(PALEO):
-        return f"{dish_name}: PALEO"
-
-    if dish_ingredients.issubset(OMNIVORE):
-        return f"{dish_name}: OMNIVORE"
-
-    if dish_ingredients.issubset(VEGAN):
-        return f"{dish_name}: VEGAN"
-
-    if dish_ingredients.issubset(SPECIAL_INGREDIENTS):
-        return f"{dish_name}: SPECIAL_INGREDIENTS"
+    return result
 
 
 def tag_special_ingredients(dish: tuple) -> tuple:
@@ -130,7 +129,7 @@ def separate_appetizers(dishes: list, appetizers: list) -> list:
     return list(set(dishes).difference(appetizers))
 
 
-def singleton_ingredients(dishes: list[set], intersection) -> set:
+def singleton_ingredients(dishes: List[Set[str]], intersection) -> set:
     """
     Determine which `dishes` have a singleton ingredient (an ingredient that
     only appears once across dishes).

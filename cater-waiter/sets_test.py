@@ -1,4 +1,4 @@
-# pylint: disable=C0301, C0114, C0115, C0116, R0904
+# pylint: disable=C0301, C0114, C0115, C0116, R0904, W0611
 import unittest
 import pytest
 

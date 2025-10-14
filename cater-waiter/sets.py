@@ -1,4 +1,5 @@
 """Functions for compiling dishes and ingredients for a catering company."""
+
 from typing import List, Set
 
 from sets_categories_data import (

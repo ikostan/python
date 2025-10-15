@@ -77,7 +77,7 @@ class Alien:
 
         `Source: /ellens-alien-game/classes_test.py`
         """
-        pass
+        return None
 
 
 def new_aliens_collection(

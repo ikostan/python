@@ -77,7 +77,7 @@ class Alien:
 
         `Source: /ellens-alien-game/classes_test.py`
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
 
 def new_aliens_collection(

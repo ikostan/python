@@ -3,7 +3,7 @@
 
 class Alien:
     """
-    Create an Alien object with location x_coordinate and y_coordinate.
+    Alien located at given coordinates.
 
     Attributes
     ----------
@@ -17,7 +17,8 @@ class Alien:
     -------
     hit(): Decrement Alien health by one point.
     is_alive(): Return a boolean for if Alien is alive (if health is > 0).
-    teleport(new_x_coordinate, new_y_coordinate): Move Alien object to new coordinates.
+    teleport(new_x_coordinate, new_y_coordinate): Move Alien object
+                                                  to new coordinates.
     collision_detection(other): Implementation TBD.
     """
 
@@ -47,7 +48,7 @@ def new_aliens_collection(
     alien_start_positions: list[tuple[int, int]],
 ) -> list:
     """
-    Creates a list of Alien() objects, given a list of positions (as tuples).
+    Create a list of Alien objects from starting positions.
 
     :param alien_start_positions: given a list of positions
     :return: a list of Alien() objects

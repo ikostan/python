@@ -26,8 +26,6 @@ def spiral_matrix(size: int) -> list[list[int]]:
             ``size x size``. Each cell contains a natural number starting at
             1 and increasing as the spiral proceeds clockwise inward.
     """
-    if size < 0:
-        raise ValueError("Matrix size must be non-negative")
     # Set initial data
     result: list = [[0] * size for _ in range(size)]
     num: int = 1

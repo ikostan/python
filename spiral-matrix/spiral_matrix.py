@@ -16,7 +16,7 @@ DIRECTIONS: dict = {
 }
 
 
-def spiral_matrix(size: int) -> list:
+def spiral_matrix(size: int) -> list[list[int]]:
     """
     Build a square matrix filled in clockwise spiral order.
 
@@ -26,12 +26,14 @@ def spiral_matrix(size: int) -> list:
             ``size x size``. Each cell contains a natural number starting at
             1 and increasing as the spiral proceeds clockwise inward.
     """
+    if size < 0:
+        raise ValueError("Matrix size must be non-negative")
     # Set initial data
-    result: list = [[0] * size for i in range(size)]
+    result: list = [[0] * size for _ in range(size)]
     num: int = 1
     max_num: int = size * size
     direction: str = "right"
-    x_y: list = [0, 0]
+    x_y: list[int] = [0, 0]
 
     # Create a square matrix
     while num <= max_num:
@@ -44,7 +46,10 @@ def spiral_matrix(size: int) -> list:
     return result
 
 
-def _set_direction(direction: str, result: list, x_y: list, size: int) -> str:
+def _set_direction(direction: str,
+                   result: list[list[int]],
+                   x_y: list[int],
+                   size: int) -> str:
     """
     Determine the next movement direction based on bounds and visited cells.
 

@@ -1,5 +1,6 @@
 # [Exercism Python Track](https://exercism.io/tracks/python)
 
+[![EXERCISM](https://img.shields.io/badge/Exercism-009CAB?style=for-the-badge&logo=exercism&logoColor=white)](https://exercism.org/profiles/myFirstCode)
 [![Main Pipeline](https://github.com/ikostan/python/actions/workflows/lint_test_report.yml/badge.svg)](https://github.com/ikostan/python/actions/workflows/lint_test_report.yml)
 [![codecov](https://codecov.io/github/ikostan/python/graph/badge.svg?token=G78RWJWJ38)](https://codecov.io/github/ikostan/python)
 

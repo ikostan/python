@@ -37,33 +37,20 @@ def spiral_matrix(size: int) -> list:
     while num <= max_num:
         result[x_y[0]][x_y[1]] = num
         direction = _set_direction(direction, result, x_y, size)
-        x_y = _set_x_y(x_y, direction)
+        x_y[0] += DIRECTIONS[direction]["row"]
+        x_y[1] += DIRECTIONS[direction]["col"]
         num += 1
 
     return result
-
-
-def _set_x_y(x_y: list, direction: str) -> list:
-    """
-    Advance the current coordinates by one step in the given direction.
-
-    :param x_y: Current position as ``[row, col]`` which will be mutated and
-                returned.
-    :param direction: One of ``{"right", "left", "up", "down"}``.
-    :return: The updated ``[row, col]`` coordinates after moving one step.
-    """
-    x_y[0] += DIRECTIONS[direction]["row"]
-    x_y[1] += DIRECTIONS[direction]["col"]
-    return x_y
 
 
 def _set_direction(direction: str, result: list, x_y: list, size: int) -> str:
     """
     Determine the next movement direction based on bounds and visited cells.
 
-    :param direction: Current direction: one of ``{"right", "left", "up", "down"}``.
-    :param result: The current matrix being filled; zeros denote unvisited cells.
-    :param x_y: Current coordinates as ``[row, col]``.
+    :param direction: next direction, one of {"right", "left", "up", "down"}.
+    :param result: The current matrix being filled.
+    :param x_y: Current coordinates as [row, col].
     :param size: Dimension of the square matrix.
     :return: The direction to move next so that the spiral proceeds without
              leaving bounds or revisiting filled cells.

@@ -27,7 +27,7 @@ def spiral_matrix(size: int) -> list:
             1 and increasing as the spiral proceeds clockwise inward.
     """
     # Set initial data
-    result: list = _create_zero_matrix(size)
+    result: list = [[0] * size for i in range(size)]
     num: int = 1
     max_num: int = size * size
     direction: str = "right"
@@ -58,35 +58,23 @@ def _set_direction(direction: str, result: list, x_y: list, size: int) -> str:
     row, col = x_y
     if direction == "right":
         if col + 1 < size and result[row][col + 1] == 0:
-            return "right"
-        return "down"
-
-    if direction == "down":
+            direction = "right"
+        else:
+            direction = "down"
+    elif direction == "down":
         if row + 1 < size and result[row + 1][col] == 0:
-            return "down"
-        return "left"
-
-    if direction == "up":
+            direction = "down"
+        else:
+            direction = "left"
+    elif direction == "up":
         if row - 1 >= 0 and result[row - 1][col] == 0:
-            return "up"
-        return "right"
-
-    if direction == "left":
+            direction = "up"
+        else:
+            direction = "right"
+    elif direction == "left":
         if col - 1 >= 0 and result[row][col - 1] == 0:
-            return "left"
-        return "up"
+            direction = "left"
+        else:
+            direction = "up"
 
-
-def _create_zero_matrix(size: int) -> list:
-    """
-    Create a square matrix of zeros.
-
-    :param size: The dimension of the matrix to create.
-    :return: A two-dimensional list of shape ``size x size`` filled with zeros.
-    """
-    result: list = []
-
-    for row in range(size):
-        result.append([0] * size)
-
-    return result
+    return direction

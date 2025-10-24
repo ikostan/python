@@ -9,10 +9,10 @@ internal helpers used to track direction and position.
 """
 
 DIRECTIONS: dict = {
-    "right": {"row": 0, "col": 1},
-    "left": {"row": 0, "col": -1},
-    "up": {"row": -1, "col": 0},
-    "down": {"row": 1, "col": 0},
+    "right": {"row": 0, "col": 1, "next_direction": "down"},
+    "left": {"row": 0, "col": -1, "next_direction": "up"},
+    "up": {"row": -1, "col": 0, "next_direction": "right"},
+    "down": {"row": 1, "col": 0, "next_direction": "left"},
 }
 
 
@@ -63,18 +63,18 @@ def _set_direction(
     if direction == "right" and not (
         col + 1 < size and result[row][col + 1] == 0
     ):
-        direction = "down"
+        direction = DIRECTIONS[direction]["next_direction"]
     elif direction == "down" and not (
         row + 1 < size and result[row + 1][col] == 0
     ):
-        direction = "left"
+        direction = DIRECTIONS[direction]["next_direction"]
     elif direction == "up" and not (
         row - 1 >= 0 and result[row - 1][col] == 0
     ):
-        direction = "right"
+        direction = DIRECTIONS[direction]["next_direction"]
     elif direction == "left" and not (
         col - 1 >= 0 and result[row][col - 1] == 0
     ):
-        direction = "up"
+        direction = DIRECTIONS[direction]["next_direction"]
 
     return direction

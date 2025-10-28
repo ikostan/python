@@ -55,50 +55,42 @@ def annotate(garden: list) -> list:
 
 def _calc_flower_left(i_row: int, i_col: int, garden: list) -> int:
     """
-    Count contiguous flowers to the left of the current position.
+    Check for a flower immediately to the left of the current position.
 
-    Scans leftward from ``(i_row, i_col - 1)`` until a non-flower character is
-    found or the row boundary is reached.
+    This helper only inspects the single neighbor at ``(i_row, i_col - 1)``
+    and returns 1 if it contains ``*``; otherwise returns 0.
 
     :param int i_row: Current row index.
     :param int i_col: Current column index.
     :param list garden: The garden as a list of strings.
-    :returns: Number of adjacent ``*`` cells to the left.
+    :returns: 1 if the left neighbor is a flower; otherwise 0.
     :rtype: int
     """
-    flower_count: int = 0
 
-    if i_col - 1 >= 0:
-        for char in garden[i_row][:i_col][::-1]:
-            if char == "*":
-                flower_count += 1
-            else:
-                break
-    return flower_count
+    if i_col - 1 >= 0 and garden[i_row][i_col - 1] == "*":
+        return 1
+
+    return 0
 
 
 def _calc_flower_right(i_row: int, i_col: int, garden: list) -> int:
     """
-    Count contiguous flowers to the right of the current position.
+    Check for a flower immediately to the right of the current position.
 
-    Scans rightward from ``(i_row, i_col + 1)`` until a non-flower character is
-    found or the row boundary is reached.
+    This helper only inspects the single neighbor at ``(i_row, i_col + 1)``
+    and returns 1 if it contains ``*``; otherwise returns 0.
 
     :param int i_row: Current row index.
     :param int i_col: Current column index.
     :param list garden: The garden as a list of strings.
-    :returns: Number of adjacent ``*`` cells to the right.
+    :returns: 1 if the right neighbor is a flower; otherwise 0.
     :rtype: int
     """
-    flower_count: int = 0
 
-    if i_col + 1 < len(garden[i_row]):
-        for char in garden[i_row][i_col + 1 :]:
-            if char == "*":
-                flower_count += 1
-            else:
-                break
-    return flower_count
+    if i_col + 1 < len(garden[i_row]) and garden[i_row][i_col + 1] == "*":
+        return 1
+
+    return 0
 
 
 def _calc_flower_top(i_row: int, i_col: int, garden: list) -> int:

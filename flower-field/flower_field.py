@@ -41,8 +41,8 @@ def annotate(garden: list) -> list:
                 flower_count: int = 0
                 flower_count += _calc_flower_top(i_row, i_col, garden)
                 flower_count += _calc_flower_bottom(i_row, i_col, garden)
-                flower_count += _clac_flower_left(i_row, i_col, garden)
-                flower_count += _clac_flower_right(i_row, i_col, garden)
+                flower_count += _calc_flower_left(i_row, i_col, garden)
+                flower_count += _calc_flower_right(i_row, i_col, garden)
 
                 if flower_count != 0:
                     garden[i_row] = (

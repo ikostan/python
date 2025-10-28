@@ -48,7 +48,7 @@ def annotate(garden: list) -> list:
                     garden[i_row] = (
                         garden[i_row][:i_col]
                         + str(flower_count)
-                        + garden[i_row][i_col + 1:]
+                        + garden[i_row][i_col + 1 :]
                     )
     return garden
 
@@ -93,7 +93,7 @@ def _calc_flower_right(i_row: int, i_col: int, garden: list) -> int:
     flower_count: int = 0
 
     if i_col + 1 < len(garden[i_row]):
-        for char in garden[i_row][i_col + 1:]:
+        for char in garden[i_row][i_col + 1 :]:
             if char == "*":
                 flower_count += 1
             else:

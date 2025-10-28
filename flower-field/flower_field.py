@@ -53,7 +53,7 @@ def annotate(garden: list) -> list:
     return garden
 
 
-def _clac_flower_left(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_left(i_row: int, i_col: int, garden: list) -> int:
     """
     Count contiguous flowers to the left of the current position.
 
@@ -77,7 +77,7 @@ def _clac_flower_left(i_row: int, i_col: int, garden: list) -> int:
     return flower_count
 
 
-def _clac_flower_right(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_right(i_row: int, i_col: int, garden: list) -> int:
     """
     Count contiguous flowers to the right of the current position.
 
@@ -183,7 +183,6 @@ def _is_garden_valid(garden: list) -> bool:
     for row in garden:
         # garden is not a rectangle due to inconsistent row length
         if len(row) != garden_length:
-            print("return false")
             return False
         # contains invalid chars inside row
         valid_chars: bool = all(char in " *" for char in row)

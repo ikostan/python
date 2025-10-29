@@ -1,6 +1,9 @@
 [flake8]
-# Ignore tabs if your project uses them, but PEP 8 prefers spaces—consider switching
-ignore = W191
+# Source:
+# https://flake8.pycqa.org/en/3.1.1/user/configuration.html#configuration
+# Errors to exclude:
+# W191 indentation contains tabs
+ignore = W191, W503, E203
 exclude =
     solutions/,
     *_test.py,
@@ -21,6 +24,7 @@ exclude =
     /.venv,
     migrations,
 max-complexity = 10
-max-line-length = 88  # Align with PEP 8/Black
+max-line-length = 88
+# Align with PEP 8/Black (comment moved here for safety)
 # For PEP 257: Enable if you add flake8-docstrings to requirements.txt
 doctests = True

@@ -1,5 +1,5 @@
 [tool.ruff]
-# Exclude commonly ignored directories (removed test excludes for fuller coverage; add back if needed)
+# Exclude commonly ignored directories and add pattern for test files
 exclude = [
     ".bzr",
     ".direnv",
@@ -27,7 +27,8 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
-    "solutions/"
+    "solutions/",
+    "**/*_test.py"  # Ignore all files ending in _test.py recursively
 ]
 
 # Line length bumped to 88 (Black default) for modern readability; aligns with PEP 8 flexibility

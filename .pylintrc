@@ -1,6 +1,7 @@
 [MASTER]
 ignore=.venv
 ignore-paths=^(.*/|)solutions/.*$
+ignore-patterns=.*_test\.py$
 
 [MESSAGES CONTROL]
 # Enable PEP 257-related checks (docstrings)

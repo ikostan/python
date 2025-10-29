@@ -1,6 +1,5 @@
 """
-Parse and evaluate simple math word problems
-returning the answer as an integer.
+Parse and evaluate simple math word problems returning the answer as an integer.
 
 Handle a set of operations, in sequence.
 

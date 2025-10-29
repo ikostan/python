@@ -47,6 +47,9 @@ class FlowerFieldTest(unittest.TestCase):
     def test_overcounting_horizontal_right(self):
         self.assertEqual(annotate([" **"]), ["1**"])
 
+    def test_overcounting_horizontal_left_and_right(self):
+        self.assertEqual(annotate([" ** "]), ["1**1"])
+
     def test_overcounting_horizontal_long_chain(self):
         self.assertEqual(annotate(["*** "]), ["***1"])
 

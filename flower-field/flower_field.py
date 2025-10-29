@@ -6,11 +6,11 @@ representation, where each row is a string comprised of spaces and ``*``
 characters. A ``*`` denotes a flower; a space denotes an empty square.
 
 The goal is to compute numeric hints indicating how many flowers are
-directly adjacent (horizontally, vertically, diagonally) to each square.
+adjacent (horizontally, vertically, diagonally) to each square.
 """
 
 
-def annotate(garden: list) -> list:
+def annotate(garden: list[str]) -> list[str]:
     """
     Annotate a garden with counts of adjacent flowers.
 
@@ -18,42 +18,43 @@ def annotate(garden: list) -> list:
     Validation errors raise a :class:`ValueError`.
 
     :param list garden: A list of equal-length strings representing the garden.
-                        ``*`` marks a flower; space marks empty.
+        ``*`` marks a flower; space marks empty.
     :returns: An annotated garden of the same shape. Empty squares are
-              replaced by digits (``"1"``–``"8"``) when adjacent to flowers;
-              squares with zero adjacent flowers remain spaces. Flowers
-              (``*``) are preserved.
-    :rtype: list
+        replaced by digits (``"1"``–``"8"``) when adjacent to flowers;
+        squares with zero adjacent flowers remain spaces. Flowers
+        (``*``) are preserved.
+    :rtype: list[str]
     :raises ValueError: If the garden is non-rectangular or contains
-                        invalid characters.
+        invalid characters.
     """
     # empty list
     if not garden:
         return []
 
-    # when the board receives malformed input
-    if not _is_garden_valid(garden):
-        raise ValueError("The board is invalid with current input.")
+    # raise an error when the board receives malformed input
+    _validate(garden)
 
-    for i_row, row in enumerate(garden):
+    new_garden: list[str] = garden.copy()
+    for i_row, row in enumerate(new_garden):
         for i_col, char in enumerate(row):
             if char == " ":
-                flower_count: int = 0
-                flower_count += _calc_flower_top(i_row, i_col, garden)
-                flower_count += _calc_flower_bottom(i_row, i_col, garden)
-                flower_count += _calc_flower_left(i_row, i_col, garden)
-                flower_count += _calc_flower_right(i_row, i_col, garden)
+                flower_count = 0
+                flower_count += _calc_flower_top(i_row, i_col, new_garden)
+                flower_count += _calc_flower_bottom(i_row, i_col, new_garden)
+                flower_count += _calc_flower_left(i_row, i_col, new_garden)
+                flower_count += _calc_flower_right(i_row, i_col, new_garden)
 
                 if flower_count != 0:
-                    garden[i_row] = (
-                        garden[i_row][:i_col]
+                    new_garden[i_row] = (
+                        new_garden[i_row][:i_col]
                         + str(flower_count)
-                        + garden[i_row][i_col + 1 :]
+                        + new_garden[i_row][i_col + 1 :]
                     )
-    return garden
+
+    return new_garden
 
 
-def _calc_flower_left(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_left(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     Check for a flower immediately to the left of the current position.
 
@@ -66,14 +67,13 @@ def _calc_flower_left(i_row: int, i_col: int, garden: list) -> int:
     :returns: 1 if the left neighbor is a flower; otherwise 0.
     :rtype: int
     """
-
     if i_col - 1 >= 0 and garden[i_row][i_col - 1] == "*":
         return 1
 
     return 0
 
 
-def _calc_flower_right(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_right(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     Check for a flower immediately to the right of the current position.
 
@@ -86,14 +86,13 @@ def _calc_flower_right(i_row: int, i_col: int, garden: list) -> int:
     :returns: 1 if the right neighbor is a flower; otherwise 0.
     :rtype: int
     """
-
     if i_col + 1 < len(garden[i_row]) and garden[i_row][i_col + 1] == "*":
         return 1
 
     return 0
 
 
-def _calc_flower_top(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_top(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     Count flowers in the three cells directly above the current position.
 
@@ -106,8 +105,7 @@ def _calc_flower_top(i_row: int, i_col: int, garden: list) -> int:
     :returns: Number of ``*`` cells among the three upper neighbors.
     :rtype: int
     """
-
-    flower_count: int = 0
+    flower_count = 0
 
     if i_row - 1 >= 0 and "*" in garden[i_row - 1]:
         # top-left
@@ -125,7 +123,7 @@ def _calc_flower_top(i_row: int, i_col: int, garden: list) -> int:
     return flower_count
 
 
-def _calc_flower_bottom(i_row: int, i_col: int, garden: list) -> int:
+def _calc_flower_bottom(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     Count flowers in the three cells directly below the current position.
 
@@ -138,8 +136,7 @@ def _calc_flower_bottom(i_row: int, i_col: int, garden: list) -> int:
     :returns: Number of ``*`` cells among the three lower neighbors.
     :rtype: int
     """
-
-    flower_count: int = 0
+    flower_count = 0
 
     if i_row + 1 < len(garden) and "*" in garden[i_row + 1]:
         # bottom-left
@@ -157,27 +154,23 @@ def _calc_flower_bottom(i_row: int, i_col: int, garden: list) -> int:
     return flower_count
 
 
-def _is_garden_valid(garden: list) -> bool:
+def _validate(garden: list[str]):
     """
-    Check whether the garden input is a valid rectangular board.
+    Validate the garden shape and contents.
 
-    A garden is considered valid when all rows have the same length and only
-    contain spaces or ``*`` characters.
+    Ensures the input is rectangular and contains only spaces and ``*``.
 
-    :param list garden: Candidate garden as a list of strings.
-    :returns: ``True`` if the input is rectangular and uses only valid
-              characters; otherwise ``False``.
-    :rtype: bool
+    :param list garden: A list of equal-length strings to validate.
+    :raises ValueError: If rows have differing lengths or contain characters
+        other than space or ``*``.
     """
-
-    garden_length: int = len(garden[0])
+    garden_length = len(garden[0])
     # when the board receives malformed input
     for row in garden:
         # garden is not a rectangle due to inconsistent row length
         if len(row) != garden_length:
-            return False
+            raise ValueError("The board is invalid with current input.")
         # contains invalid chars inside row
-        valid_chars: bool = all(char in " *" for char in row)
+        valid_chars = all(char in " *" for char in row)
         if not valid_chars:
-            return False
-    return True
+            raise ValueError("The board is invalid with current input.")

@@ -1,3 +1,21 @@
 [MASTER]
 ignore=.venv
 ignore-paths=^(.*/|)solutions/.*$
+
+[MESSAGES CONTROL]
+# Enable PEP 257-related checks (docstrings)
+enable=missing-module-docstring,
+        missing-class-docstring,
+        missing-function-docstring
+
+# Disable noisy defaults if needed (e.g., for Exercism simplicity)
+disable=invalid-name,  # Allow flexible naming in exercises
+        too-few-public-methods  # Common in small exercise classes
+
+[FORMAT]
+# Enforce PEP 8 line length (Black/Ruff default is 88, but PEP 8 suggests 79)
+max-line-length=88
+
+[TYPECHECK]
+# Enable basic PEP 484 type hint checks (requires type annotations in code)
+ignored-modules=  # Add if needed for external libs

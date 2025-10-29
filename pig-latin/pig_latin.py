@@ -1,5 +1,6 @@
 """
 The task is to translate text from English to Pig Latin.
+
 The translation is defined using four rules, which look at the pattern
 of vowels and consonants at the beginning of a word. These rules look
 at each word's use of vowels and consonants:
@@ -22,8 +23,7 @@ def translate(text: str) -> str:
 
 def process_word(text: str) -> str:
     """
-    Process a single word and convert it to Pig Latin using
-    the four translation rules.
+    Process a single word and convert it to Pig Latin using the four translation rules.
 
     :param text: The English word to convert
     :return: The word converted to Pig Latin

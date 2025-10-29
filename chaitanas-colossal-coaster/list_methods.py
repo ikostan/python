@@ -8,8 +8,7 @@ def add_me_to_the_queue(
     person_name: str,
 ) -> list[str]:
     """
-    Add a person to the 'express' or 'normal' queue depending
-    on the ticket number.
+    Add a person to the 'express' or 'normal' queue depending on the ticket number.
 
     :param express_queue: list[str] - names in the Fast-track queue.
     :param normal_queue: list[str] - names in the normal queue.

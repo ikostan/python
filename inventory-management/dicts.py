@@ -3,8 +3,7 @@
 
 def create_inventory(items: list) -> dict:
     """
-    Create a dict that tracks the amount (count) of each element
-    on the `items` list.
+    Create a dict that tracks the amount (count) of each element on the `items` list.
 
     :param items: list - list of items to create an inventory from.
     :return: dict - the inventory dictionary.
@@ -63,8 +62,7 @@ def remove_item(inventory: dict, item: str) -> dict:
 
 def list_inventory(inventory: dict) -> list:
     """
-    Create a list containing only available
-    (item_name, item_count > 0) pairs in inventory.
+    Create a list containing only available pairs in inventory.
 
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the

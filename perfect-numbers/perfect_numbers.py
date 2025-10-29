@@ -10,6 +10,8 @@ import math
 
 def classify(number: int) -> str:
     """
+    Classify a number type.
+
     A perfect number equals the sum of its positive divisors.
 
     :param number: int a positive integer

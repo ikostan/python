@@ -28,6 +28,7 @@ exclude = [
     "site-packages",
     "venv",
     "solutions/",
+    "**/*_data.py"  # Ignore all files ending in _data.py recursively
     "**/*_test.py"  # Ignore all files ending in _test.py recursively
 ]
 

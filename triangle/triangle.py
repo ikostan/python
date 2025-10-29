@@ -28,7 +28,12 @@ def isosceles(sides: list) -> bool:
 
 def scalene(sides: list) -> bool:
     """
+    Determine if a triangle is scalene.
+
     A scalene triangle has all sides of different lengths.
+
+    :param sides: list
+    :return: bool
     """
     if all_sides_positive(sides) and no_inequality_violation(sides):
         return (

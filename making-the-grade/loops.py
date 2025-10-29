@@ -59,8 +59,7 @@ def letter_grades(highest: int) -> list:
 # pylint: disable=R0801
 def student_ranking(student_scores: list, student_names: list) -> list[str]:
     """
-    Organize the student's rank, name, and grade information in descending
-    order.
+    Organize the student's rank, name, and grade information in descending order.
 
     :param student_scores: list - of scores in descending order.
     :param student_names: list - of string names by exam score in descending
@@ -70,7 +69,7 @@ def student_ranking(student_scores: list, student_names: list) -> list[str]:
     return [
         f"{i}. {name}: {score}"
         for i, score, name in zip(
-            range(1, len(student_scores) + 1), student_scores, student_names
+            range(1, len(student_scores) + 1), student_scores, student_names, strict=True
         )
     ]
 
@@ -78,6 +77,8 @@ def student_ranking(student_scores: list, student_names: list) -> list[str]:
 # pylint: disable=R0801
 def perfect_score(student_info: list) -> list:
     """
+    Create a perfect score list.
+
     Create a list that contains the name and grade of the first
     student to make a perfect score on the exam.
 

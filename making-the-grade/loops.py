@@ -69,7 +69,10 @@ def student_ranking(student_scores: list, student_names: list) -> list[str]:
     return [
         f"{i}. {name}: {score}"
         for i, score, name in zip(
-            range(1, len(student_scores) + 1), student_scores, student_names, strict=True
+            range(1, len(student_scores) + 1),
+            student_scores,
+            student_names,
+            strict=True
         )
     ]
 

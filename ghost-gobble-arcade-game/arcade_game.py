@@ -26,6 +26,8 @@ def score(touching_power_pellet: bool, touching_dot: bool) -> bool:
 
 def lose(power_pellet_active: bool, touching_ghost: bool) -> bool:
     """
+    Trigger the game loop to end.
+
     Trigger the game loop to end (GAME OVER) when Pac-Man touches
     a ghost without his power pellet.
 

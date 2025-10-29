@@ -1,4 +1,6 @@
 """
+Resistor Color Duo.
+
 In this exercise you are going to create a helpful program so that
 you don't have to remember the values of the bands. The program will
 take color names as input and output a two digit number, even if the
@@ -21,8 +23,7 @@ COLORS: tuple = (
 
 def value(colors: list) -> int:
     """
-    Take color names as input and output a two digit number,
-    even if the input is more than two colors.
+    Take color names as input and output a two-digit number.
 
     :param colors: list of color names
     :return: two-digit number

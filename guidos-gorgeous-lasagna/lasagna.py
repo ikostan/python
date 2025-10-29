@@ -30,7 +30,7 @@ def bake_time_remaining(elapsed_bake_time: int) -> int:
 
 def preparation_time_in_minutes(number_of_layers: int) -> int:
     """
-    Calculate preparation time in minutes
+    Calculate preparation time in minutes.
 
     Takes the `number_of_layers` you want to add to the lasagna as an
     argument and returns how many minutes you would spend making them.

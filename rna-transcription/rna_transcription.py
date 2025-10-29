@@ -19,5 +19,4 @@ def to_rna(dna_strand: str) -> str:
     :raises KeyError: If dna_strand contains any character
                       other than 'G', 'C', 'T', or 'A'.
     """
-
     return "".join(DNA[char] for char in dna_strand.upper())

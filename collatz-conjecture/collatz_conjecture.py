@@ -16,6 +16,8 @@ Curious, you picked number 12 to test and began the journey:
 # pylint: disable=R0801
 def steps(number: int) -> int:
     """
+    Return the number of steps.
+
     Return the number of steps it takes to reach 1 according to
     the rules of the Collatz Conjecture.
 

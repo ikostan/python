@@ -25,12 +25,13 @@ def clean_ingredients(dish_name: str, dish_ingredients: list) -> tuple:
     the first item, followed by the de-duped `set` of ingredients as
     the second item.
     """
-
     return dish_name, set(dish_ingredients)
 
 
 def check_drinks(drink_name: str, drink_ingredients: list) -> str:
     """
+    Check drinks and append names.
+
     Append "Cocktail" (alcohol)  or "Mocktail" (no alcohol) to `drink_name`,
     based on `drink_ingredients`.
 
@@ -40,7 +41,6 @@ def check_drinks(drink_name: str, drink_ingredients: list) -> str:
 
     The function should return the name of the drink followed by "Mocktail"
     (non-alcoholic) and drink name followed by "Cocktail" (includes alcohol).
-
     """
     if ALCOHOLS.intersection(set(drink_ingredients)):
         return f"{drink_name} Cocktail"
@@ -62,7 +62,6 @@ def categorize_dish(dish_name: str, dish_ingredients: set) -> str:
     All dishes will "fit" into one of the categories imported from
     `sets_categories_data.py`
     """
-
     categories = [
         (ALCOHOLS, "ALCOHOLS"),
         (VEGETARIAN, "VEGETARIAN"),
@@ -95,7 +94,6 @@ def tag_special_ingredients(dish: tuple) -> tuple:
     all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
-
     return dish[0], SPECIAL_INGREDIENTS.intersection(set(dish[1]))
 
 
@@ -109,7 +107,6 @@ def compile_ingredients(dishes: list) -> set:
     This function should return a `set` of all ingredients from
     all listed dishes.
     """
-
     all_ingredients = set()
 
     for dish in dishes:
@@ -129,7 +126,6 @@ def separate_appetizers(dishes: list, appetizers: list) -> list:
     The function should return the list of dish names with appetizer names
     removed. Either list could contain duplicates and may require de-duping.
     """
-
     return list(set(dishes).difference(appetizers))
 
 
@@ -152,7 +148,6 @@ def singleton_ingredients(dishes: List[Set[str]], intersection) -> set:
     The function should return a `set` of ingredients that only appear in a
     single dish.
     """
-
     singletons: set = set()
     for dish in dishes:
         singletons = singletons.union(dish.difference(intersection))

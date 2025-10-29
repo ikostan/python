@@ -20,6 +20,8 @@ Bob only ever answers one of five things:
 
 def response(hey_bob: str) -> str:
     """
+    Determine what Bob will reply.
+
     Determine what Bob will reply to someone when they say
     something to him or ask him a question.
 

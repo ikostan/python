@@ -3,6 +3,8 @@
 
 def get_coordinate(record: tuple) -> str:
     """
+    Return coordinate value.
+
     Return coordinate value from a tuple containing the treasure name,
     and treasure coordinate.
 
@@ -14,8 +16,7 @@ def get_coordinate(record: tuple) -> str:
 
 def convert_coordinate(coordinate: str) -> tuple:
     """
-    Split the given coordinate into tuple containing its individual
-    components.
+    Split the given coordinate into tuple containing its individual components.
 
     :param coordinate: str - a string map coordinate
     :return: tuple - the string coordinate split into its individual
@@ -40,8 +41,7 @@ def compare_records(azara_record: tuple, rui_record: tuple) -> bool:
 
 def create_record(azara_record: tuple, rui_record: tuple) -> tuple | str:
     """
-    Combine the two record types (if possible) and create a combined record
-    group.
+    Combine the two record types (if possible) and create a combined record group.
 
     :param azara_record: tuple - a (treasure, coordinate) pair.
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
@@ -55,8 +55,7 @@ def create_record(azara_record: tuple, rui_record: tuple) -> tuple | str:
 
 def clean_up(combined_record_group: tuple) -> str:
     """
-    Clean up a combined record group into a multi-line string of single
-    records.
+    Clean up a combined record group into a multi-line string of single records.
 
     :param combined_record_group: tuple - everything from both participants.
     :return: str - everything "cleaned", excess coordinates and information

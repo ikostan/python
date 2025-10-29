@@ -13,6 +13,7 @@ def equilateral(sides: list) -> bool:
 def isosceles(sides: list) -> bool:
     """
     An isosceles triangle has at least two sides the same length.
+
     (It is sometimes specified as having exactly two sides the same length,
     but for the purposes of this exercise we'll say at least two.)
     """
@@ -41,8 +42,8 @@ def scalene(sides: list) -> bool:
 def no_inequality_violation(sides: list) -> bool:
     """
     Let a, b, and c be sides of the triangle.
-    Then all three of the following expressions must be true:
 
+    Then all three of the following expressions must be true:
     a + b ≥ c
     b + c ≥ a
     a + c ≥ b
@@ -57,6 +58,7 @@ def no_inequality_violation(sides: list) -> bool:
 def all_sides_positive(sides: list) -> bool:
     """
     No zeroes or negative numbers allowed.
+
     All triangles should have 3 sides.
     """
     return all(side > 0 for side in sides) and len(sides) == 3

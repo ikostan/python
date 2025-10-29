@@ -8,6 +8,8 @@ into a sequence of digits in another base, representing the same number.
 
 def rebase(input_base: int, digits: list[int], output_base: int) -> list[int]:
     """
+    Convert a non-negative integer.
+
     Convert a non-negative integer represented as digits in one base
     to digits in another base.
 

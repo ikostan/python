@@ -1,3 +1,11 @@
 # pylint: disable=C0116, C0114
-def hello():
+"""Hello World."""
+
+
+def hello() -> str:
+    """
+    Return Hello World string.
+
+    :return: str
+    """
     return "Hello, World!"

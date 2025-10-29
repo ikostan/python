@@ -28,8 +28,8 @@ exclude = [
     "site-packages",
     "venv",
     "solutions/",
-    "**/*_data.py"  # Ignore all files ending in _data.py recursively
-    "**/*_test.py"  # Ignore all files ending in _test.py recursively
+    "**/*_data.py",  # Ignore all files ending in _data.py recursively
+    "**/*_test.py",  # Ignore all files ending in _test.py recursively
 ]
 
 # Line length bumped to 88 (Black default) for modern readability; aligns with PEP 8 flexibility

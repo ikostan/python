@@ -159,9 +159,12 @@ def _validate(garden: list[str]):
         other than space or ``*``.
     """
     garden_length = len(garden[0])
+    # when the board receives malformed input
     for row in garden:
-        # when the board receives malformed input
         # garden is not a rectangle due to inconsistent row length
-        # or contains invalid chars inside the row
-        if len(row) != garden_length or not all(char in " *" for char in row):
+        if len(row) != garden_length:
+            raise ValueError("The board is invalid with current input.")
+        # contains invalid chars inside row
+        valid_chars = all(char in " *" for char in row)
+        if not valid_chars:
             raise ValueError("The board is invalid with current input.")

@@ -14,6 +14,8 @@ def equilateral(sides: list) -> bool:
 
 def isosceles(sides: list) -> bool:
     """
+    Verify isosceles triangle.
+
     An isosceles triangle has at least two sides the same length.
 
     (It is sometimes specified as having exactly two sides the same length,

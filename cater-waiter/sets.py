@@ -129,6 +129,8 @@ def separate_appetizers(dishes: list, appetizers: list) -> list:
 
 def singleton_ingredients(dishes: list[set[str]], intersection) -> set:
     """
+    Determine singleton ingredient.
+
     Determine which `dishes` have a singleton ingredient (an ingredient that
     only appears once across dishes).
 

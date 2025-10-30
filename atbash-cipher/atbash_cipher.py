@@ -1,4 +1,6 @@
 """
+Atbash Cipher.
+
 This is an implementation of the 'Atbash' cipher, an ancient
 encryption system created in the Middle East.
 """

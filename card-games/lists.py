@@ -50,6 +50,8 @@ def card_average(hand: list[list]) -> float:
 
 def approx_average_is_average(hand: list[int]) -> bool:
     """
+    Return calculated average.
+
     Return if the (average of first and last card values) OR
     ('middle' card) == calculated average.
 
@@ -63,6 +65,8 @@ def approx_average_is_average(hand: list[int]) -> bool:
 
 def average_even_is_average_odd(hand: list[int]) -> bool:
     """
+    Return average even/add.
+
     Return if the
     (average of even indexed card values) ==
     (average of odd indexed card values).

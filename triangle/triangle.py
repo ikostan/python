@@ -3,6 +3,8 @@
 
 def equilateral(sides: list) -> bool:
     """
+    Verify equilateral triangle.
+
     An equilateral triangle has all three sides the same length.
     """
     if all_sides_positive(sides) and no_inequality_violation(sides):

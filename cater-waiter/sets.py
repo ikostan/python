@@ -1,15 +1,13 @@
 """Functions for compiling dishes and ingredients for a catering company."""
 
-from typing import List, Set
-
 from sets_categories_data import (
+    ALCOHOLS,
+    KETO,
+    OMNIVORE,
+    PALEO,
+    SPECIAL_INGREDIENTS,
     VEGAN,
     VEGETARIAN,
-    KETO,
-    PALEO,
-    OMNIVORE,
-    ALCOHOLS,
-    SPECIAL_INGREDIENTS,
 )
 
 
@@ -129,7 +127,7 @@ def separate_appetizers(dishes: list, appetizers: list) -> list:
     return list(set(dishes).difference(appetizers))
 
 
-def singleton_ingredients(dishes: List[Set[str]], intersection) -> set:
+def singleton_ingredients(dishes: list[set[str]], intersection) -> set:
     """
     Determine which `dishes` have a singleton ingredient (an ingredient that
     only appears once across dishes).

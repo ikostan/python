@@ -58,21 +58,13 @@ def _set_direction(
              leaving bounds or revisiting filled cells.
     """
     row, col = x_y
-    if direction == "right" and not (
-        col + 1 < size and result[row][col + 1] == 0
-    ):
+    if direction == "right" and not (col + 1 < size and result[row][col + 1] == 0):
         direction = DIRECTIONS[direction]["next_direction"]
-    elif direction == "down" and not (
-        row + 1 < size and result[row + 1][col] == 0
-    ):
+    elif direction == "down" and not (row + 1 < size and result[row + 1][col] == 0):
         direction = DIRECTIONS[direction]["next_direction"]
-    elif direction == "up" and not (
-        row - 1 >= 0 and result[row - 1][col] == 0
-    ):
+    elif direction == "up" and not (row - 1 >= 0 and result[row - 1][col] == 0):
         direction = DIRECTIONS[direction]["next_direction"]
-    elif direction == "left" and not (
-        col - 1 >= 0 and result[row][col - 1] == 0
-    ):
+    elif direction == "left" and not (col - 1 >= 0 and result[row][col - 1] == 0):
         direction = DIRECTIONS[direction]["next_direction"]
 
     return direction

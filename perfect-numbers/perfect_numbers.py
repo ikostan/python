@@ -18,9 +18,7 @@ def classify(number: int) -> str:
     :return: str the classification of the input integer
     """
     if number < 1:
-        raise ValueError(
-            "Classification is only possible for positive integers."
-        )
+        raise ValueError("Classification is only possible for positive integers.")
 
     total_divisors: int = 1
 

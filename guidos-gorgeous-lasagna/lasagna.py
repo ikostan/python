@@ -45,9 +45,7 @@ def preparation_time_in_minutes(number_of_layers: int) -> int:
     return int(PREPARATION_TIME * number_of_layers)
 
 
-def elapsed_time_in_minutes(
-    number_of_layers: int, elapsed_bake_time: int
-) -> int:
+def elapsed_time_in_minutes(number_of_layers: int, elapsed_bake_time: int) -> int:
     """
     Calculate elapsed time in minutes.
 

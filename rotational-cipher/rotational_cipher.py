@@ -34,14 +34,10 @@ def rotate(text: str, key: int) -> str:
     for char in text:
         # Lower case
         if char in LETTERS_LOWER:
-            new_str.append(
-                LETTERS_LOWER[(LETTERS_LOWER.index(char) + key) % 26]
-            )
+            new_str.append(LETTERS_LOWER[(LETTERS_LOWER.index(char) + key) % 26])
         # Upper case
         elif char in LETTERS_UPPER:
-            new_str.append(
-                LETTERS_UPPER[(LETTERS_UPPER.index(char) + key) % 26]
-            )
+            new_str.append(LETTERS_UPPER[(LETTERS_UPPER.index(char) + key) % 26])
         # Not a letter
         else:
             new_str.append(char)

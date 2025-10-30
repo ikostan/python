@@ -23,9 +23,7 @@ def answer(question: str) -> int:
     :raises ValueError: If the operation is unknown or the syntax is invalid.
     """
     new_question: list[str] = [
-        word
-        for word in question.replace("?", "").split()
-        if word not in REPLACEABLE
+        word for word in question.replace("?", "").split() if word not in REPLACEABLE
     ]
     # Reduce iteratively:
     # evaluate the first two-token slice and fold the result left-to-right.

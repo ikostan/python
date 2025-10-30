@@ -72,7 +72,7 @@ def student_ranking(student_scores: list, student_names: list) -> list[str]:
             range(1, len(student_scores) + 1),
             student_scores,
             student_names,
-            strict=True
+            strict=True,
         )
     ]
 

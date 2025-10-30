@@ -25,7 +25,5 @@ def is_pangram(sentence: str) -> bool:
     if not sentence:
         return False
     # Convert sentence to lowercase and extract unique alphabetic characters
-    unique_letters: set = set(
-        char for char in sentence.lower() if char.isalpha()
-    )
+    unique_letters: set = set(char for char in sentence.lower() if char.isalpha())
     return len(unique_letters) == 26

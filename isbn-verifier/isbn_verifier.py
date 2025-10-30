@@ -38,6 +38,4 @@ def is_valid(isbn: str) -> bool:
     if len(isbn_digits) != 10:
         return False
 
-    return (
-        sum(digit * (10 - i) for i, digit in enumerate(isbn_digits)) % 11 == 0
-    )
+    return sum(digit * (10 - i) for i, digit in enumerate(isbn_digits)) % 11 == 0

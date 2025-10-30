@@ -26,9 +26,7 @@ def encode(plain_text: str) -> str:
     temp_txt: str = "".join(
         _replace(char.lower()) for char in plain_text if char.isalnum()
     )
-    return " ".join(
-        "".join(temp_txt[i : i + 5]) for i in range(0, len(temp_txt), 5)
-    )
+    return " ".join("".join(temp_txt[i : i + 5]) for i in range(0, len(temp_txt), 5))
 
 
 def _replace(char: str) -> str:

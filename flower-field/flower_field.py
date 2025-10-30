@@ -115,10 +115,7 @@ def _calc_flower_top(i_row: int, i_col: int, garden: list[str]) -> int:
         if garden[i_row - 1][i_col] == "*":
             flower_count += 1
         # top-right
-        if (
-            i_col + 1 < len(garden[i_row])
-            and garden[i_row - 1][i_col + 1] == "*"
-        ):
+        if i_col + 1 < len(garden[i_row]) and garden[i_row - 1][i_col + 1] == "*":
             flower_count += 1
     return flower_count
 
@@ -146,10 +143,7 @@ def _calc_flower_bottom(i_row: int, i_col: int, garden: list[str]) -> int:
         if garden[i_row + 1][i_col] == "*":
             flower_count += 1
         # bottom-right
-        if (
-            i_col + 1 < len(garden[i_row])
-            and garden[i_row + 1][i_col + 1] == "*"
-        ):
+        if i_col + 1 < len(garden[i_row]) and garden[i_row + 1][i_col + 1] == "*":
             flower_count += 1
     return flower_count
 

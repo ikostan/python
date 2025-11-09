@@ -9,6 +9,12 @@ The goal is to compute numeric hints indicating how many flowers are
 adjacent (horizontally, vertically, diagonally) to each square.
 """
 
+COORDINATES: tuple = (
+    (-1, -1), (-1, 0), (-1, 1),
+    (0, -1), (0, 1),
+    (1, -1), (1, 0), (1, 1),
+)
+
 
 def annotate(garden: list[str]) -> list[str]:
     """
@@ -30,125 +36,49 @@ def annotate(garden: list[str]) -> list[str]:
     # empty list
     if not garden:
         return []
-
     # raise an error when the board receives malformed input
     _validate(garden)
-
-    new_garden: list[str] = garden.copy()
-    for i_row, row in enumerate(new_garden):
+    new_garden: list[str] = []
+    for i_row, row in enumerate(garden):
+        new_row: str = ""
         for i_col, char in enumerate(row):
-            if char == " ":
-                flower_count = 0
-                flower_count += _calc_flower_top(i_row, i_col, new_garden)
-                flower_count += _calc_flower_bottom(i_row, i_col, new_garden)
-                flower_count += _calc_flower_left(i_row, i_col, new_garden)
-                flower_count += _calc_flower_right(i_row, i_col, new_garden)
-
-                if flower_count != 0:
-                    new_garden[i_row] = (
-                        new_garden[i_row][:i_col]
-                        + str(flower_count)
-                        + new_garden[i_row][i_col + 1 :]
-                    )
-
+            flower_count = _calc_surrounding_flowers(i_row, i_col, garden)
+            if flower_count != 0:
+                new_row += str(flower_count)
+            else:
+                new_row += char
+        new_garden.append(new_row)
     return new_garden
 
 
-def _calc_flower_left(i_row: int, i_col: int, garden: list[str]) -> int:
+def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     """
-    Check for a flower immediately to the left of the current position.
+    Count flowers adjacent to the given cell.
 
-    This helper only inspects the single neighbor at ``(i_row, i_col - 1)``
-    and returns 1 if it contains ``*``; otherwise returns 0.
+    Counts the eight neighboring positions around ``(i_row, i_col)`` when the
+    current cell is empty (space). If the cell itself is a flower (``*``), the
+    count remains zero as the caller preserves flowers unchanged.
 
-    :param int i_row: Current row index.
-    :param int i_col: Current column index.
-    :param list garden: The garden as a list of strings.
-    :returns: 1 if the left neighbor is a flower; otherwise 0.
+    :param int i_row: Row index of the target cell.
+    :param int i_col: Column index of the target cell.
+    :param list garden: The rectangular garden representation.
+    :returns: Number of adjacent flowers (0–8).
     :rtype: int
     """
-    if i_col - 1 >= 0 and garden[i_row][i_col - 1] == "*":
-        return 1
-
-    return 0
-
-
-def _calc_flower_right(i_row: int, i_col: int, garden: list[str]) -> int:
-    """
-    Check for a flower immediately to the right of the current position.
-
-    This helper only inspects the single neighbor at ``(i_row, i_col + 1)``
-    and returns 1 if it contains ``*``; otherwise returns 0.
-
-    :param int i_row: Current row index.
-    :param int i_col: Current column index.
-    :param list garden: The garden as a list of strings.
-    :returns: 1 if the right neighbor is a flower; otherwise 0.
-    :rtype: int
-    """
-    if i_col + 1 < len(garden[i_row]) and garden[i_row][i_col + 1] == "*":
-        return 1
-
-    return 0
+    ...
+    total: int = 0
+    if garden[i_row][i_col] == " ":
+        # Count flowers all around current position
+        for row, col in COORDINATES:
+            # Avoid IndexError
+            if 0 <= i_row + row < len(garden) and 0 <= i_col + col < len(garden[0]):
+                # Detect and count flower
+                if garden[i_row + row][i_col + col] == "*":
+                    total += 1
+    return total
 
 
-def _calc_flower_top(i_row: int, i_col: int, garden: list[str]) -> int:
-    """
-    Count flowers in the three cells directly above the current position.
-
-    Checks the top-left, top, and top-right neighbors when the row above
-    exists and contains any flowers.
-
-    :param int i_row: Current row index.
-    :param int i_col: Current column index.
-    :param list garden: The garden as a list of strings.
-    :returns: Number of ``*`` cells among the three upper neighbors.
-    :rtype: int
-    """
-    flower_count = 0
-
-    if i_row - 1 >= 0 and "*" in garden[i_row - 1]:
-        # top-left
-        if i_col > 0 and garden[i_row - 1][i_col - 1] == "*":
-            flower_count += 1
-        # top
-        if garden[i_row - 1][i_col] == "*":
-            flower_count += 1
-        # top-right
-        if i_col + 1 < len(garden[i_row]) and garden[i_row - 1][i_col + 1] == "*":
-            flower_count += 1
-    return flower_count
-
-
-def _calc_flower_bottom(i_row: int, i_col: int, garden: list[str]) -> int:
-    """
-    Count flowers in the three cells directly below the current position.
-
-    Checks the bottom-left, bottom, and bottom-right neighbors when the row
-    below exists and contains any flowers.
-
-    :param int i_row: Current row index.
-    :param int i_col: Current column index.
-    :param list garden: The garden as a list of strings.
-    :returns: Number of ``*`` cells among the three lower neighbors.
-    :rtype: int
-    """
-    flower_count = 0
-
-    if i_row + 1 < len(garden) and "*" in garden[i_row + 1]:
-        # bottom-left
-        if i_col > 0 and garden[i_row + 1][i_col - 1] == "*":
-            flower_count += 1
-        # bottom
-        if garden[i_row + 1][i_col] == "*":
-            flower_count += 1
-        # bottom-right
-        if i_col + 1 < len(garden[i_row]) and garden[i_row + 1][i_col + 1] == "*":
-            flower_count += 1
-    return flower_count
-
-
-def _validate(garden: list[str]):
+def _validate(garden: list[str]) -> None:
     """
     Validate the garden shape and contents.
 

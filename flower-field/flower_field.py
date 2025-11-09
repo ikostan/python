@@ -10,9 +10,14 @@ adjacent (horizontally, vertically, diagonally) to each square.
 """
 
 COORDINATES: tuple = (
-    (-1, -1), (-1, 0), (-1, 1),
-    (0, -1), (0, 1),
-    (1, -1), (1, 0), (1, 1),
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+    (0, -1),
+    (0, 1),
+    (1, -1),
+    (1, 0),
+    (1, 1),
 )
 
 

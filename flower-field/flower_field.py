@@ -70,7 +70,6 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     :returns: Number of adjacent flowers (0–8).
     :rtype: int
     """
-    ...
     total: int = 0
     if garden[i_row][i_col] == " ":
         # Count flowers all around current position

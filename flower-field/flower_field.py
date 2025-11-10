@@ -45,14 +45,14 @@ def annotate(garden: list[str]) -> list[str]:
     _validate(garden)
     new_garden: list[str] = []
     for i_row, row in enumerate(garden):
-        new_row: str = ""
+        new_row: list[str] = []
         for i_col, char in enumerate(row):
             flower_count = _calc_surrounding_flowers(i_row, i_col, garden)
             if flower_count != 0:
-                new_row += str(flower_count)
+                new_row.append(str(flower_count))
             else:
-                new_row += char
-        new_garden.append(new_row)
+                new_row.append(char)
+        new_garden.append("".join(new_row))
     return new_garden
 
 
@@ -74,11 +74,14 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     if garden[i_row][i_col] == " ":
         # Count flowers all around current position
         for row, col in COORDINATES:
-            # Avoid IndexError
-            if 0 <= i_row + row < len(garden) and 0 <= i_col + col < len(garden[0]):
-                # Detect and count flower
-                if garden[i_row + row][i_col + col] == "*":
-                    total += 1
+            sum_row = sum((i_row, row))
+            sum_col = sum((i_col, col))
+            if (
+                0 <= sum_row < len(garden)  # ROW: Avoid IndexError
+                and 0 <= sum_col < len(garden[0])  # COL: Avoid IndexError
+                and garden[sum_row][sum_col] == "*"  # Detect/count flower
+            ):
+                total += 1
     return total
 
 
@@ -87,15 +90,17 @@ def _validate(garden: list[str]) -> None:
     Validate the garden shape and contents.
 
     Ensures the input is rectangular and contains only spaces and ``*``.
+    Raise ValueError when the board receives malformed input garden is not
+    a rectangle due to inconsistent row length or contains invalid chars
+    inside the row.
 
     :param list garden: A list of equal-length strings to validate.
     :raises ValueError: If rows have differing lengths or contain characters
         other than space or ``*``.
     """
     garden_length = len(garden[0])
-    for row in garden:
-        # when the board receives malformed input
-        # garden is not a rectangle due to inconsistent row length
-        # or contains invalid chars inside the row
-        if len(row) != garden_length or not all(char in " *" for char in row):
-            raise ValueError("The board is invalid with current input.")
+    if any(
+        (len(row) != garden_length or not all(char in " *" for char in row))
+        for row in garden
+    ):
+        raise ValueError("The board is invalid with current input.")

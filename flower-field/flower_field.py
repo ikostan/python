@@ -43,16 +43,15 @@ def annotate(garden: list[str]) -> list[str]:
         return []
     # raise an error when the board receives malformed input
     _validate(garden)
-    new_garden: list[str] = []
-    for i_row, row in enumerate(garden):
-        new_row = [
-            str(_calc_surrounding_flowers(i_row, i_col, garden))
-            if _calc_surrounding_flowers(i_row, i_col, garden) != 0
+    return [
+        "".join(
+            str(count)
+            if (count := _calc_surrounding_flowers(i_row, i_col, garden)) != 0
             else char
             for i_col, char in enumerate(row)
-        ]
-        new_garden.append("".join(new_row))
-    return new_garden
+        )
+        for i_row, row in enumerate(garden)
+    ]
 
 
 def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:

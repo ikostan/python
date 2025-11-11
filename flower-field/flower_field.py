@@ -9,7 +9,7 @@ The goal is to compute numeric hints indicating how many flowers are
 adjacent (horizontally, vertically, diagonally) to each square.
 """
 
-COORDINATES: tuple = (
+COORDINATES: tuple[tuple[int, int]] = (
     (-1, -1),
     (-1, 0),
     (-1, 1),
@@ -45,13 +45,12 @@ def annotate(garden: list[str]) -> list[str]:
     _validate(garden)
     new_garden: list[str] = []
     for i_row, row in enumerate(garden):
-        new_row: list[str] = []
-        for i_col, char in enumerate(row):
-            flower_count = _calc_surrounding_flowers(i_row, i_col, garden)
-            if flower_count != 0:
-                new_row.append(str(flower_count))
-            else:
-                new_row.append(char)
+        new_row = [
+            str(_calc_surrounding_flowers(i_row, i_col, garden))
+            if _calc_surrounding_flowers(i_row, i_col, garden) != 0
+            else char
+            for i_col, char in enumerate(row)
+        ]
         new_garden.append("".join(new_row))
     return new_garden
 
@@ -73,9 +72,9 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     total: int = 0
     if garden[i_row][i_col] == " ":
         # Count flowers all around current position
-        for row, col in COORDINATES:
-            sum_row = sum((i_row, row))
-            sum_col = sum((i_col, col))
+        for offset_row, offset_col in COORDINATES:
+            sum_row = i_row + offset_row
+            sum_col = i_col + offset_col
             if (
                 0 <= sum_row < len(garden)  # ROW: Avoid IndexError
                 and 0 <= sum_col < len(garden[0])  # COL: Avoid IndexError

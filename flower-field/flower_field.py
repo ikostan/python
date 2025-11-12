@@ -69,16 +69,12 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     :returns: Number of adjacent flowers (0–8).
     :rtype: int
     """
-    total: list[int] = [0]
-    # Only compute neighbors for empty squares; flowers are preserved by caller.
-    if garden[i_row][i_col] == " ":
-        # Count flowers all around current position
-        total = [
-            _process_cell(i_row, offset_row, i_col, offset_col, garden)
-            for offset_row, offset_col in COORDINATES
-        ]
-
-    return sum(total)
+    if garden[i_row][i_col] != " ":
+        return 0
+    return sum(
+        _process_cell(i_row, offset_row, i_col, offset_col, garden)
+        for offset_row, offset_col in COORDINATES
+    )
 
 
 def _process_cell(i_row, offset_row, i_col, offset_col, garden) -> int:

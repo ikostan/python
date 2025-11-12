@@ -71,10 +71,8 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     return (
         sum(
-            [
-                _process_cell(i_row, offset_row, i_col, offset_col, garden)
-                for offset_row, offset_col in COORDINATES
-            ]
+            _process_cell(i_row, offset_row, i_col, offset_col, garden)
+            for offset_row, offset_col in COORDINATES
         )
         if garden[i_row][i_col] == " "
         else 0

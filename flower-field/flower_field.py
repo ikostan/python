@@ -10,7 +10,16 @@ adjacent (horizontally, vertically, diagonally) to each square.
 """
 
 # Relative offsets to the eight neighboring cells around a given position
-COORDINATES: tuple[tuple[int, int]] = (
+COORDINATES: tuple[
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+] = (
     (-1, -1),
     (-1, 0),
     (-1, 1),

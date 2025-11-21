@@ -27,12 +27,14 @@ def label(colors: list[str]) -> str:
     """
     Return a human-readable label for a 3-band resistor value.
 
-    The first two colors form the significant digits and the third color is the multiplier
-    (number of trailing zeros). The resulting value is scaled to the largest whole unit
-    among ohms, kiloohms, megaohms, or gigaohms.
+    The first two colors form the significant digits and the third color
+    is the multiplier (number of trailing zeros). The resulting value is
+    scaled to the largest whole unit among ohms, kiloohms, megaohms, or
+    gigaohms.
 
     :param colors: Three resistor color names in order [band1, band2, multiplier].
-                   band1 and band2 provide the significant digits; multiplier adds zeros.
+                   band1 and band2 provide the significant digits; multiplier
+                   adds zeros.
     :return: Formatted resistance value string using the largest whole unit
              (e.g., '47 kiloohms', '680 ohms').
     :raises KeyError: If a color name is not recognized.

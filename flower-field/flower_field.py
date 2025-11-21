@@ -10,7 +10,16 @@ adjacent (horizontally, vertically, diagonally) to each square.
 """
 
 # Relative offsets to the eight neighboring cells around a given position
-COORDINATES: tuple[tuple[int, int]] = (
+COORDINATES: tuple[
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+    tuple[int, int],
+] = (
     (-1, -1),
     (-1, 0),
     (-1, 1),
@@ -71,38 +80,18 @@ def _calc_surrounding_flowers(i_row: int, i_col: int, garden: list[str]) -> int:
     """
     if garden[i_row][i_col] != " ":
         return 0
-    return sum(
-        _process_cell(i_row, offset_row, i_col, offset_col, garden)
-        for offset_row, offset_col in COORDINATES
-    )
-
-
-def _process_cell(i_row, offset_row, i_col, offset_col, garden) -> int:
-    """
-    Return 1 if the neighbor at the given relative offset contains a flower.
-
-    Computes the absolute coordinates from ``(i_row, i_col)`` and the provided
-    offsets, performs bounds checking to avoid ``IndexError``, and returns ``1``
-    only when the cell is within the garden and equals ``"*"``.
-
-    :param int i_row: Row index of the reference cell.
-    :param int offset_row: Row delta to apply to ``i_row``.
-    :param int i_col: Column index of the reference cell.
-    :param int offset_col: Column delta to apply to ``i_col``.
-    :param list garden: The rectangular garden representation.
-    :returns: ``1`` when the computed neighbor cell contains a flower, otherwise ``0``.
-    :rtype: int
-    """
-    row: int = i_row + offset_row
-    col: int = i_col + offset_col
-
-    if (
-        0 <= row < len(garden)  # ROW: Avoid IndexError
-        and 0 <= col < len(garden[0])  # COL: Avoid IndexError
-        and garden[row][col] == "*"  # Detect/count flower
-    ):
-        return 1
-    return 0
+    total: int = 0
+    # Count flowers all around current position
+    for offset_row, offset_col in COORDINATES:
+        sum_row = i_row + offset_row
+        sum_col = i_col + offset_col
+        if (
+            0 <= sum_row < len(garden)  # ROW: Avoid IndexError
+            and 0 <= sum_col < len(garden[0])  # COL: Avoid IndexError
+            and garden[sum_row][sum_col] == "*"  # Detect/count flower
+        ):
+            total += 1
+    return total
 
 
 def _validate(garden: list[str]) -> None:

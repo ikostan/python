@@ -59,15 +59,16 @@ def resistor_label(colors: list[str]) -> str:
         prefix: str = f"{COLOR_VALUES[colors[0]]}"
 
     if len(colors) == 4:
-        prefix: str = (f"{COLOR_VALUES[colors[0]]}"
-                       f"{COLOR_VALUES[colors[1]]}")
+        prefix: str = f"{COLOR_VALUES[colors[0]]}{COLOR_VALUES[colors[1]]}"
         postfix = f"{'0' * COLOR_VALUES[colors[2]]}"
         max_tolerance = MAX_TOLERANCE[colors[3]]
 
     if len(colors) == 5:
-        prefix = (f"{COLOR_VALUES[colors[0]]}"
-                  f"{COLOR_VALUES[colors[1]]}"
-                  f"{COLOR_VALUES[colors[2]]}")
+        prefix = (
+            f"{COLOR_VALUES[colors[0]]}"
+            f"{COLOR_VALUES[colors[1]]}"
+            f"{COLOR_VALUES[colors[2]]}"
+        )
         postfix = f"{'0' * COLOR_VALUES[colors[3]]}"
         max_tolerance = MAX_TOLERANCE[colors[4]]
 

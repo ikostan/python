@@ -50,7 +50,6 @@ def resistor_label(colors: list[str]) -> str:
     :rtype: str
     :raises KeyError: If an unknown color is provided.
     """
-
     prefix: str = ""
     postfix: str = ""
     max_tolerance: str = ""

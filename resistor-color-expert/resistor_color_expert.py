@@ -8,6 +8,7 @@ the maximum tolerance will be ±0.5%.
 """
 
 # Mapping of resistor color names to their corresponding digit values.
+# pylint: disable=R0801
 COLOR_VALUES: dict[str, int] = {
     "black": 0,
     "brown": 1,

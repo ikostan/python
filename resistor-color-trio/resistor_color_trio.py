@@ -9,6 +9,7 @@ doesn't matter what ohms really are.
 """
 
 # Mapping of resistor color names to their corresponding digit values.
+# pylint: disable=R0801
 COLOR_VALUES: dict[str, int] = {
     "black": 0,
     "brown": 1,

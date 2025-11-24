@@ -83,6 +83,6 @@ def resistor_label(colors: list[str]) -> str:
         return f"{float(int_val / 1000000)}".rstrip(".0") + f" megaohms{max_tolerance}"
 
     if 1000000000 <= int_val:
-        return f"{int_val / 1000000000}".rstrip(".0") + " gigaohms{max_tolerance}"
+        return f"{int_val / 1000000000}".rstrip(".0") + f" gigaohms{max_tolerance}"
 
     return f"{int_val} ohms{max_tolerance}"

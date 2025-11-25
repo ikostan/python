@@ -17,7 +17,7 @@ Only the presence of a bit matters; higher bits beyond the five listed
 are ignored. The reverse bit (16) inverses the final list of actions.
 """
 
-ACTIONS: dict[int:tuple[str, str]] = {
+ACTIONS: dict[int : tuple[str, str]] = {
     0: ("00001", "wink"),
     1: ("00010", "double blink"),
     2: ("00100", "close your eyes"),

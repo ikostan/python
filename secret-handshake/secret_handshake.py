@@ -17,12 +17,7 @@ Only the presence of a bit matters; higher bits beyond the five listed
 are ignored. The reverse bit (16) inverses the final list of actions.
 """
 
-ACTIONS: dict[int : tuple[str, str]] = {
-    0: ("00001", "wink"),
-    1: ("00010", "double blink"),
-    2: ("00100", "close your eyes"),
-    3: ("01000", "jump"),
-}
+ACTIONS: tuple[str, str, str, str] = ("wink", "double blink", "close your eyes", "jump")
 
 
 def commands(binary_str: str) -> list[str]:
@@ -42,7 +37,7 @@ def commands(binary_str: str) -> list[str]:
     for i, char in enumerate(binary_str[::-1]):
         # Check if the corresponding bit position matches the expected "1".
         if char == "1" and i < 4:
-            results.append(ACTIONS[i][1])
+            results.append(ACTIONS[i])
         elif char == "1" and i == 4:
             # Fifth bit indicates the final list should be reversed.
             results = results[::-1]

@@ -20,11 +20,12 @@ def find_anagrams(word: str, candidates: list[str]) -> list[str]:
     :param candidates: Sequence of candidate words to test.
     :returns: A list containing each candidate that is an anagram of ``word``.
     """
-    word_ordered_lower_chars: list[str] = sorted(char.lower() for char in word)
-    word_lower = word.lower()
+    target_sorted: list[str] = sorted(word.lower())
+    target_lower: str = word.lower()
+
     return [
         candidate
         for candidate in candidates
-        if candidate.lower() != word_lower
-        and sorted(char for char in candidate.lower()) == word_ordered_lower_chars
+        if candidate.lower() != target_lower
+        and sorted(candidate.lower()) == target_sorted
     ]

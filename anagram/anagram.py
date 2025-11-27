@@ -26,6 +26,6 @@ def find_anagrams(word: str, candidates: list[str]) -> list[str]:
     return [
         candidate
         for candidate in candidates
-        if candidate.lower() != target_lower
-        and sorted(candidate.lower()) == target_sorted
+        if (candidate_lower := candidate.lower()) != target_lower
+        and sorted(candidate_lower) == target_sorted
     ]

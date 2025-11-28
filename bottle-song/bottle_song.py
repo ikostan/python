@@ -26,9 +26,9 @@ def recite(start: int, take: int = 1) -> list[str]:
     Return a slice of the song lyrics corresponding to ``take`` consecutive
     verses starting from the verse that begins with ``start`` green bottles.
 
-    The lyrics are stored as a flat list where each verse occupies five lines
-    (four lyric lines plus a trailing blank line). This function computes the
-    appropriate slice boundaries to return the requested verses in order.
+    The lyrics are generated as a flat list where each verse occupies five lines
+    (four lyric lines plus a trailing blank line). This function generates the
+    requested verses dynamically based on the song's pattern.
 
     :param start: The number of green bottles to start from (e.g., 10 for
                   "Ten green bottles"). Must be between 1 and 10.

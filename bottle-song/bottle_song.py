@@ -8,57 +8,18 @@ This module exposes the precomputed lyrics and a helper to
 extract slices of the song by verse.
 """
 
-Ten_Green_Bottles: list[str] = [
-    "Ten green bottles hanging on the wall,",
-    "Ten green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be nine green bottles hanging on the wall.",
-    "",
-    "Nine green bottles hanging on the wall,",
-    "Nine green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be eight green bottles hanging on the wall.",
-    "",
-    "Eight green bottles hanging on the wall,",
-    "Eight green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be seven green bottles hanging on the wall.",
-    "",
-    "Seven green bottles hanging on the wall,",
-    "Seven green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be six green bottles hanging on the wall.",
-    "",
-    "Six green bottles hanging on the wall,",
-    "Six green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be five green bottles hanging on the wall.",
-    "",
-    "Five green bottles hanging on the wall,",
-    "Five green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be four green bottles hanging on the wall.",
-    "",
-    "Four green bottles hanging on the wall,",
-    "Four green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be three green bottles hanging on the wall.",
-    "",
-    "Three green bottles hanging on the wall,",
-    "Three green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be two green bottles hanging on the wall.",
-    "",
-    "Two green bottles hanging on the wall,",
-    "Two green bottles hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be one green bottle hanging on the wall.",
-    "",
-    "One green bottle hanging on the wall,",
-    "One green bottle hanging on the wall,",
-    "And if one green bottle should accidentally fall,",
-    "There'll be no green bottles hanging on the wall.",
-]
+NUMBERS: tuple = (
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+)
 
 
 def recite(start: int, take: int = 1) -> list[str]:
@@ -76,6 +37,31 @@ def recite(start: int, take: int = 1) -> list[str]:
                  Defaults to 1.
     :returns: A list of lyric lines forming the requested verses.
     """
-    start: int = -(start * 5)
-    end: int = len(Ten_Green_Bottles) + start + (take * 5)
-    return Ten_Green_Bottles[start + 1: end]
+    result: list[str] = []
+    for i in range(start, start - take, -1):
+        if i == 1:
+            verse = [
+                f"{NUMBERS[i - 1]} green bottle hanging on the wall,",
+                f"{NUMBERS[i - 1]} green bottle hanging on the wall,",
+                "And if one green bottle should accidentally fall,",
+                "There'll be no green bottles hanging on the wall.",
+            ]
+        elif i != start - take + 1:
+            verse = [
+                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
+                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
+                "And if one green bottle should accidentally fall,",
+                f"There'll be {NUMBERS[i - 2].lower()} green {'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
+                f" the wall.",
+                "",
+            ]
+        else:
+            verse = [
+                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
+                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
+                "And if one green bottle should accidentally fall,",
+                f"There'll be {NUMBERS[i - 2].lower()} green {'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
+                f" the wall.",
+            ]
+        result += verse
+    return result

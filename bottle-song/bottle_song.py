@@ -39,9 +39,11 @@ def recite(start: int, take: int = 1) -> list[str]:
     for i in range(start, start - take, -1):
         result += [
             f"{NUMBERS[i - 1]} green "
-            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} hanging on the wall,",
+            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} "
+            f"hanging on the wall,",
             f"{NUMBERS[i - 1]} green "
-            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} hanging on the wall,",
+            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} "
+            f"hanging on the wall,",
             "And if one green bottle should accidentally fall,",
             f"There'll be {NUMBERS[i - 2].lower() if (i - 2) > -1 else 'no'} green "
             f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"

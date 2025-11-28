@@ -23,8 +23,7 @@ NUMBERS: tuple = (
 
 def recite(start: int, take: int = 1) -> list[str]:
     """
-    Return a slice of the song lyrics corresponding to ``take`` consecutive
-    verses starting from the verse that begins with ``start`` green bottles.
+    Return a slice of the song lyrics.
 
     The lyrics are generated as a flat list where each verse occupies five lines
     (four lyric lines plus a trailing blank line). This function generates the

@@ -38,31 +38,16 @@ def recite(start: int, take: int = 1) -> list[str]:
     """
     result: list[str] = []
     for i in range(start, start - take, -1):
-        if i == 1:
-            verse = [
-                f"{NUMBERS[i - 1]} green bottle hanging on the wall,",
-                f"{NUMBERS[i - 1]} green bottle hanging on the wall,",
-                "And if one green bottle should accidentally fall,",
-                "There'll be no green bottles hanging on the wall.",
-            ]
-        elif i != start - take + 1:
-            verse = [
-                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
-                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
-                "And if one green bottle should accidentally fall,",
-                f"There'll be {NUMBERS[i - 2].lower()} green "
-                f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
-                f" the wall.",
-                "",
-            ]
-        else:
-            verse = [
-                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
-                f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
-                "And if one green bottle should accidentally fall,",
-                f"There'll be {NUMBERS[i - 2].lower()} green "
-                f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
-                f" the wall.",
-            ]
-        result += verse
+        result += [
+            f"{NUMBERS[i - 1]} green "
+            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} hanging on the wall,",
+            f"{NUMBERS[i - 1]} green "
+            f"{'bottles' if NUMBERS[i - 1] != 'One' else 'bottle'} hanging on the wall,",
+            "And if one green bottle should accidentally fall,",
+            f"There'll be {NUMBERS[i - 2].lower() if (i - 2) > -1 else 'no'} green "
+            f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
+            f" the wall.",
+        ]
+        if i != start - take + 1:
+            result.append("")
     return result

@@ -1,6 +1,5 @@
 """
-Bottle Song
-===========
+Bottle Song.
 
 Recite verses from the children's song "Ten Green Bottles".
 
@@ -51,7 +50,8 @@ def recite(start: int, take: int = 1) -> list[str]:
                 f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
                 f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
                 "And if one green bottle should accidentally fall,",
-                f"There'll be {NUMBERS[i - 2].lower()} green {'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
+                f"There'll be {NUMBERS[i - 2].lower()} green "
+                f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
                 f" the wall.",
                 "",
             ]
@@ -60,7 +60,8 @@ def recite(start: int, take: int = 1) -> list[str]:
                 f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
                 f"{NUMBERS[i - 1]} green bottles hanging on the wall,",
                 "And if one green bottle should accidentally fall,",
-                f"There'll be {NUMBERS[i - 2].lower()} green {'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
+                f"There'll be {NUMBERS[i - 2].lower()} green "
+                f"{'bottles' if NUMBERS[i - 2] != 'One' else 'bottle'} hanging on"
                 f" the wall.",
             ]
         result += verse

@@ -14,8 +14,9 @@ def encode(numbers: list[int]) -> list[int]:
     :param numbers:
     :return:
     """
-    chunks = []
+    results = []
     for number in numbers:
+        chunks = []
         # Hex to Decimal -> Decimal to Binary
         n_bin = bin(int(number))
         # Split Binary into 7-Bit Chunks
@@ -45,7 +46,8 @@ def encode(numbers: list[int]) -> list[int]:
         # Convert to Decimal -> Convert Decimals to Hex
         for i, c in enumerate(chunks):
             chunks[i] = int(c, 2)
-    return chunks
+        results += chunks
+    return results
 
 
 def decode(bytes_: list):
